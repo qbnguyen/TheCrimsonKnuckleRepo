@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+body {
+  background-color: #252846;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  color: #aea9c3;
+}
+body .btn, body .btn-large, body .card {
+  border-radius: 0;
+}
+body nav.navbar {
+  background-color: #2C2F4D;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+body nav.navbar .brand-logo {
+  background: url(../images/logo_header.svg) no-repeat;
+  width: 100%;
+  margin-top: 5px;
+  height: inherit;
+}
+body nav.navbar .st-main {
+  position: absolute;
+  display: block;
+  left: 200px;
+  top: 7px;
+  color: #e76c90;
+}
+body nav.navbar .nav-search {
+  color: #e76c90;
+}
+body .sidenav {
+  background-color: #2C2F4D;
+}
+body .sidenav li a {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+}
+body .sidenav li a:hover {
+  color: #e76c90;
+  transition: 300ms ease all;
+}
+body .sidenav li a:active {
+  color: #e76c90;
+}
+body .sidenav li a .float-r {
+  float: right;
+}
+body .sidenav li a .highlight {
+  color: #e76c90;
+}
+body .sidenav .collapsible-body {
+  background-color: #252846;
+}
+body .sidenav .collapsible-body a {
+  color: #aea9c3;
+  font-size: 0.85rem;
+  padding-left: 40px;
+}
+body .sidenav .collapsible-body a:hover {
+  color: #e76c90;
+  transition: 300ms ease all;
+}
+body .sidenav .collapsible-body a:active {
+  color: #e76c90;
+}
+body .hero {
+  background-color: #121423;
+  margin-top: 2px;
+}
+body main .section.topic textarea, body main .section.topic input {
+  color: #aea9c3;
+}
+body main .section.topic input[type=text]:focus:not(.browser-default).validate + label, body main .section.topic input[type=password]:focus:not(.browser-default).validate + label, body main .section.topic textarea:focus:not([readonly]) + label {
+  color: #e76c90;
+}
+body main .section .card {
+  color: #aea9c3;
+  background-color: #2C2F4D;
+}
+body main .section .card .card-content .card-title {
+  font-weight: 300;
+}
+body main .section .card .card-content p {
+  font-weight: 300;
+}
+body footer {
+  padding: 15px 0;
+  color: #aea9c3;
+  background-color: #2C2F4D;
+  border-top: 0.07rem solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 15px 1px rgba(0, 0, 0, 0.08);
+}
+
+/*# sourceMappingURL=style.css.map */
