@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+
+$font-stack: 'Montserrat', sans-serif;
+
+$font-highlight: #e76c90;
+$font-color: #aea9c3;
+$font-white: #ffffff;
+$font-active: $font-highlight;
+
+$xdark-body: #121423;
+$dark-body: #252846;
+$light-body: #2C2F4D;
+
+
+
+body {
+  background-color: $dark-body;
+  font-family: $font-stack;
+  font-size: 1rem;
+  color: $font-color;
+
+  .btn, .btn-large, .card {
+    border-radius: 0;
+  }
+
+  nav {
+
+    &.navbar {
+      background-color: $light-body;
+      box-shadow: 0 1px 0 rgba(255,255,255,.1);
+
+      .brand-logo {
+        background: url(../images/logo_header.svg) no-repeat;
+        width: 100%;
+        margin-top: 5px;
+        height: inherit;
+      }
+
+      .st-main {
+        position: absolute;
+        display: block;
+        left: 200px;
+        top: 7px;
+        color: $font-highlight;
+      }
+
+      .nav-search {
+        color: $font-highlight;
+      }
+    }
+  }
+
+  .sidenav {
+    background-color: $light-body;
+    li {
+      a {
+        color: $font-white;
+        font-size: 1rem;
+        font-weight: 500;
+
+        &:hover {
+          color: $font-highlight;
+          transition: 300ms ease all;
+        }
+
+        &:active {
+          color: $font-highlight;
+        }
+
+        .float-r {
+          float: right;
+        }
+
+        .highlight {
+          color: $font-highlight;
+        }
+      }
+    }
+
+    .collapsible-body {
+      background-color: $dark-body;
+
+      a {
+        color: $font-color;
+        font-size: .85rem;
+        padding-left: 40px;
+
+        &:hover {
+        color: $font-highlight;
+        transition: 300ms ease all;
+      }
+
+        &:active {
+          color: $font-highlight;
+        }
+      }
+    }
+  }
+
+  .hero {
+    background-color: $xdark-body;
+    margin-top: 2px;
+  }
+
+  main {
+
+    .section {
+
+      &.topic {
+
+        textarea, input {
+          color: $font-color;
+        }
+
+        input[type=text]:focus:not(.browser-default).validate+label, input[type=password]:focus:not(.browser-default).validate+label, textarea:focus:not([readonly])+label {
+          color: $font-highlight;
+        }
+      }
+      .card {
+        color: $font-color;
+        background-color: $light-body;
+
+        .card-content {
+
+          .card-title {
+            font-weight: 300; 
+          }
+
+          p {
+              font-weight: 300;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    padding: 15px 0;
+    color: $font-color;
+    background-color: $light-body;
+    border-top: 0.07rem solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 15px 1px rgba(0, 0, 0, 0.08);
+  }
+}
