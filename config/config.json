@@ -1,8 +1,8 @@
 {
     "development": {
       "username": "root",
-      "password": null,
-      "database": "iDecide",
+      "password": "Loveless27**",
+      "database": "idecide",
       "host": "127.0.0.1",
       "port": 3306,
       "dialect": "mysql"

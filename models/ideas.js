@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Users = sequelize.define("Users", {
+    var Ideas = sequelize.define("Ideas", {
       idea: {
         type: DataTypes.STRING,
         // AllowNull is a flag that restricts a todo from being entered if it doesn't
@@ -17,5 +17,5 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.INTEGER
       },
     });
-    return Users;
+    return Ideas;
   };
