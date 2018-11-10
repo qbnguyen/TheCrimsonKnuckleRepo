@@ -1,0 +1,117 @@
+.popover {
+    border-color: #eee;
+    padding: 0;
+    box-shadow: 0 1px 15px 1px rgba(52,40,104,.18)
+}
+
+.popover .popover-header {
+    background-color: #fff;
+    border-color: #eee;
+    color: #5d5386;
+    padding: .85rem 1.07rem
+}
+
+.popover-body {
+    padding: .85rem 1.07rem;
+    color: #2c304d
+}
+
+.bs-popover-top .arrow::before,.bs-popover-auto[x-placement^="top"] .arrow::before {
+    right: 0;
+    border-top-color: #eee
+}
+
+.bs-popover-right .arrow::before,.bs-popover-auto[x-placement^="right"] .arrow::before {
+    right: 0;
+    border-right-color: #eee
+}
+
+.bs-popover-bottom .arrow::before,.bs-popover-auto[x-placement^="bottom"] .arrow::before {
+    right: 0;
+    border-bottom-color: #eee
+}
+
+.bs-popover-left .arrow::before,.bs-popover-auto[x-placement^="left"] .arrow::before {
+    right: 0;
+    border-left-color: #eee
+}
+
+
+
+.fc-popover {
+    position: absolute;
+    box-shadow: 0 2px 6px rgba(0,0,0,.15)
+}
+
+.fc-popover .fc-header {
+    padding: 2px 4px
+}
+
+.fc-popover .fc-header .fc-title {
+    margin: 0 2px
+}
+
+.fc-popover .fc-header .fc-close {
+    cursor: pointer
+}
+
+.fc-ltr .fc-popover .fc-header .fc-title,.fc-rtl .fc-popover .fc-header .fc-close {
+    float: left
+}
+
+.fc-rtl .fc-popover .fc-header .fc-title,.fc-ltr .fc-popover .fc-header .fc-close {
+    float: right
+}
+
+.fc-more-popover {
+    z-index: 2;
+    width: 220px
+}
+
+.fc-more-popover .fc-event-container {
+    padding: 10px
+}
+
+.fc-unthemed th,.fc-unthemed td,.fc-unthemed thead,.fc-unthemed tbody,.fc-unthemed .fc-divider,.fc-unthemed .fc-row,.fc-unthemed .fc-content,.fc-unthemed .fc-popover,.fc-unthemed .fc-list-view,.fc-unthemed .fc-list-heading td {
+    border-color: #eee
+}
+
+.fc-unthemed .fc-popover {
+    background-color: #fff
+}
+
+.fc-unthemed .fc-popover .fc-header,.fc-unthemed .fc-list-heading td {
+    background: rgba(52,40,104,.8);
+    color: #fff;
+    border: 0 none
+}
+
+.fc-unthemed .fc-popover .fc-header .fc-close {
+    color: #666
+}
+
+.fc-unthemed .fc-popover {
+    border-width: 1px;
+    border-style: solid
+}
+
+.fc-unthemed .fc-popover .fc-header .fc-close {
+    font-size: .9rem;
+    margin-top: 2px
+}
+
+.fc-popover>.ui-widget-header + .ui-widget-content {
+    border-top: 0
+}
+
+.fc-bootstrap3 .fc-popover .panel-body {
+    padding: 0
+}
+
+.fc-bootstrap4 .fc-popover.card {
+    position: absolute
+}
+
+.fc-bootstrap4 .fc-popover .card-body {
+    padding: 0
+}
