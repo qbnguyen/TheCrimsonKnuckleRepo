@@ -19,8 +19,7 @@ module.exports = function(sequelize, DataTypes) {
 // Ideas must belong to a group
       Ideas.belongsTo(models.Groups, {
         foreignKey: {
-          allowNull: false,
-          defaultValue: 0
+          allowNull: false
         }
       });
     }

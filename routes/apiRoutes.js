@@ -1,12 +1,13 @@
 let db = require("../models");
 
 let iDecideDBRoutes = (app) => {
-    console.log("Routes function connected!!!");
+
+//////////////// POST ROUTES //////////////////////////
 
     // POST route for saving a new group
     app.post("/api/groups", function(req, res) {
         console.log(req.body);
-        db.groups.create({
+        db.Groups.create({
             admin_name: req.body.admin_name,
             admin_email: req.body.admin_email,
             group_name: req.body.group_name,
@@ -22,10 +23,10 @@ let iDecideDBRoutes = (app) => {
     // POST route for saving a new user
     app.post("/api/users", function(req, res) {
         console.log(req.body);
-        db.users.create({
+        db.Users.create({
             name: req.body.name,
             email: req.body.email,
-            group_ID: req.body.group_ID
+            GroupId: req.body.GroupId
         }).then(function(dbUsers) {
             res.json(dbUsers);
         });
@@ -34,14 +35,64 @@ let iDecideDBRoutes = (app) => {
     // POST route for saving a new idea
     app.post("/api/ideas", function(req, res) {
         console.log(req.body);
-        db.ideas.create({
+        db.Ideas.create({
             idea: req.body.idea,
-            group_ID: req.body.group_ID,
-            vote_val: req.body.vote_val
+            vote_val: req.body.vote_val,
+            GroupId: req.body.GroupId
         }).then(function(dbIdeas) {
             res.json(dbIdeas);
         });
     });
+
+//////////////// GET ROUTES //////////////////////////
+
+//Get group by id
+
+app.get("/api/groups/:id", function(req, res) {
+        console.log(req.body);
+        db.Groups.findOne({
+            where: {
+                id: req.params.id
+            },
+    }).then(function (Group) {
+        res.json(Group);
+    })
+});
+
+//GET all ideas regardless of group
+app.get("/api/ideas", function(req, res) {
+        console.log(req.body);
+        db.Ideas.findAll({}).then(function (Ideas) {
+        res.json(Ideas);
+    })
+});
+
+//GET all ideas based on group id
+
+app.get("/api/ideas/groups/:id", function(req, res) {
+        console.log(req.params);
+        db.Ideas.findAll({
+            where: {
+                GroupId: req.params.id
+            }
+        }).then(function (Ideas) {
+        res.json(Ideas);
+    })
+});
+
+//find all users based on group id
+app.get("/api/users/groups/:id", function(req, res) {
+        console.log(req.params);
+        db.Users.findAll({
+            where: {
+                GroupId: req.params.id
+            }
+        }).then(function (Users) {
+        res.json(Users);
+    })
+});
+
+
 }
 
 module.exports = iDecideDBRoutes;
