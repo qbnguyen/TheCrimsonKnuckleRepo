@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i");
 body {
   background-color: #252846;
   font-family: "Montserrat", sans-serif;
@@ -8,31 +9,14 @@ body {
 body .btn, body .btn-large, body .card {
   border-radius: 0;
 }
-body .left-landing {
-  background-color: #252846;
-  display: flex;
-  flex-direction: column;
-  padding: 0 !important;
+body .text-center {
+  text-align: center !important;
 }
-body .right-landing {
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  padding: 0 !important;
-  margin-bottom: auto !important;
-  margin-top: auto !important;
-}
-body .right-landing .authentication-form-2 {
-  width: 50%;
-  display: block;
+body .ml-auto, body .mar-auto {
   margin-left: auto !important;
+}
+body .mr-auto, body .mar-auto {
   margin-right: auto !important;
-}
-body .right-landing .authentication-form-2 .tab-content .tab-pane {
-  display: none;
-}
-body .right-landing .authentication-form-2 .tab-content .tab-pane:active {
-  display: block;
 }
 body nav.navbar {
   background-color: #2C2F4D;
@@ -96,6 +80,128 @@ body .sidenav.sidenav-fixed {
 body .hero {
   background-color: #121423;
   margin-top: 2px;
+}
+body main.landing {
+  background-color: #ffffff;
+}
+body main.landing h1, body main.landing h2, body main.landing h3, body main.landing h4, body main.landing h5 {
+  font-family: "Noto Sans", sans-serif;
+}
+body main.landing .mt-30 {
+  margin-top: 30px;
+}
+body main.landing .row:first-of-type {
+  margin-bottom: 0;
+}
+body main.landing .row:first-of-type .left-side {
+  background-color: #252846;
+  position: relative;
+  height: 100vh;
+}
+body main.landing .row:first-of-type .left-side .auth-col-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  padding: 0 50px;
+  transform: translateY(-50%);
+}
+body main.landing .row:first-of-type .left-side .auth-col-content .logo-centered {
+  width: 140px;
+  margin: 0 auto;
+}
+body main.landing .row:first-of-type .left-side .auth-col-content .logo-centered a {
+  display: inline-block;
+  text-decoration: none;
+}
+body main.landing .row:first-of-type .left-side .auth-col-content .logo-centered a img {
+  width: 140px;
+  margin-bottom: 50px;
+  vertical-align: middle;
+  border-style: none;
+}
+body main.landing .row:first-of-type .left-side .auth-col-content h1 {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: #ffffff;
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+body main.landing .row:first-of-type .left-side .auth-col-content span.description {
+  display: inline-block;
+  color: #ffffff;
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+body main.landing .row:first-of-type .left-side .auth-col-content .login-nav {
+  margin-top: 3rem;
+}
+body main.landing .row:first-of-type .left-side .auth-col-content .login-nav li {
+  display: inline-block;
+}
+body main.landing .row:first-of-type .left-side .auth-col-content .login-nav li .btn {
+  display: inline-block;
+  text-transform: none;
+  font-size: 0.8rem;
+  background-color: transparent;
+  box-shadow: none;
+}
+body main.landing .row:first-of-type .left-side .auth-col-content .login-nav li .btn.active {
+  background-color: #ffffff;
+  color: #aea9c3;
+}
+body main.landing .right-side {
+  background-color: #ffffff;
+  height: 100vh;
+}
+body main.landing .right-side .auth-col-form {
+  width: 50%;
+  display: block;
+  margin-top: 20%;
+  transform: translateY(25%);
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane {
+  display: none;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane.active {
+  display: block;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane h3 {
+  color: #000000;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+  text-align: left;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane form input[type=text]:not(.browser-default):focus:not([readonly]), body main.landing .right-side .auth-col-form .tab-content .tab-pane form input[type=password]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: #e76c90;
+  box-shadow: 0 1px 0 0 #e76c90;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane .row .col {
+  float: left;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane .row .text-left {
+  text-align: left !important;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane .row .text-left span {
+  font-size: 0.8rem;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane .row .float-right {
+  float: right !important;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane .row .float-right a {
+  color: #000000;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane .row .float-right a:hover {
+  color: #e76c90;
+  transition: 300ms ease all;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane .sign-btn {
+  margin: 25px 0 0 0;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane .sign-btn .btn-color {
+  background-color: #e76c90;
 }
 body main .section.topic textarea, body main .section.topic input {
   color: #aea9c3;

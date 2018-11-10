@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i');
 
 $font-stack: 'Montserrat', sans-serif;
 
 $font-highlight: #e76c90;
 $font-color: #aea9c3;
 $font-white: #ffffff;
+$font-black: #000000;
 $font-active: $font-highlight;
 
 $xdark-body: #121423;
@@ -24,45 +26,17 @@ body {
     border-radius: 0;
   }
 
-  .left-landing {
-    background-color: $dark-body;
-
-    display: flex;
-    flex-direction: column;
-
-    padding: 0 !important;
+  .text-center {
+    text-align: center !important;
   }
 
-  .right-landing {
-    background-color: $bg-white;
+  .ml-auto, .mar-auto {
+    margin-left: auto!important;
+  }
 
-    display: flex;
-    flex-direction: column;
-
-    padding: 0 !important;
-
-    margin-bottom: auto!important;
-    margin-top: auto!important;
-
-    .authentication-form-2 {
-      width: 50%;
-      display: block;
-      margin-left: auto !important;
-      margin-right: auto !important;
-
-      .tab-content {
-
-        .tab-pane {
-          display: none;
-          
-          &:active {
-            display: block;
-          }
-        }
-      }
-    }
-
-  } // right-landing
+  .mr-auto, .mar-auto {
+      margin-right: auto!important;
+  }
 
   nav {
 
@@ -149,6 +123,168 @@ body {
 
   main {
 
+    &.landing {
+      background-color: $bg-white;
+
+      h1, h2, h3, h4, h5 {
+        font-family: 'Noto Sans', sans-serif;
+      }
+
+      .mt-30 {
+        margin-top: 30px;
+      }
+
+      .row:first-of-type {
+        margin-bottom: 0;
+      
+      .left-side {
+        background-color: $dark-body;
+        position: relative;
+        height: 100vh;
+
+        .auth-col-content {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 50%;
+          padding: 0 50px;
+          transform: translateY(-50%);
+
+          .logo-centered {
+            width: 140px;
+            margin: 0 auto;
+
+            a {
+              display: inline-block;
+              text-decoration: none;
+              
+              img {
+                width: 140px;
+                margin-bottom: 50px;
+                vertical-align: middle;
+                border-style: none;
+              } // img
+            } // a
+          } // logo-centered
+
+          h1 {
+            margin-top: 30px;
+            margin-bottom: 0;
+            color: $font-white;
+            font-size: 2.4rem;
+            font-weight: 600;
+          }
+
+          span {
+
+            &.description {
+              display: inline-block;
+              color: $font-white;
+              margin-top: 15px;
+              font-size: 1rem;
+              font-weight: 500;
+            }
+          }
+
+          .login-nav {
+            margin-top: 3rem;
+
+            li {
+              display: inline-block;
+
+              .btn {
+                display: inline-block;
+                text-transform: none;
+                font-size: .8rem;
+                background-color: transparent;
+                box-shadow: none;
+
+                &.active {
+                  background-color: $bg-white;
+                  color: $font-color;
+                } 
+              } // btn
+            } // li
+          } // login-nav
+        } // auth-col-content
+      } // left-side
+    } // row
+      .right-side {
+        background-color: $bg-white;
+        height: 100vh;
+
+        .auth-col-form {
+          width: 50%;
+          display: block;
+          margin-top: 20%;
+          transform: translateY(25%);
+
+          .tab-content {
+
+            .tab-pane {
+              display: none;
+
+              &.active {
+                display: block;
+              }
+
+              h3 {
+                color: $font-black;
+                font-size: 1.8rem;
+                font-weight: 500;
+                margin-bottom: 30px;
+                text-align: left;
+              }
+
+              form {
+                
+                input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]) {
+                  border-bottom: $font-highlight;
+                  box-shadow: 0 1px 0 0 $font-highlight;
+                }      
+              } // form
+
+              .row {
+
+                .col {
+                  float: left;
+                }
+
+                .text-left {
+                  text-align: left !important;
+
+                  span {
+                    font-size: .8rem;
+                  } // span
+                } // text-left
+
+                .float-right {
+                  float: right !important;
+
+                  a {
+                    color: $font-black;
+
+                    &:hover {
+                      color: $font-highlight;
+                      transition: 300ms ease all;
+                    }
+                  } // a
+                } // float-right
+              } // row
+              .sign-btn {
+                margin: 25px 0 0 0;
+
+                .btn-color {
+                  background-color: $font-highlight;
+                }
+              } // sign-btn
+            } // tab-pane
+          } // tab-content
+        } // auth-col-form
+      } // right-side
+    } // landing
+      
+
     .section {
 
       &.topic {
@@ -177,7 +313,7 @@ body {
         }
       }
     }
-  }
+  } // main
 
   footer {
     padding: 15px 0;
@@ -187,3 +323,4 @@ body {
     box-shadow: 0 1px 15px 1px rgba(0, 0, 0, 0.08);
   }
 }
+

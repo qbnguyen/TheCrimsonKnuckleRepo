@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="assets/css/social-share.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet" type="text/css" />
   <!-- custom -->
   <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
@@ -18,100 +19,118 @@
 </head>
 
 <body>
-  <ul id="slide-out" class="sidenav sidenav-fixed">
+  <!-- <ul id="slide-out" class="sidenav sidenav-fixed">
     <li class="no-padding">
       
     </li>
-  </ul>
+  </ul> -->
 
-  <main>
-    <div class="container">
-      <div class="section">
-        <div class="row">
-          <div class="col s12 m12">
-            <!-- Begin Form -->
-            <div class="authentication-form-2 mx-auto">
+  <main class="landing">
+      <div class="row">
+        <div class="col s12 m5 l5 xl3 left-side">    
+          <div class="auth-col-content mar-auto text-center">
+            <div class="logo-centered">
+              <a href="index.html">
+                <img src="assets/images/logo.png" alt="logo">
+              </a>
+            </div>
+            <h1>Join Our Community</h1>
+            <span class="description">
+              Etiam consequat urna at magna bibendum, in tempor arcu fermentum vitae mi massa egestas.
+            </span>
+            <ul class="login-nav nav nav-tabs mt-5 justify-content-center" role="tablist" id="animate-tab">
+              <li><a class="active btn" data-toggle="tab" href="#singin" role="tab" id="singin-tab" data-easein="zoomInUp">Join Group</a></li>
+              <li><a class="btn" data-toggle="tab" href="#signup" role="tab" id="signup-tab" data-easein="zoomInRight">Create Group</a></li>
+            </ul>
+          </div><!-- // auth-col-content -->
+        </div>
+        <div class="col s12 m7 l7 xl9 right-side">   
+          <!-- begin form -->
+            <div class="auth-col-form mar-auto">
               <div class="tab-content" id="animate-tab-content">
                 <!-- Begin Sign In -->
                 <div role="tabpanel" class="tab-pane show active" id="singin" aria-labelledby="singin-tab">
-                  <h3>Sign In To iDecide</h3>
+                  <h3>Join a Group</h3>
                   <form>
                     <div class="group material-input">
-                      <input type="text" required>
+                      <input type="text" required="">
                       <span class="highlight"></span>
                       <span class="bar"></span>
                       <label>Email</label>
                     </div>
                     <div class="group material-input">
-                      <input type="password" required>
+                      <input type="password" required="">
                       <span class="highlight"></span>
                       <span class="bar"></span>
                       <label>Password</label>
                     </div>
                   </form>
-                  <div class="row">
+                  <div class="row mt-30">
                     <div class="col text-left">
                       <div class="styled-checkbox">
-                        <input type="checkbox" name="checkbox" id="remeber">
-                        <label for="remeber">Remember me</label>
+                      
+                        <label for="remeber">
+                          <input class="highlight-check" type="checkbox" name="checkbox" id="remeber">
+                          <span>Remember me</span>
+                        </label>
                       </div>
                     </div>
-                    <div class="col text-right">
-                      <a href="pages-forgot-password.html">Forgot Password ?</a>
+                    <div class="col float-right">
+                      <a href="">Forgot Password ?</a>
                     </div>
                   </div>
                   <div class="sign-btn text-center">
-                    <a href="index.html" class="btn btn-lg btn-gradient-01">
-                      Sign In
+                    <a href="index.html" class="btn btn-color">
+                      Join Group
                     </a>
                   </div>
                 </div>
                 <!-- End Sign In -->
                 <!-- Begin Sign Up -->
                 <div role="tabpanel" class="tab-pane" id="signup" aria-labelledby="signup-tab">
-                  <h3>Create An Account</h3>
+                  <h3>Create a Group</h3>
                   <form>
                     <div class="group material-input">
-                      <input type="text" required>
+                      <input type="text" required="">
                       <span class="highlight"></span>
                       <span class="bar"></span>
                       <label>Email</label>
                     </div>
                     <div class="group material-input">
-                      <input type="password" required>
+                      <input type="password" required="">
                       <span class="highlight"></span>
                       <span class="bar"></span>
                       <label>Password</label>
                     </div>
                     <div class="group material-input">
-                      <input type="password" required>
+                      <input type="password" required="">
                       <span class="highlight"></span>
                       <span class="bar"></span>
                       <label>Confirm Password</label>
                     </div>
                   </form>
-                  <div class="row">
+                  <div class="row mt-30">
                     <div class="col text-left">
-                      <div class="styled-checkbox">
-                        <input type="checkbox" name="checkbox" id="agree">
-                        <label for="agree">I Accept <a href="#">Terms and Conditions</a></label>
+                      <div class="styled-checkbox">        
+                        <label for="agree">
+                          <input type="checkbox" name="checkbox" id="agree" />
+                          <span>I Accept <a href="#">Terms and Conditions</a></span>
+                        </label>
                       </div>
                     </div>
                   </div>
                   <div class="sign-btn text-center">
-                    <a href="index.html" class="btn btn-lg btn-gradient-01">
-                      Sign Up
+                    <a href="index.html" class="btn btn-color">
+                      Create Group
                     </a>
                   </div>
                 </div>
                 <!-- End Sign Up -->
               </div>
             </div>
-            <!-- End Form -->
-          </div>
+          <!-- end form -->
         </div>
-      </div>
-    </div>
+      </div><!-- // row-->
   </main><!-- // main -->
 
     <!-- jQuery -->
@@ -121,6 +140,10 @@
     <!-- materialize -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+    <!-- animations -->
+    <script src="assets/js/components/core.min.js"></script>
+    <script src="assets/js/components/nicescroll.min.js"></script>
+    <script src="assets/js/components/animated-tabs.min.js"></script>
     <!-- custom -->
     <script src="assets/js/scripts.js"></script>
 </body>
