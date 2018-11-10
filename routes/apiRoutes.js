@@ -15,8 +15,7 @@ let iDecideDBRoutes = (app) => {
             votes: req.body.votes,
             password:req.body.password
         }).then(function(dbGroups) {
-        // We have access to the new group as an argument inside of the callback function
-        res.json(dbGroups);
+            res.json(dbGroups);
         });
     });
 
@@ -28,8 +27,7 @@ let iDecideDBRoutes = (app) => {
             email: req.body.email,
             group_ID: req.body.group_ID
         }).then(function(dbUsers) {
-        // We have access to the new user as an argument inside of the callback function
-        res.json(dbUsers);
+            res.json(dbUsers);
         });
     });
 
@@ -41,8 +39,7 @@ let iDecideDBRoutes = (app) => {
             group_ID: req.body.group_ID,
             vote_val: req.body.vote_val
         }).then(function(dbIdeas) {
-        // We have access to the new user as an argument inside of the callback function
-        res.json(dbIdeas);
+            res.json(dbIdeas);
         });
     });
 }
