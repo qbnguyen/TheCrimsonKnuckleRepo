@@ -2,42 +2,38 @@ module.exports = function(sequelize, DataTypes) {
     var Groups = sequelize.define("Groups", {
       admin_name: {
         type: DataTypes.STRING,
-        // AllowNull is a flag that restricts a todo from being entered if it doesn't
-        // have a text value
+    
         allowNull: false,
-        // len is a validation that checks that our todo is between 1 and 140 characters
+    
         validate: {
           len: [1, 140]
         }
       },
       admin_email: {
         type: DataTypes.STRING,
-        // AllowNull is a flag that restricts a todo from being entered if it doesn't
-        // have a text value
+    
         allowNull: false,
-        // len is a validation that checks that our todo is between 1 and 140 characters
+    
         validate: {
           len: [1, 140]
         }
       },
       group_name: {
         type: DataTypes.STRING,
-        // AllowNull is a flag that restricts a todo from being entered if it doesn't
-        // have a text value
+  
         allowNull: false,
-        // len is a validation that checks that our todo is between 1 and 140 characters
+  
         validate: {
           len: [1, 140]
         }
       },
       decide_on: {
         type: DataTypes.STRING,
-        // AllowNull is a flag that restricts a todo from being entered if it doesn't
-        // have a text value
+  
         allowNull: false,
-        // len is a validation that checks that our todo is between 1 and 140 characters
+  
         validate: {
-          len: [1, 140]
+          len: [1, 240]
         }
       },
       time: {
@@ -60,5 +56,16 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
     });
+
+    Groups.associate = function(models) {
+      //Groups has many users
+      Groups.hasMany(models.Users);
+
+      Groups.hasMany(models.Ideas, {
+// Delete the ideas of a group when the group is deleted.
+          onDelete: "cascade"
+      });
+    }
+
     return Groups;
   };
