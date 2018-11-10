@@ -8,6 +8,32 @@ body {
 body .btn, body .btn-large, body .card {
   border-radius: 0;
 }
+body .left-landing {
+  background-color: #252846;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+}
+body .right-landing {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+  margin-bottom: auto !important;
+  margin-top: auto !important;
+}
+body .right-landing .authentication-form-2 {
+  width: 50%;
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+body .right-landing .authentication-form-2 .tab-content .tab-pane {
+  display: none;
+}
+body .right-landing .authentication-form-2 .tab-content .tab-pane:active {
+  display: block;
+}
 body nav.navbar {
   background-color: #2C2F4D;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -63,6 +89,9 @@ body .sidenav .collapsible-body a:hover {
 }
 body .sidenav .collapsible-body a:active {
   color: #e76c90;
+}
+body .sidenav.sidenav-fixed {
+  background-color: #252846;
 }
 body .hero {
   background-color: #121423;

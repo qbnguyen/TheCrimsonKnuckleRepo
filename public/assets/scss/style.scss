@@ -10,6 +10,7 @@ $font-active: $font-highlight;
 $xdark-body: #121423;
 $dark-body: #252846;
 $light-body: #2C2F4D;
+$bg-white: #ffffff;
 
 
 
@@ -22,6 +23,46 @@ body {
   .btn, .btn-large, .card {
     border-radius: 0;
   }
+
+  .left-landing {
+    background-color: $dark-body;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 !important;
+  }
+
+  .right-landing {
+    background-color: $bg-white;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 !important;
+
+    margin-bottom: auto!important;
+    margin-top: auto!important;
+
+    .authentication-form-2 {
+      width: 50%;
+      display: block;
+      margin-left: auto !important;
+      margin-right: auto !important;
+
+      .tab-content {
+
+        .tab-pane {
+          display: none;
+          
+          &:active {
+            display: block;
+          }
+        }
+      }
+    }
+
+  } // right-landing
 
   nav {
 
@@ -94,6 +135,10 @@ body {
           color: $font-highlight;
         }
       }
+    }
+
+    &.sidenav-fixed {
+      background-color: $dark-body;
     }
   }
 
