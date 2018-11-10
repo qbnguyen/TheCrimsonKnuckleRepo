@@ -10,12 +10,19 @@ module.exports = function(sequelize, DataTypes) {
           len: [1, 500]
         }
       },
-      group_ID: {
-        type: DataTypes.INTEGER
-      },
       vote_val: {
         type: DataTypes.INTEGER
       },
     });
+
+    Ideas.associate = function(models) {
+// Ideas must belong to a group
+      Ideas.belongsTo(models.Groups, {
+        foreignKey: {
+          allowNull: false,
+          defaultValue: 0
+        }
+      });
+    }
     return Ideas;
   };
