@@ -216,13 +216,18 @@ body {
         .auth-col-form {
           width: 50%;
           display: block;
-          margin-top: 20%;
-          transform: translateY(25%);
+          margin-top: 10%;
+          transform: translateY(10%);
 
           .tab-content {
 
             .tab-pane {
               display: none;
+
+              &.ch-h {
+                margin-top:30%;
+                transform: translateY(30%);
+              }
 
               &.active {
                 display: block;

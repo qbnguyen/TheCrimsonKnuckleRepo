@@ -158,11 +158,15 @@ body main.landing .right-side {
 body main.landing .right-side .auth-col-form {
   width: 50%;
   display: block;
-  margin-top: 20%;
-  transform: translateY(25%);
+  margin-top: 10%;
+  transform: translateY(10%);
 }
 body main.landing .right-side .auth-col-form .tab-content .tab-pane {
   display: none;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane.ch-h {
+  margin-top: 30%;
+  transform: translateY(30%);
 }
 body main.landing .right-side .auth-col-form .tab-content .tab-pane.active {
   display: block;
