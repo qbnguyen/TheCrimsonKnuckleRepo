@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- materialize -->
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="assets/css/social-share.css" rel="stylesheet" type="text/css" />
+  <!-- custom -->
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+  <script src="assets/js/utils.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+
+<script id="group-ideas-display-template" type="text/x-handlebars-template">
+        {{#each idea}}
+          <div class="col s12 m4 l2">
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">{{idea}}</span>
+                <span class="card-title">{{id}}</span>
+              </div>
+              <div class="card-action">
+                <a href="#" data-idea-id="{{id}}" class="add-vote">This is a link</a>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+</script>
+
+<script id="group-winner-display-template" type="text/x-handlebars-template">
+  {{#each idea}}
+    <div class="col s12">
+          <h1 class="winner">{{idea}}</h1>
+    </div>
+  {{/each}}
+</script>
+
+
+
+
+</head>
+
+<body>
+  
+    <div class="row">
+      <div class="display-ideas"></div>  
+    </div>
+
+    <div class="row">
+      <div class="display-winner"></div>  
+    </div>
+    
+  
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+
+    <!-- materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- custom -->
+    <script src="assets/js/scripts.js"></script>
+</body>
+
+</html>
