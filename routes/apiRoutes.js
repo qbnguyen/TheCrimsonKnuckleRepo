@@ -135,12 +135,12 @@ app.put("/api/ideas/:idea_id", function(req, res) {
 //////////////// DELETE ROUTES ///////////////////////
 
     app.delete("/api/ideas/:idea_id", function(req, res) {
-        db.Todo.destroy({
+        db.Ideas.destroy({
             where: {
                 id: req.params.idea_id
             }
-        }).then(function(dbTodo) {
-            res.json(dbTodo);
+        }).then(function(ideas) {
+            res.json(ideas);
         });
 
     });
