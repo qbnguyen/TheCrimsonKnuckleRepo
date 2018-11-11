@@ -46,6 +46,17 @@ let iDecideDBRoutes = (app) => {
 
 //////////////// GET ROUTES //////////////////////////
 
+
+//Get all groups
+
+app.get("/api/groups/", function(req, res) {
+        console.log(req.body);
+        db.Groups.findAll({}).then(function (Group) {
+        res.json(Group);
+    })
+});
+
+
 //Get group by id
 
 app.get("/api/groups/:id", function(req, res) {
@@ -92,6 +103,34 @@ app.get("/api/users/groups/:id", function(req, res) {
     })
 });
 
+//GET one idea from a group based on that idea's id 
+app.get("/api/ideas/:idea_id", function(req, res) {
+        console.log(req.params);
+        db.Ideas.findOne({
+            where: {
+                id: req.params.idea_id
+            }
+        }).then(function (ideas) {
+        res.json(ideas);
+    })
+});
+
+//////////////// PUT ROUTES //////////////////////////
+
+app.put("/api/ideas/:idea_id", function(req, res) {
+    db.Ideas.update({
+        vote_val: req.body.vote_val
+        },
+        {
+         where: {
+             id: req.params.idea_id
+        }
+
+    }).then(function(ideas) {
+        res.json(ideas);
+    })
+
+});
 
 }
 
