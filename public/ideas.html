@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- materialize -->
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="assets/css/social-share.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- custom -->
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <script src="assets/js/utils.js"></script>
+<!-- card Script section-->
+    <script id="group-ideas-display-template" type="text/x-handlebars-template">
+        <!-- card section-->
+        <div id="num1" class="section">
+        <h2 class="header center orange-text">Group Votes</h2>
+        <br>
+        <div class="row">
+        {{#each idea}}
+        <div class="col s6 m3 l2">
+            <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{idea}}</span>
+                <span class="card-title">{{id}}</span>
+                <p>Details about your iDea here.</p>
+            </div>
+            <div class="card-action">
+                <a href="#" data-idea-id="{{id}}" class="fas fa-thumbs-up add-vote"> Vote</a>
+            </div>
+            </div>
+        </div>
+        {{/each}}
+        </div>
+        </div>
+    </script>
+
+  </head>
+  <body>
+    <nav class="navbar" role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger st-main"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#"><span class="name" style="color:#ee6e73">{{Group Name}}</span></a></li>
+            <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="assets/images/torre.png"></a></li>
+          <li><a href="#"><i class="material-icons nav-search">search</i></a></li>
+        </ul>
+    
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="#">Navbar Link</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+    <ul id="slide-out" class="sidenav">
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <img src="assets/images/office.jpg">
+          </div>
+          <a href="#user"><img class="circle" src="assets/images/torre.png"></a>
+          <a href="#name"><span class="white-text name">Torre Matthews</span></a>
+          <a href="#email"><span class="white-text email">torre.matthew@gmail.com</span></a>
+        </div>
+      </li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header"><i class="material-icons highlight">dashboard</i>{{Group Name}} Dashboard<i class="material-icons float-r white-text">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="#!">{{Prompt}}</a></li>
+                <li><a href="#!">{Group Ideas}</a></li>
+                <li><a href="#!">{{Your ideas & Votes}}</a></li>
+                <li><a href="#!">{{Decisons Made}}</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    
+
+    <!-- hero -->
+    <div class="section no-pad-bot hero" id="index-banner">
+      <div class="container">
+        <h2 class="header center orange-text">{{Group Name}}</h2>
+        <h5 class="header center orange-text">Cast your iDeas about {{Prompt}}.</h5>
+        <div class="row center">
+          <br><br>
+              <!-- form section-->
+          <div class="section topic">
+            <form class="col s12 m12 l6">
+              <div class="row">
+                  <div class="input-field col s12 m12 l6">
+                    <input id="input_text" type="text" data-length="10">
+                    <label for="input_text">Input text</label>
+                  </div>
+                </div>
+                  <div class="row">
+                    <div class="input-field col col s12 m12 l6">
+                      <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+                      <label for="textarea2">Textarea</label>
+                    </div>
+                  </div>
+              <button href="#num1" class="btn-small waves-effect waves-light orange" type="submit" name="action">Submit
+                  <i class="material-icons right">send</i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <br><br>
+    </div>
+    <main>
+        <!-- card section-->
+        <div id="num1" class="section">
+          <h2 class="header center orange-text">{{Your iDeas}}</h2>
+          <br>
+          <div class="row">
+            <div class="col s6 m3 l2"> 
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">Your iDea</span>
+                  <p>Details about your iDea here.</p>
+                </div>
+                <div class="card-action">
+                  <a href="#"><i class="small material-icons">close</i> Delete</a>
+                </div>
+              </div>
+            </div>
+            <div class="col s6 m3 l2">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">Your iDea</span>
+                  <p>Details about your iDea here.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#"><i class="small material-icons">close</i> Delete</a>
+                </div>
+              </div>
+            </div>
+            <div class="col s6 m3 l2">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">Your iDea</span>
+                  <p>Details about your iDea here.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#"><i class="small material-icons">close</i> Delete</a>
+                </div>
+              </div>
+            </div>
+            <div class="col s6 m3 l2">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">Your iDea</span>
+                  <p>Details about your iDea here.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#"><i class="small material-icons">close</i> Delete</a>
+                </div>
+              </div>
+            </div>
+            <div class="col s6 m3 l2">
+                <div class="card">
+                  <div class="card-content">
+                    <span class="card-title">Your iDea</span>
+                    <p>Details about your iDea here.</p>
+                  </div>
+                  <div class="card-action">
+                      <a href="#"><i class="small material-icons">close</i> Delete</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col s6 m3 l2">
+                  <div class="card">
+                    <div class="card-content">
+                      <span class="card-title">Your iDea</span>
+                      <p>Details about your iDea here.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#"><i class="small material-icons">close</i> Delete</a>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+        <!-- chart section-->
+        <div class="section">
+            <div class="row">
+              <div class="col s12 m12">
+                <div class="row center">
+                  <div style="width:100%">
+                    <canvas id="canvas"></canvas>
+                  </div>
+                  <br>
+                  <br>
+                  <script>
+                    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                    var config = {
+                      type: 'doughnut',
+                      data: {
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                        datasets: [{
+                          label: 'Torre',
+                          backgroundColor: window.chartColors.red,
+                          borderColor: window.chartColors.red,
+                          data: [
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor()
+                          ],
+                          fill: false,
+                        }, {
+                          label: 'Tierra',
+                          fill: false,
+                          backgroundColor: window.chartColors.blue,
+                          borderColor: window.chartColors.blue,
+                          data: [
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor()
+                          ],
+                        }, {
+                          label: 'Quy',
+                          fill: false,
+                          backgroundColor: window.chartColors.yellow,
+                          borderColor: window.chartColors.yellow,
+                          data: [
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor()
+                          ],
+                        }, {
+                          label: 'David',
+                          fill: false,
+                          backgroundColor: window.chartColors.green,
+                          borderColor: window.chartColors.green,
+                          data: [
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor()
+                          ],
+                        }, {
+                          label: 'Brian',
+                          fill: false,
+                          backgroundColor: window.chartColors.purple,
+                          borderColor: window.chartColors.purple,
+                          data: [
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor()
+                          ],
+                        }]
+                      },
+                      options: {
+                        responsive: true,
+                        title: {
+                          display: false,
+                          text: 'Chart.js Pie Chart'
+                        },
+                        tooltips: {
+                          mode: 'index',
+                          intersect: false,
+                        },
+                        hover: {
+                          mode: 'nearest',
+                          intersect: true
+                        },
+                        scales: {
+                          xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Month'
+                            }
+                          }],
+                          yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Value'
+                            }
+                          }]
+                        }
+                      }
+                    };
+  
+                    window.onload = function () {
+                      var ctx = document.getElementById('canvas').getContext('2d');
+                      window.myDoughnutChart = new Chart(ctx, config);
+                    };
+  
+                    document.getElementById('randomizeData').addEventListener('click', function () {
+                      config.data.datasets.forEach(function (dataset) {
+                        dataset.data = dataset.data.map(function () {
+                          return randomScalingFactor();
+                        });
+  
+                      });
+  
+                      window.myDoughnutChart.update();
+                    });
+  
+                    var colorNames = Object.keys(window.chartColors);
+                    document.getElementById('addDataset').addEventListener('click', function () {
+                      var colorName = colorNames[config.data.datasets.length % colorNames.length];
+                      var newColor = window.chartColors[colorName];
+                      var newDataset = {
+                        label: 'Dataset ' + config.data.datasets.length,
+                        backgroundColor: newColor,
+                        borderColor: newColor,
+                        data: [],
+                        fill: false
+                      };
+  
+                      for (var index = 0; index < config.data.labels.length; ++index) {
+                        newDataset.data.push(randomScalingFactor());
+                      }
+  
+                      config.data.datasets.push(newDataset);
+                      window.myDoughnutChart.update();
+                    });
+  
+                    document.getElementById('addData').addEventListener('click', function () {
+                      if (config.data.datasets.length > 0) {
+                        var month = MONTHS[config.data.labels.length % MONTHS.length];
+                        config.data.labels.push(month);
+  
+                        config.data.datasets.forEach(function (dataset) {
+                          dataset.data.push(randomScalingFactor());
+                        });
+  
+                        window.myDoughnutChart.update();
+                      }
+                    });
+  
+                    document.getElementById('removeDataset').addEventListener('click', function () {
+                      config.data.datasets.splice(0, 1);
+                      window.myDoughnutChart.update();
+                    });
+  
+                    document.getElementById('removeData').addEventListener('click', function () {
+                      config.data.labels.splice(-1, 1); // remove the label first
+  
+                      config.data.datasets.forEach(function (dataset) {
+                        dataset.data.pop();
+                      });
+  
+                      window.myDoughnutChart.update();
+                    });
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+    <div class="display-ideas"></div>  
+</div>
+
+<!-- // main -->
+</main>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5>Crimson Knuckles Bio</h5>
+            <p>We are a team of college students working on this project like it's our
+              full time job. Any amount would help support and continue development on this project and is greatly
+              appreciated.</p>
+          </div>
+          <div class="col l6 s12">
+            <h5>Social Share</h5>
+            <div class="tc-social-share tc-social-small text-center">
+              <a href=""><i class="social-icon fa fa-facebook"></i></a>
+              <a href=""><i class="social-icon fa fa-twitter"></i></a>
+              <a href=""><i class="social-icon fa fa-google-plus"></i></a>
+              <a href=""><i class="social-icon fa fa-dribbble"></i></a>
+              <a href=""><i class="social-icon fa fa-linkedin"></i></a>
+              <a href=""><i class="social-icon fa fa-instagram"></i></a>
+              <a href=""><i class="social-icon fa fa-pinterest"></i></a>
+              <a href=""><i class="social-icon fa fa-github"></i></a>
+              <a href=""><i class="social-icon fa fa-flickr"></i></a>
+              <a href=""><i class="social-icon fa fa-vk"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          Made by <a class="orange-text text-lighten-3" href="https://github.com/torre-matthew/TheCrimsonKnuckleRepo">The Crimson Knuckles</a>
+        </div>
+      </div>
+    </footer> 
+      
+  </body>
+
+      <!-- jQuery -->
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+  
+      <!-- materialize -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
+      <!-- custom -->
+      <script src="assets/js/scripts.js"></script>  
+  </html>
