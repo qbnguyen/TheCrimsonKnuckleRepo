@@ -44,16 +44,16 @@ let getAllIdeasForTheGroup = (groupId) => {
   })
   .then(function (data) {
     console.log(data);
-      renderHandlebarsTemplate({idea: data});
+      renderHandlebarsTemplate(".display-ideas", "#group-ideas-display-template", {idea: data});
   });
 }
 
 //This Function takes the data from the API and uses handlebars to display on screen
-let renderHandlebarsTemplate = (data) => {
-  let source = $("#group-ideas-display-template").text();
+let renderHandlebarsTemplate = (displayClass, templateId, data) => {
+  let source = $(templateId).text();
   let template = Handlebars.compile(source);
   let html = template(data);
-  $(".display-ideas").html(html);
+  $(displayClass).html(html);
 }
 
 //This function is GETing the current vote_value from the db of the idea that's clicked 
@@ -97,8 +97,42 @@ let updateVoteValInDB = (ideaId, newVoteVal) => {
 
 }
 
+//This function is Getting all the ideas from a group and pushing their vote_vals into an array.
+//This makes it easy to use Math.max() to find out what the largest vote_vale is.
+let findIdeaWithMostVotes = () => {
+  let voteValArr = [];
+  $.ajax({
+    url: "/api/ideas/groups/2", //This GroupId (2) is hardcoded for testing and will need to be programatically added.
+    method: "GET"
+})
+.then(function (data) {
+  console.log(data);
+
+      for (let i = 0; i < data.length; i++) {
+        voteValArr.push(data[i].vote_val);
+      }
+  let maxVoteVal = Math.max(...voteValArr); 
+    displayIdeasWithMostVotes(maxVoteVal);
+});
+
+}
+
+//This function call an api endpoint that allows you to GET ideas by theire vote_val. I'm passing the max vote_val  from the 
+// function findIdeaWithMostVotes function above so that handlebars can be used in this function to display that idea on the page.
+let displayIdeasWithMostVotes = (maxVoteVal) => {
+  $.ajax({
+    url: "/api/ideas/groups/2/votes/" + maxVoteVal, //This GroupId (2) is hardcoded for testing and will need to be programatically added.
+    method: "GET"
+})
+.then(function (data) {
+  renderHandlebarsTemplate(".display-winner", "#group-winner-display-template", {idea: data});
+});
+}
+
 //This functions renders all the ideas from a particular group on the voting page.
 getAllIdeasForTheGroup();
+//This is the function that displays the winning idea on the page
+findIdeaWithMostVotes();
 
 $("body").on("click", ".add-vote", function(event){
   let ideaId = $(this).attr("data-idea-id");
