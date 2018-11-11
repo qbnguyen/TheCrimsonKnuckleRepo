@@ -91,6 +91,19 @@ app.get("/api/ideas/groups/:id", function(req, res) {
     })
 });
 
+//GET ideas from group based on number of votes
+app.get("/api/ideas/groups/:id/votes/:maxvotes", function(req, res) {
+        console.log(req.params);
+        db.Ideas.findAll({
+            where: {
+                GroupId: req.params.id,
+                vote_val: req.params.maxvotes
+            }
+        }).then(function (Ideas) {
+        res.json(Ideas);
+    })
+});
+
 //find all users based on group id
 app.get("/api/users/groups/:id", function(req, res) {
         console.log(req.params);
