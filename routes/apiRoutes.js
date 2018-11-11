@@ -132,6 +132,18 @@ app.put("/api/ideas/:idea_id", function(req, res) {
 
 });
 
+//////////////// DELETE ROUTES ///////////////////////
+
+    app.delete("/api/ideas/:idea_id", function(req, res) {
+        db.Ideas.destroy({
+            where: {
+                id: req.params.idea_id
+            }
+        }).then(function(ideas) {
+            res.json(ideas);
+        });
+
+    });
 }
 
 module.exports = iDecideDBRoutes;
