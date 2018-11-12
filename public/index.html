@@ -1,417 +1,171 @@
 <!doctype html>
 <html lang="en-us">
-  <head>
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- materialize -->
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="assets/css/social-share.css" rel="stylesheet" type="text/css" />
-    <!-- custom -->
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
-    <script src="assets/js/utils.js"></script>
-  </head>
-  <body>
-    <nav class="navbar" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
-        <a href="#" data-target="slide-out" class="sidenav-trigger st-main"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="#"><i class="material-icons nav-search">search</i></a></li>
-        </ul>
-    
-        <ul id="nav-mobile" class="sidenav">
-          <li><a href="#">Navbar Link</a></li>
-        </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+  <!-- materialize -->
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="assets/css/social-share.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet" type="text/css" />
+  <!-- custom -->
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+  <script src="assets/js/utils.js"></script>
+</head>
+
+<body>
+  <!-- <ul id="slide-out" class="sidenav sidenav-fixed">
+    <li class="no-padding">
+      
+    </li>
+  </ul> -->
+
+  <main class="landing">
+    <div class="row">
+      <div class="col s12 m5 l5 xl3 left-side">
+        <div class="auth-col-content mar-auto text-center">
+          <div class="logo-centered">
+            <a href="index.html">
+              <img src="assets/images/logo.png" alt="logo">
+            </a>
+          </div>
+          <h1>Join Our Community</h1>
+          <span class="description">
+            Etiam consequat urna at magna bibendum, in tempor arcu fermentum vitae mi massa egestas.
+          </span>
+          <ul class="login-nav nav nav-tabs mt-5 justify-content-center" role="tablist" id="animate-tab">
+            <li><a class="active btn" data-toggle="tab" href="#singin" role="tab" id="singin-tab" data-easein="zoomInUp">Join
+                Group</a></li>
+            <li><a class="btn" data-toggle="tab" href="#signup" role="tab" id="signup-tab" data-easein="zoomInRight">Create
+                Group</a></li>
+          </ul>
+        </div><!-- // auth-col-content -->
       </div>
-    </nav>
-    <ul id="slide-out" class="sidenav">
-      <li>
-        <div class="user-view">
-          <div class="background">
-            <img src="assets/images/office.jpg">
-          </div>
-          <a href="#user"><img class="circle" src="assets/images/torre.png"></a>
-          <a href="#name"><span class="white-text name">Torre Matthews</span></a>
-          <a href="#email"><span class="white-text email">torre.matthew@gmail.com</span></a>
-        </div>
-      </li>
-      <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-          <li>
-            <a class="collapsible-header"><i class="material-icons highlight">dashboard</i>Dashboard<i class="material-icons float-r white-text">arrow_drop_down</i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="#!">First</a></li>
-                <li><a href="#!">Second</a></li>
-                <li><a href="#!">Third</a></li>
-                <li><a href="#!">Fourth</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    
+      <div class="col s12 m7 l7 xl9 right-side">
+        <!-- begin form -->
+        <div class="auth-col-form mar-auto">
+          <div class="tab-content" id="animate-tab-content">
+            <!-- Begin Sign In -->
+            <div role="tabpanel" class="ch-h tab-pane show active" id="singin" aria-labelledby="singin-tab">
+              <h3>Join a Group</h3>
+              <form>
+                <div class="group material-input">
+                  <input type="text" required="">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Email</label>
+                </div>
+                <div class="group material-input">
+                  <input type="password" required="">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Password</label>
+                </div>
+              </form>
+              <div class="row mt-30">
+                <div class="col text-left">
+                  <div class="styled-checkbox">
 
-    <!-- hero -->
-    <div class="section no-pad-bot hero" id="index-banner">
-      <div class="container">
-        <br><br>
-        <h1 class="header center orange-text">iDecide</h1>
-        <div class="row center">
-          <h5 class="header col s12 light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean fermentum ornare libero quis ultrices. Suspendisse pulvinar commodo lacus, sed blandit ipsum finibus id. Phasellus sit amet accumsan tortor, eget tincidunt quam. Nunc dictum leo vitae ullamcorper sodales. Cras eu dui lectus. Vestibulum pretium accumsan lorem. Curabitur justo arcu, pharetra at faucibus eget, accumsan vulputate elit.</h5>
+                    <label for="remeber">
+                      <input class="highlight-check" type="checkbox" name="checkbox" id="remeber">
+                      <span>Remember me</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="col float-right">
+                  <a href="">Forgot Password ?</a>
+                </div>
+              </div>
+              <div class="sign-btn text-center">
+                <a href="index.html" class="btn btn-color">
+                  Join Group
+                </a>
+              </div>
+            </div>
+            <!-- End Sign In -->
+            <!-- Begin Sign Up -->
+            <div role="tabpanel" class="tab-pane" id="signup" aria-labelledby="signup-tab">
+              <h3>Create a Group</h3>
+              <form>
+                <div class="group material-input">
+                  <input type="text" required="">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Admin Name</label>
+                </div>
+                <div class="group material-input">
+                  <input type="text" required="">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Admin Email</label>
+                </div>
+                <div class="group material-input">
+                  <input type="text" required="">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Prompt</label>
+                </div>
+                <div class="group material-input">
+                  <input type="text" required="">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Group Name</label>
+                </div>
+                <div class="group material-input">
+                  <input type="password" required="">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Group Password</label>
+                </div>
+                <div class="group material-input">
+                  <input type="password" required="">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Confirm Password</label>
+                </div>
+              </form>
+              <div class="row mt-30">
+                <div class="col text-left">
+                  <div class="styled-checkbox">
+                    <label for="agree">
+                      <input type="checkbox" name="checkbox" id="agree" />
+                      <span>I Accept <a href="#">Terms and Conditions</a></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="sign-btn text-center">
+                <a href="index.html" class="btn btn-color">
+                  Create Group
+                </a>
+              </div>
+            </div>
+            <!-- End Sign Up -->
+          </div>
         </div>
-        <div class="row center">
-          <a href="#num1" class="btn-large waves-effect waves-light orange">Create a Discussion</a>
-        </div>
-        <br><br>
-    
+        <!-- end form -->
       </div>
-    </div>
-    
-    <main>
-      <div class="container">
-        <!-- chart section-->
-        <div class="section">
-          <div class="row">
-            <div class="col s12 m12">
-              <h1 class="header center orange-text">iDecide</h1>
-              <div class="row center">
-                <div style="width:100%">
-                  <canvas id="canvas"></canvas>
-                </div>
-                <br>
-                <br>
-                <button id="randomizeData" class="waves-effect waves-light btn">Randomize Data</button>
-                <button id="addDataset" class="waves-effect waves-light btn">Add Dataset</button>
-                <button id="removeDataset" class="waves-effect waves-light btn">Remove Dataset</button>
-                <button id="addData" class="waves-effect waves-light btn">Add Data</button>
-                <button id="removeData" class="waves-effect waves-light btn">Remove Data</button>
-                <script>
-                  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-                  var config = {
-                    type: 'line',
-                    data: {
-                      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                      datasets: [{
-                        label: 'Torre',
-                        backgroundColor: window.chartColors.red,
-                        borderColor: window.chartColors.red,
-                        data: [
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor()
-                        ],
-                        fill: false,
-                      }, {
-                        label: 'Tierra',
-                        fill: false,
-                        backgroundColor: window.chartColors.blue,
-                        borderColor: window.chartColors.blue,
-                        data: [
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor()
-                        ],
-                      }, {
-                        label: 'Quy',
-                        fill: false,
-                        backgroundColor: window.chartColors.yellow,
-                        borderColor: window.chartColors.yellow,
-                        data: [
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor()
-                        ],
-                      }, {
-                        label: 'David',
-                        fill: false,
-                        backgroundColor: window.chartColors.green,
-                        borderColor: window.chartColors.green,
-                        data: [
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor()
-                        ],
-                      }, {
-                        label: 'Brian',
-                        fill: false,
-                        backgroundColor: window.chartColors.purple,
-                        borderColor: window.chartColors.purple,
-                        data: [
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor(),
-                          randomScalingFactor()
-                        ],
-                      }]
-                    },
-                    options: {
-                      responsive: true,
-                      title: {
-                        display: false,
-                        text: 'Chart.js Line Chart'
-                      },
-                      tooltips: {
-                        mode: 'index',
-                        intersect: false,
-                      },
-                      hover: {
-                        mode: 'nearest',
-                        intersect: true
-                      },
-                      scales: {
-                        xAxes: [{
-                          display: true,
-                          scaleLabel: {
-                            display: true,
-                            labelString: 'Month'
-                          }
-                        }],
-                        yAxes: [{
-                          display: true,
-                          scaleLabel: {
-                            display: true,
-                            labelString: 'Value'
-                          }
-                        }]
-                      }
-                    }
-                  };
+    </div><!-- // row-->
+  </main><!-- // main -->
 
-                  window.onload = function () {
-                    var ctx = document.getElementById('canvas').getContext('2d');
-                    window.myLine = new Chart(ctx, config);
-                  };
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
 
-                  document.getElementById('randomizeData').addEventListener('click', function () {
-                    config.data.datasets.forEach(function (dataset) {
-                      dataset.data = dataset.data.map(function () {
-                        return randomScalingFactor();
-                      });
+  <!-- materialize -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-                    });
+  <!-- animations -->
+  <script src="assets/js/components/core.min.js"></script>
+  <script src="assets/js/components/nicescroll.min.js"></script>
+  <script src="assets/js/components/animated-tabs.min.js"></script>
+  <!-- custom -->
+  <script src="assets/js/scripts.js"></script>
+</body>
 
-                    window.myLine.update();
-                  });
-
-                  var colorNames = Object.keys(window.chartColors);
-                  document.getElementById('addDataset').addEventListener('click', function () {
-                    var colorName = colorNames[config.data.datasets.length % colorNames.length];
-                    var newColor = window.chartColors[colorName];
-                    var newDataset = {
-                      label: 'Dataset ' + config.data.datasets.length,
-                      backgroundColor: newColor,
-                      borderColor: newColor,
-                      data: [],
-                      fill: false
-                    };
-
-                    for (var index = 0; index < config.data.labels.length; ++index) {
-                      newDataset.data.push(randomScalingFactor());
-                    }
-
-                    config.data.datasets.push(newDataset);
-                    window.myLine.update();
-                  });
-
-                  document.getElementById('addData').addEventListener('click', function () {
-                    if (config.data.datasets.length > 0) {
-                      var month = MONTHS[config.data.labels.length % MONTHS.length];
-                      config.data.labels.push(month);
-
-                      config.data.datasets.forEach(function (dataset) {
-                        dataset.data.push(randomScalingFactor());
-                      });
-
-                      window.myLine.update();
-                    }
-                  });
-
-                  document.getElementById('removeDataset').addEventListener('click', function () {
-                    config.data.datasets.splice(0, 1);
-                    window.myLine.update();
-                  });
-
-                  document.getElementById('removeData').addEventListener('click', function () {
-                    config.data.labels.splice(-1, 1); // remove the label first
-
-                    config.data.datasets.forEach(function (dataset) {
-                      dataset.data.pop();
-                    });
-
-                    window.myLine.update();
-                  });
-                </script>
-              </div>
-              <div class="row center">
-                <a href="#" class="btn-large waves-effect waves-light orange">See the Votes</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- card section-->
-        <div id="num1" class="section">
-          <div class="row">
-            <div class="col s12 m6">
-              <div class="card">
-                <div class="card-content">
-                  <span class="card-title">Card Title</span>
-                  <p>I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.</p>
-                </div>
-                <div class="card-action">
-                  <a href="#">This is a link</a>
-                  <a href="#">This is a link</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m6">
-              <div class="card">
-                <div class="card-content">
-                  <span class="card-title">Card Title</span>
-                  <p>I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.</p>
-                </div>
-                <div class="card-action">
-                  <a href="#">This is a link</a>
-                  <a href="#">This is a link</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col s12 m6">
-              <div class="card">
-                <div class="card-content">
-                  <span class="card-title">Card Title</span>
-                  <p>I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.</p>
-                </div>
-                <div class="card-action">
-                  <a href="#">This is a link</a>
-                  <a href="#">This is a link</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m6">
-              <div class="card">
-                <div class="card-content">
-                  <span class="card-title">Card Title</span>
-                  <p>I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.</p>
-                </div>
-                <div class="card-action">
-                  <a href="#">This is a link</a>
-                  <a href="#">This is a link</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- form section-->
-        <div class="section topic">
-          <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s6">
-                  <input id="first_name" type="text" class="validate">
-                  <label for="first_name">First Name</label>
-                </div>
-                <div class="input-field col s6">
-                  <input id="last_name" type="text" class="validate">
-                  <label for="last_name">Last Name</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="password" type="password" class="validate">
-                  <label for="password">Password</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <textarea id="textarea1" class="materialize-textarea"></textarea>
-                  <label for="textarea1">Textarea</label>
-                </div>
-              </div>
-              <button class="btn waves-effect waves-light orange" type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
-              </button>
-              
-            </form>
-          </div>
-        </div>
-      </div>
-    </main><!-- // main -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5>Crimson Knuckles Bio</h5>
-            <p>We are a team of college students working on this project like it's our
-              full time job. Any amount would help support and continue development on this project and is greatly
-              appreciated.</p>
-    
-    
-          </div>
-          <div class="col l6 s12">
-            <h5>Social Share</h5>
-            <div class="tc-social-share tc-social-small text-center">
-              <a href=""><i class="social-icon fa fa-facebook"></i></a>
-              <a href=""><i class="social-icon fa fa-twitter"></i></a>
-              <a href=""><i class="social-icon fa fa-google-plus"></i></a>
-              <a href=""><i class="social-icon fa fa-dribbble"></i></a>
-              <a href=""><i class="social-icon fa fa-linkedin"></i></a>
-              <a href=""><i class="social-icon fa fa-instagram"></i></a>
-              <a href=""><i class="social-icon fa fa-pinterest"></i></a>
-              <a href=""><i class="social-icon fa fa-github"></i></a>
-              <a href=""><i class="social-icon fa fa-flickr"></i></a>
-              <a href=""><i class="social-icon fa fa-vk"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-          Made by <a class="orange-text text-lighten-3" href="https://github.com/torre-matthew/TheCrimsonKnuckleRepo">The Crimson Knuckles</a>
-        </div>
-      </div>
-    </footer>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script>
-
-    <!-- materialize -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    <!-- custom -->
-    <script src="assets/js/scripts.js"></script>
-  </body>
 </html>
