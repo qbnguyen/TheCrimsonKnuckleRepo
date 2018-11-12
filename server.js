@@ -5,7 +5,8 @@
 // *** Dependencies
 // =============================================================
 var express = require("express");
-
+const authRoutes = require('./routes/auth-routes');
+const passportSetup = require('./config/passport-setup');
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -25,7 +26,7 @@ app.use(express.static("public"));
 // =============================================================
 require("./routes/apiRoutes.js")(app);
 require("./routes/htmlRoutes.js")(app);
-
+app.use('/auth', authRoutes);
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({}).then(function() {
