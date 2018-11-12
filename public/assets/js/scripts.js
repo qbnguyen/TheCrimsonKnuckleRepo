@@ -142,7 +142,6 @@ $("body").on("click", ".add-vote", function(event){
 //This function receives the group object and then posts it to the /api/groups route.
 let postGroupInformation = (group) => {
   $.post("/api/groups", group)
-    // on success, run this callback
     .then(function(data) {
       console.log(data);
     });
