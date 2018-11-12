@@ -4,13 +4,14 @@ const passport = require('passport');
 // auth login
 router.get('/login', (req, res) => {
     res.render('login', { user: req.user });
+    res.redirect("/ideas");
 });
 
 // auth logout
 router.get('/logout', (req, res) => {
     // handle with passport
     req.logout();
-    res.send('logging out');
+    res.redirect("/");
 });
 
 // auth with google+
