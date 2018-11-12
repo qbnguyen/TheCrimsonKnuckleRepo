@@ -139,4 +139,24 @@ $("body").on("click", ".add-vote", function(event){
   getCurrentVoteVal(ideaId);
 });
 
+//This function receives the group object and then posts it to the /api/groups route.
+let postGroupInformation = (group) => {
+  $.post("/api/groups", group)
+    .then(function(data) {
+      console.log(data);
+    });
+}
+
+//This function handles taking information from input fields and creating an object
+//to post in our groups table.
+$("body").on("click", ".sign-btn", function(event){
+  var groupToPost = {
+    admin_name:$("#admin_name").val().trim(),
+    admin_email:$("#admin_email").val().trim(),
+    decide_on:$("#decide_on").val().trim(),
+    group_name:$("#group_name").val().trim(),
+    password:$("#password_create").val().trim(),
+  };
+  postGroupInformation(groupToPost);
+});
 
