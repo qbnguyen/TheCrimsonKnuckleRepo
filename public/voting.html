@@ -17,20 +17,29 @@
   <script src="assets/js/utils.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
 
+<!-- card Script section-->
 <script id="group-ideas-display-template" type="text/x-handlebars-template">
-        {{#each idea}}
-          <div class="col s12 m4 l2">
-            <div class="card">
-              <div class="card-content">
-                <span class="card-title">{{idea}}</span>
-                <span class="card-title">{{id}}</span>
-              </div>
-              <div class="card-action">
-                <a href="#" data-idea-id="{{id}}" class="add-vote">This is a link</a>
-              </div>
-            </div>
-          </div>
-        {{/each}}
+  <!-- card section-->
+  <div id="num1" class="section">
+  <h2 class="header center orange-text">Group Votes</h2>
+  <br>
+  <div class="row">
+  {{#each idea}}
+  <div class="col s6 m3 l2">
+      <div class="card">
+      <div class="card-content">
+          <span class="card-title">{{idea}}</span>
+          <span class="card-title">{{id}}</span>
+          <p>Details about your iDea here.</p>
+      </div>
+      <div class="card-action">
+          <a href="#" data-idea-id="{{id}}" class="fas fa-thumbs-up add-vote"> Vote</a>
+      </div>
+      </div>
+  </div>
+  {{/each}}
+  </div>
+  </div>
 </script>
 
 <script id="group-winner-display-template" type="text/x-handlebars-template">
@@ -41,12 +50,51 @@
   {{/each}}
 </script>
 
-
-
-
 </head>
 
 <body>
+  <nav class="navbar" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+      <a href="#" data-target="slide-out" class="sidenav-trigger st-main"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#"><span class="name" style="color:#ee6e73">{{Group Name}}</span></a></li>
+          <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="assets/images/torre.png"></a></li>
+        <li><a href="#"><i class="material-icons nav-search">search</i></a></li>
+      </ul>
+  
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <ul id="slide-out" class="sidenav">
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img src="assets/images/office.jpg">
+        </div>
+        <a href="#user"><img class="circle" src="assets/images/torre.png"></a>
+        <a href="#name"><span class="white-text name">Torre Matthews</span></a>
+        <a href="#email"><span class="white-text email">torre.matthew@gmail.com</span></a>
+      </div>
+    </li>
+    <li class="no-padding">
+      <ul class="collapsible collapsible-accordion">
+        <li>
+          <a class="collapsible-header"><i class="material-icons highlight">dashboard</i>{{Group Name}} Dashboard<i class="material-icons float-r white-text">arrow_drop_down</i></a>
+          <div class="collapsible-body">
+            <ul>
+              <li><a href="#!">{{Prompt}}</a></li>
+              <li><a href="#!">{Group Ideas}</a></li>
+              <li><a href="#!">{{Your ideas & Votes}}</a></li>
+              <li><a href="#!">{{Decisons Made}}</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
   
     <div class="row">
       <div class="display-ideas"></div>  
