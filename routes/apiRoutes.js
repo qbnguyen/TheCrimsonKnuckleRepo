@@ -70,6 +70,21 @@ app.get("/api/groups/:id", function(req, res) {
     })
 });
 
+
+//Get group by password
+
+app.get("/api/groups/password/:password", function(req, res) {
+    console.log(req.body);
+    db.Groups.findOne({
+        where: {
+            password: req.params.password
+        },
+    }).then(function (Group) {
+        res.json(Group);
+    })
+});
+
+
 //GET all ideas regardless of group
 app.get("/api/ideas", function(req, res) {
         console.log(req.body);

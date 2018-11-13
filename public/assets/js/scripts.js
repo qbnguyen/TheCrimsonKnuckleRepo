@@ -144,7 +144,20 @@ let postGroupInformation = (group) => {
   $.post("/api/groups", group)
     .then(function(data) {
       console.log(data);
+      getGroupByPassword(data.password);
     });
+}
+
+//This function uses GETs group information based on the password.
+let getGroupByPassword = (groupPassword) => {
+  $.ajax({
+    url: "/api/groups/password/" + groupPassword, 
+    method: "GET"
+})
+.then(function (data) {
+  console.log(data);
+  console.log("THIS IS GROUP ID HOPEFULLY: " + data.id);
+});
 }
 
 //This function handles taking information from input fields and creating an object
@@ -157,6 +170,10 @@ $("body").on("click", ".sign-btn", function(event){
     group_name:$("#group_name").val().trim(),
     password:$("#password_create").val().trim(),
   };
-  postGroupInformation(groupToPost);
+  // postGroupInformation(groupToPost);
+  getGroupByPassword(groupToPost.group_name);
 });
+
+
+
 
