@@ -159,4 +159,3 @@ $("body").on("click", ".sign-btn", function(event){
   };
   postGroupInformation(groupToPost);
 });
-
