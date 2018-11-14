@@ -39,7 +39,7 @@ $("a").on('click', function (event) {
 let getAllIdeasForTheGroup = (groupId) => {
 
   $.ajax({
-      url: "/api/ideas/groups/2", //This GroupId (2) is hardcoded for testing and will need to be programatically added.
+      url: "/api/ideas/groups/" + groupId, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
       method: "GET"
   })
   .then(function (data) {
@@ -99,10 +99,10 @@ let updateVoteValInDB = (ideaId, newVoteVal) => {
 
 //This function is Getting all the ideas from a group and pushing their vote_vals into an array.
 //This makes it easy to use Math.max() to find out what the largest vote_vale is.
-let findIdeaWithMostVotes = () => {
+let findIdeaWithMostVotes = (groupId) => {
   let voteValArr = [];
   $.ajax({
-    url: "/api/ideas/groups/2", //This GroupId (2) is hardcoded for testing and will need to be programatically added.
+    url: "/api/ideas/groups/" + groupId, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -119,9 +119,9 @@ let findIdeaWithMostVotes = () => {
 
 //This function call an api endpoint that allows you to GET ideas by theire vote_val. I'm passing the max vote_val  from the 
 // function findIdeaWithMostVotes function above so that handlebars can be used in this function to display that idea on the page.
-let displayIdeasWithMostVotes = (maxVoteVal) => {
+let displayIdeasWithMostVotes = (groupId, maxVoteVal) => {
   $.ajax({
-    url: "/api/ideas/groups/2/votes/" + maxVoteVal, //This GroupId (2) is hardcoded for testing and will need to be programatically added.
+    url: "/api/ideas/groups/" + groupId + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -144,12 +144,27 @@ let postGroupInformation = (group) => {
   $.post("/api/groups", group)
     .then(function(data) {
       console.log(data);
+      getGroupByPassword(data.password);
     });
+}
+
+//This function GETs group information based on the password.
+let getGroupByPassword = (groupPassword) => {
+  $.get("/api/groups/password/" + groupPassword, function(data, status){
+    console.log("Data: " + data.id + "\nStatus: " + status);
+    //HERE IS OUR ONE LINE OF CODE THAT REDIRECTS US TO A NEW LOCATION.
+    //THE VALUE OF location.href CAN ALSO BE A URL.
+    location.href = "/ideas/group/" + data.id;
+    //THIS could be a potential solution to render ideas
+    // $(window).on("load", getAllIdeasForTheGroup(data.id));
+    //Simpler solution if it works.
+    // getAllIdeasForTheGroup(data.id)
+  });
 }
 
 //This function handles taking information from input fields and creating an object
 //to post in our groups table.
-$("body").on("click", ".sign-btn", function(event){
+$("body").on("click", ".createGroup", function(event){
   var groupToPost = {
     admin_name:$("#admin_name").val().trim(),
     admin_email:$("#admin_email").val().trim(),
@@ -158,4 +173,20 @@ $("body").on("click", ".sign-btn", function(event){
     password:$("#password_create").val().trim(),
   };
   postGroupInformation(groupToPost);
+  
+  //Used for testing so that I do not have to post groups to check if function is working
+  // getGroupByPassword("8769341a");
 });
+<<<<<<< HEAD
+=======
+
+//This function handles clicking the joingroup button, which uses the password from the input to
+//GET the group ID by password.
+$("body").on("click", ".joinGroup", function(event){
+  var password = $("#passSearch").val().trim()
+  getGroupByPassword(password);
+});
+
+
+
+>>>>>>> 32420ca230a3612a762393129d2c786b89540f83
