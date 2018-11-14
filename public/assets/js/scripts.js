@@ -177,8 +177,6 @@ $("body").on("click", ".createGroup", function(event){
   //Used for testing so that I do not have to post groups to check if function is working
   // getGroupByPassword("8769341a");
 });
-<<<<<<< HEAD
-=======
 
 //This function handles clicking the joingroup button, which uses the password from the input to
 //GET the group ID by password.
@@ -189,4 +187,3 @@ $("body").on("click", ".joinGroup", function(event){
 
 
 
->>>>>>> 32420ca230a3612a762393129d2c786b89540f83
