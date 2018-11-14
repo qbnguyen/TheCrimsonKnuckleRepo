@@ -99,10 +99,10 @@ let updateVoteValInDB = (ideaId, newVoteVal) => {
 
 //This function is Getting all the ideas from a group and pushing their vote_vals into an array.
 //This makes it easy to use Math.max() to find out what the largest vote_vale is.
-let findIdeaWithMostVotes = () => {
+let findIdeaWithMostVotes = (groupId) => {
   let voteValArr = [];
   $.ajax({
-    url: "/api/ideas/groups/2", //This GroupId (2) is hardcoded for testing and will need to be programatically added.
+    url: "/api/ideas/groups/" + groupId, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -119,9 +119,9 @@ let findIdeaWithMostVotes = () => {
 
 //This function call an api endpoint that allows you to GET ideas by theire vote_val. I'm passing the max vote_val  from the 
 // function findIdeaWithMostVotes function above so that handlebars can be used in this function to display that idea on the page.
-let displayIdeasWithMostVotes = (maxVoteVal) => {
+let displayIdeasWithMostVotes = (groupId, maxVoteVal) => {
   $.ajax({
-    url: "/api/ideas/groups/2/votes/" + maxVoteVal, //This GroupId (2) is hardcoded for testing and will need to be programatically added.
+    url: "/api/ideas/groups/" + groupId + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -178,6 +178,8 @@ $("body").on("click", ".createGroup", function(event){
   // getGroupByPassword("8769341a");
 });
 
+//This function handles clicking the joingroup button, which uses the password from the input to
+//GET the group ID by password.
 $("body").on("click", ".joinGroup", function(event){
   var password = $("#passSearch").val().trim()
   getGroupByPassword(password);
