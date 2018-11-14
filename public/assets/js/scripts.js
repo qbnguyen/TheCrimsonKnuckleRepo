@@ -39,7 +39,7 @@ $("a").on('click', function (event) {
 let getAllIdeasForTheGroup = (groupId) => {
 
   $.ajax({
-      url: "/api/ideas/groups/2", //This GroupId (2) is hardcoded for testing and will need to be programatically added.
+      url: "/api/ideas/groups/" + groupId, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
       method: "GET"
   })
   .then(function (data) {
@@ -148,21 +148,23 @@ let postGroupInformation = (group) => {
     });
 }
 
-//This function uses GETs group information based on the password.
+//This function GETs group information based on the password.
 let getGroupByPassword = (groupPassword) => {
-  $.ajax({
-    url: "/api/groups/password/" + groupPassword, 
-    method: "GET"
-})
-.then(function (data) {
-  console.log(data);
-  console.log("THIS IS GROUP ID HOPEFULLY: " + data.id);
-});
+  $.get("/api/groups/password/" + groupPassword, function(data, status){
+    console.log("Data: " + data.id + "\nStatus: " + status);
+    //HERE IS OUR ONE LINE OF CODE THAT REDIRECTS US TO A NEW LOCATION.
+    //THE VALUE OF location.href CAN ALSO BE A URL.
+    location.href = "/ideas/group/" + data.id;
+    //THIS could be a potential solution to render ideas
+    // $(window).on("load", getAllIdeasForTheGroup(data.id));
+    //Simpler solution if it works.
+    // getAllIdeasForTheGroup(data.id)
+  });
 }
 
 //This function handles taking information from input fields and creating an object
 //to post in our groups table.
-$("body").on("click", ".sign-btn", function(event){
+$("body").on("click", ".createGroup", function(event){
   var groupToPost = {
     admin_name:$("#admin_name").val().trim(),
     admin_email:$("#admin_email").val().trim(),
@@ -170,10 +172,16 @@ $("body").on("click", ".sign-btn", function(event){
     group_name:$("#group_name").val().trim(),
     password:$("#password_create").val().trim(),
   };
-  // postGroupInformation(groupToPost);
-  getGroupByPassword(groupToPost.group_name);
+  postGroupInformation(groupToPost);
+  
+  //Used for testing so that I do not have to post groups to check if function is working
+  // getGroupByPassword("8769341a");
 });
 
+$("body").on("click", ".joinGroup", function(event){
+  var password = $("#passSearch").val().trim()
+  getGroupByPassword(password);
+});
 
 
 
