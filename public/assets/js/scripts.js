@@ -3,31 +3,41 @@
 M.AutoInit();
 
 
-
-
 ////////////////////////////////////////////////////////// Functions ////////////////////////////////////////////////////////////////
 
 //This function GETs group information based on the password.
 let getGroupByPassword = (groupPassword) => {
   $.get("/api/groups/password/" + groupPassword, function(data, status){
-    console.log("Data: " + data.id + "\nStatus: " + status);
+    // console.log("Data: " + data.id + "\nStatus: " + status);
     //HERE IS OUR ONE LINE OF CODE THAT REDIRECTS US TO A NEW LOCATION.
     //THE VALUE OF location.href CAN ALSO BE A URL.
-    location.href = "/ideas/group/" + data.id;
+    location.href = "/ideas/group/#" + data.id;
     //THIS could be a potential solution to render ideas
     // $(window).on("load", getAllIdeasForTheGroup(data.id));
     //Simpler solution if it works.
     // getAllIdeasForTheGroup(data.id)
-
-    grabGroupIdForFutureUse(data.id);
   });
 }
 
-// Once the user logs into the group via the group password, the getGroupByPassword fuchtion 
-// grabs the group ID that corresponds to that password.
-// This function just returns that id for the purposes of using it elsewhere. 
-let grabGroupIdForFutureUse = (groupID) => {
-  return groupID; 
+let countNumberOfIdeasInGroup = () => {
+
+  let groupID = location.hash.substr(1);
+
+  console.log(groupID);
+
+  $.ajax({
+    url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    method: "GET"
+})
+.then(function (data) {
+  
+  if (data.length > 10) {
+    return true;
+  } else {
+    return false;
+  }
+});
+  
 }
 
 
@@ -40,9 +50,9 @@ let getAllIdeasForTheGroup = (grabGroupIdForFutureUse) => {
       method: "GET"
   })
   .then(function (data) {
-    console.log(data);
     
       renderHandlebarsTemplate(".display-ideas", "#group-ideas-display-template", {idea: data});
+      
   });
 }
 
@@ -67,9 +77,9 @@ let getCurrentVoteVal = (ideaId) => {
 .then(function (data) {
   
  let currentVoteVal = data.vote_val;
- console.log("Current Vote_val " + currentVoteVal);
+//  console.log("Current Vote_val " + currentVoteVal);
  let newVoteVal = currentVoteVal + 1;  
-console.log("New Vote_val " + newVoteVal);
+// console.log("New Vote_val " + newVoteVal);
 
 updateVoteValInDB(ideaId, newVoteVal);
 
@@ -89,7 +99,7 @@ let updateVoteValInDB = (ideaId, newVoteVal) => {
     }
 })
 .then(function (data) {
-  console.log(data);
+  // console.log(data);
 
 });
 
@@ -100,11 +110,11 @@ let updateVoteValInDB = (ideaId, newVoteVal) => {
 let findIdeaWithMostVotes = (groupId) => {
   let voteValArr = [];
   $.ajax({
-    url: "/api/ideas/groups/" + groupId, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" + 2, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
-  console.log(data);
+  // console.log(data);
 
       for (let i = 0; i < data.length; i++) {
         voteValArr.push(data[i].vote_val);
@@ -119,7 +129,7 @@ let findIdeaWithMostVotes = (groupId) => {
 // function findIdeaWithMostVotes function above so that handlebars can be used in this function to display that idea on the page.
 let displayIdeasWithMostVotes = (groupId, maxVoteVal) => {
   $.ajax({
-    url: "/api/ideas/groups/" + groupId + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" + 2 + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -138,7 +148,7 @@ findIdeaWithMostVotes();
 let postGroupInformation = (group) => {
   $.post("/api/groups", group)
     .then(function(data) {
-      console.log(data);
+      // console.log(data);
       getGroupByPassword(data.password);
     });
 }
@@ -148,7 +158,7 @@ let postGroupInformation = (group) => {
 //////////////////////////////////////////////////////Click Handlers/////////////////////////////////////////////////////////////////////////
 
 
-// This click handler id GETing the vote_val from the db of the idea that's being clicked on.
+// This click handler is GETing the vote_val from the db of the idea that's being clicked on.
 // It is also updating (+1) that vote val of that idea and updating the value in the db.
 $("body").on("click", ".add-vote", function(event){
   let ideaId = $(this).attr("data-idea-id");
@@ -209,6 +219,10 @@ $("body").on("click", ".createGroup", function(event){
 $("body").on("click", ".joinGroup", function(event){
   var password = $("#passSearch").val().trim()
   getGroupByPassword(password);
+});
+
+$("body").on("click", ".submit-idea", function(event){
+  countNumberOfIdeasInGroup();
 });
 
 
