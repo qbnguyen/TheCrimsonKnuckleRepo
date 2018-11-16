@@ -43,6 +43,42 @@ let countNumberOfIdeasInGroup = () => {
   
 }
 
+let totalNumberOfVotesPerGroup = () => {
+  let groupID = location.hash.substr(1);
+
+  $.ajax({
+    url: "/api/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    method: "GET"
+})
+.then(function (data) {
+  let totalVotes = data.number_of_participants * data.votes;
+  console.log(totalVotes);
+
+});
+
+}
+
+let showButtonToWinnigIdeaPage = () => {
+
+  let groupID = location.hash.substr(1);
+
+  $.ajax({
+    url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    method: "GET"
+})
+.then(function (data) {
+  let numberOfVotes = 0;
+
+  for (let i = 0; i < data.length; i++) {
+    numberOfVotes += data[i].vote_val;
+  }
+  console.log(numberOfVotes);
+});
+
+}
+
+
+
 //This functions only job is to build a button that can dynamically put on the page
 //to take the user to the voting page.
 let buttontoEnterVoting = () => {
@@ -172,6 +208,8 @@ getAllIdeasForTheGroup();
 //This is the function that displays the winning idea on the page
 findIdeaWithMostVotes();
 
+buttontoSeeWinner();
+
 
 
 //This function receives the group object and then posts it to the /api/groups route.
@@ -236,6 +274,7 @@ $("body").on("click", ".createGroup", function(event){
     admin_email:$("#admin_email").val().trim(),
     decide_on:$("#decide_on").val().trim(),
     group_name:$("#group_name").val().trim(),
+    number_of_participants: $("#participants").val().trim(),
     password:$("#password_create").val().trim(),
   };
   postGroupInformation(groupToPost);
@@ -268,5 +307,11 @@ $("body").on("click", ".enter-voting-page", function(event){
 
 });
 
+$("body").on("click", ".enter-winning-idea-page", function(event){
+  let groupID = location.hash.substr(1);
+    totalNumberOfVotesPerGroup();
+    showButtonToWinnigIdeaPage();
+  // location.href = "/winning/group/#" + groupID;
 
+});
 
