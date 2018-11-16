@@ -6,6 +6,7 @@
 // =============================================================
 var express = require("express");
 const authRoutes = require('./routes/auth-routes');
+const profileRoutes = require('./routes/profile-routes');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require("mongoose");
 const keys = require("./config/keys");
@@ -20,6 +21,9 @@ var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
 var db = require("./models");
+
+
+
 
 app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000,
@@ -44,7 +48,11 @@ app.use(express.static("public"));
 // =============================================================
 require("./routes/apiRoutes.js")(app);
 require("./routes/htmlRoutes.js")(app);
+
+
 app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes);
+app.set('view engine', 'ejs');
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({}).then(function() {

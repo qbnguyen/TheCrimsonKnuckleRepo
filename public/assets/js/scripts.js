@@ -186,4 +186,6 @@ $("body").on("click", ".joinGroup", function(event){
 });
 
 
-
+function createHTML(){
+  console.log(req.user)
+}
