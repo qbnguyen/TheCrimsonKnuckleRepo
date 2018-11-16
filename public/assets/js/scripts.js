@@ -19,34 +19,50 @@ let getGroupByPassword = (groupPassword) => {
   });
 }
 
+//This function queries the ideas in the database based on the group id in the URL.
+//This function should just return true or false based on the number of ideas in that group
+//We want to make sure that there is a certain number of ideas in the idea table assigned to 
+//this group before we allow users to enter the voting section. 
 let countNumberOfIdeasInGroup = () => {
 
   let groupID = location.hash.substr(1);
-
-  console.log(groupID);
 
   $.ajax({
     url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
-  
+
   if (data.length > 10) {
-    return true;
+    buttontoEnterVoting();
   } else {
-    return false;
+    console.log("sorry! not enough ideas in group to enter voting");
   }
+
 });
   
+}
+
+//This functions only job is to build a button that can dynamically put on the page
+//to take the user to the voting page.
+let buttontoEnterVoting = () => {
+  let button = $("<a>")
+                .addClass("waves-effect waves-light btn enter-voting-page")
+                .append("Enter Voting Page");
+    
+    $(".voting-page-button-location").empty("");
+    $(".voting-page-button-location").append(button);
 }
 
 
 
 //This function GETs all ideas for a group so that the data can be passed to handlebars to render them on the page.
-let getAllIdeasForTheGroup = (grabGroupIdForFutureUse) => {
- 
+let getAllIdeasForTheGroup = () => {
+  
+  let groupID = location.hash.substr(1);
+
   $.ajax({
-      url: "/api/ideas/groups/" + grabGroupIdForFutureUse, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+      url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
       method: "GET"
   })
   .then(function (data) {
@@ -77,9 +93,9 @@ let getCurrentVoteVal = (ideaId) => {
 .then(function (data) {
   
  let currentVoteVal = data.vote_val;
-//  console.log("Current Vote_val " + currentVoteVal);
+ console.log("Current Vote_val " + currentVoteVal);
  let newVoteVal = currentVoteVal + 1;  
-// console.log("New Vote_val " + newVoteVal);
+console.log("New Vote_val " + newVoteVal);
 
 updateVoteValInDB(ideaId, newVoteVal);
 
@@ -107,10 +123,11 @@ let updateVoteValInDB = (ideaId, newVoteVal) => {
 
 //This function is Getting all the ideas from a group and pushing their vote_vals into an array.
 //This makes it easy to use Math.max() to find out what the largest vote_vale is.
-let findIdeaWithMostVotes = (groupId) => {
+let findIdeaWithMostVotes = () => {
+  let groupID = location.hash.substr(1);
   let voteValArr = [];
   $.ajax({
-    url: "/api/ideas/groups/" + 2, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -127,9 +144,11 @@ let findIdeaWithMostVotes = (groupId) => {
 
 //This function call an api endpoint that allows you to GET ideas by theire vote_val. I'm passing the max vote_val  from the 
 // function findIdeaWithMostVotes function above so that handlebars can be used in this function to display that idea on the page.
-let displayIdeasWithMostVotes = (groupId, maxVoteVal) => {
+let displayIdeasWithMostVotes = (maxVoteVal) => {
+  let groupID = location.hash.substr(1);
+
   $.ajax({
-    url: "/api/ideas/groups/" + 2 + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" + groupID + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -223,6 +242,13 @@ $("body").on("click", ".joinGroup", function(event){
 
 $("body").on("click", ".submit-idea", function(event){
   countNumberOfIdeasInGroup();
+});
+
+$("body").on("click", ".enter-voting-page", function(event){
+  let groupID = location.hash.substr(1);
+
+  location.href = "/voting/group/#" + groupID;
+
 });
 
 
