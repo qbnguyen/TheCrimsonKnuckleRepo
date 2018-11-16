@@ -275,4 +275,6 @@ $( document ).ready(function() {
 });
 
 
-
+function createHTML(){
+  console.log(req.user)
+}
