@@ -2,49 +2,73 @@
 // You cannot pass in options using this method.
 M.AutoInit();
 
-// Toggle the little dropdown arrows in the sidenav
-$(".tog-button").on("click", function () {
-  if ($(".tog-arrow").css("transform") == "none") {
-    $(".tog-arrow").css({ "transform": "rotate(180deg)" });
-  } else {
-    $(".tog-arrow").css({ "transform": "" });
-  };
+
+////////////////////////////////////////////////////////// Functions ////////////////////////////////////////////////////////////////
+
+//This function GETs group information based on the password.
+let getGroupByPassword = (groupPassword) => {
+  $.get("/api/groups/password/" + groupPassword, function(data, status){
+    // console.log("Data: " + data.id + "\nStatus: " + status);
+    //HERE IS OUR ONE LINE OF CODE THAT REDIRECTS US TO A NEW LOCATION.
+    //THE VALUE OF location.href CAN ALSO BE A URL.
+    location.href = "/ideas/group/#" + data.id;
+    //THIS could be a potential solution to render ideas
+    // $(window).on("load", getAllIdeasForTheGroup(data.id));
+    //Simpler solution if it works.
+    // getAllIdeasForTheGroup(data.id)
+  });
+}
+
+//This function queries the ideas in the database based on the group id in the URL.
+//This function should just return true or false based on the number of ideas in that group
+//We want to make sure that there is a certain number of ideas in the idea table assigned to 
+//this group before we allow users to enter the voting section. 
+let countNumberOfIdeasInGroup = () => {
+
+  let groupID = location.hash.substr(1);
+
+  $.ajax({
+    url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    method: "GET"
 })
+.then(function (data) {
 
-// Smoothscroll from W3Schools
-$("a").on('click', function (event) {
+  if (data.length > 10) {
+    buttontoEnterVoting();
+  } else {
+    console.log("sorry! not enough ideas in group to enter voting");
+  }
 
-  // Make sure this.hash has a value before overriding default behavior
-  if (this.hash !== "") {
-    // Prevent default anchor click behavior
-    event.preventDefault();
-
-    // Store hash
-    var hash = this.hash;
-
-    // Using jQuery's animate() method to add smooth page scroll
-    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-    $('html, body').animate({
-      scrollTop: $(hash).offset().top
-    }, 800, function () {
-
-      // Add hash (#) to URL when done scrolling (default click behavior)
-      window.location.hash = hash;
-    });
-  } // End if
 });
+  
+}
+
+//This functions only job is to build a button that can dynamically put on the page
+//to take the user to the voting page.
+let buttontoEnterVoting = () => {
+  let button = $("<a>")
+                .addClass("waves-effect waves-light btn enter-voting-page")
+                .append("Enter Voting Page");
+    
+    $(".voting-page-button-location").empty("");
+    $(".voting-page-button-location").append(button);
+}
+
 
 
 //This function GETs all ideas for a group so that the data can be passed to handlebars to render them on the page.
-let getAllIdeasForTheGroup = (groupId) => {
+let getAllIdeasForTheGroup = () => {
+  
+  let groupID = location.hash.substr(1);
 
   $.ajax({
-      url: "/api/ideas/groups/" + groupId, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+      url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
       method: "GET"
   })
   .then(function (data) {
-    console.log(data);
+    
       renderHandlebarsTemplate(".display-ideas", "#group-ideas-display-template", {idea: data});
+      
   });
 }
 
@@ -91,7 +115,7 @@ let updateVoteValInDB = (ideaId, newVoteVal) => {
     }
 })
 .then(function (data) {
-  console.log(data);
+  // console.log(data);
 
 });
 
@@ -99,14 +123,15 @@ let updateVoteValInDB = (ideaId, newVoteVal) => {
 
 //This function is Getting all the ideas from a group and pushing their vote_vals into an array.
 //This makes it easy to use Math.max() to find out what the largest vote_vale is.
-let findIdeaWithMostVotes = (groupId) => {
+let findIdeaWithMostVotes = () => {
+  let groupID = location.hash.substr(1);
   let voteValArr = [];
   $.ajax({
-    url: "/api/ideas/groups/" + groupId, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
-  console.log(data);
+  // console.log(data);
 
       for (let i = 0; i < data.length; i++) {
         voteValArr.push(data[i].vote_val);
@@ -119,9 +144,11 @@ let findIdeaWithMostVotes = (groupId) => {
 
 //This function call an api endpoint that allows you to GET ideas by theire vote_val. I'm passing the max vote_val  from the 
 // function findIdeaWithMostVotes function above so that handlebars can be used in this function to display that idea on the page.
-let displayIdeasWithMostVotes = (groupId, maxVoteVal) => {
+let displayIdeasWithMostVotes = (maxVoteVal) => {
+  let groupID = location.hash.substr(1);
+
   $.ajax({
-    url: "/api/ideas/groups/" + groupId + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" + groupID + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -134,33 +161,61 @@ getAllIdeasForTheGroup();
 //This is the function that displays the winning idea on the page
 findIdeaWithMostVotes();
 
-$("body").on("click", ".add-vote", function(event){
-  let ideaId = $(this).attr("data-idea-id");
-  getCurrentVoteVal(ideaId);
-});
+
 
 //This function receives the group object and then posts it to the /api/groups route.
 let postGroupInformation = (group) => {
   $.post("/api/groups", group)
     .then(function(data) {
-      console.log(data);
+      // console.log(data);
       getGroupByPassword(data.password);
     });
 }
 
-//This function GETs group information based on the password.
-let getGroupByPassword = (groupPassword) => {
-  $.get("/api/groups/password/" + groupPassword, function(data, status){
-    console.log("Data: " + data.id + "\nStatus: " + status);
-    //HERE IS OUR ONE LINE OF CODE THAT REDIRECTS US TO A NEW LOCATION.
-    //THE VALUE OF location.href CAN ALSO BE A URL.
-    location.href = "/ideas/group/" + data.id;
-    //THIS could be a potential solution to render ideas
-    // $(window).on("load", getAllIdeasForTheGroup(data.id));
-    //Simpler solution if it works.
-    // getAllIdeasForTheGroup(data.id)
-  });
-}
+
+
+//////////////////////////////////////////////////////Click Handlers/////////////////////////////////////////////////////////////////////////
+
+
+// This click handler is GETing the vote_val from the db of the idea that's being clicked on.
+// It is also updating (+1) that vote val of that idea and updating the value in the db.
+$("body").on("click", ".add-vote", function(event){
+  let ideaId = $(this).attr("data-idea-id");
+  getCurrentVoteVal(ideaId);
+});
+
+// Toggle the little dropdown arrows in the sidenav
+$(".tog-button").on("click", function () {
+  if ($(".tog-arrow").css("transform") == "none") {
+    $(".tog-arrow").css({ "transform": "rotate(180deg)" });
+  } else {
+    $(".tog-arrow").css({ "transform": "" });
+  };
+})
+
+// Smoothscroll from W3Schools
+$("a").on('click', function (event) {
+
+  // Make sure this.hash has a value before overriding default behavior
+  if (this.hash !== "") {
+    // Prevent default anchor click behavior
+    event.preventDefault();
+
+    // Store hash
+    var hash = this.hash;
+
+    // Using jQuery's animate() method to add smooth page scroll
+    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 800, function () {
+
+      // Add hash (#) to URL when done scrolling (default click behavior)
+      window.location.hash = hash;
+    });
+  } // End if
+});
+
 
 //This function handles taking information from input fields and creating an object
 //to post in our groups table.
@@ -183,6 +238,23 @@ $("body").on("click", ".createGroup", function(event){
 $("body").on("click", ".joinGroup", function(event){
   var password = $("#passSearch").val().trim()
   getGroupByPassword(password);
+});
+
+//This click handler is going to be doing a number of things...
+//1. POSTING IDeas to the DB when clicked
+//2. Displaying ideas on the page as the user adds their ideas
+//3. counting the number of ideas in the db and displaying a button on the page to move the user to the voting page
+$("body").on("click", ".submit-idea", function(event){
+  countNumberOfIdeasInGroup();
+});
+
+//This click handler is for the button that appears on the page to take the user to the voting page.
+//it uses location.href to take them to the correct group voting page.
+$("body").on("click", ".enter-voting-page", function(event){
+  let groupID = location.hash.substr(1);
+
+  location.href = "/voting/group/#" + groupID;
+
 });
 
 
