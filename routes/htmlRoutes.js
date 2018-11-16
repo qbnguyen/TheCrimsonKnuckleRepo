@@ -11,6 +11,10 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/voting.html"));
   });
 
+  app.get("/voting/group/*", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/voting.html"));
+  });
+
   app.get("/ideas", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/ideas.html"));
   });
@@ -20,6 +24,10 @@ module.exports = function (app) {
   });
 
   app.get("/winning", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/winning_vote.html"));
+  });
+
+  app.get("/winning/group/*", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/winning_vote.html"));
   });
 
