@@ -315,3 +315,6 @@ $("body").on("click", ".enter-winning-idea-page", function(event){
 
 });
 
+function createHTML(){
+  console.log(req.user)
+}
