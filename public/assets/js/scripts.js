@@ -240,10 +240,16 @@ $("body").on("click", ".joinGroup", function(event){
   getGroupByPassword(password);
 });
 
+//This click handler is going to be doing a number of things...
+//1. POSTING IDeas to the DB when clicked
+//2. Displaying ideas on the page as the user adds their ideas
+//3. counting the number of ideas in the db and displaying a button on the page to move the user to the voting page
 $("body").on("click", ".submit-idea", function(event){
   countNumberOfIdeasInGroup();
 });
 
+//This click handler is for the button that appears on the page to take the user to the voting page.
+//it uses location.href to take them to the correct group voting page.
 $("body").on("click", ".enter-voting-page", function(event){
   let groupID = location.hash.substr(1);
 
