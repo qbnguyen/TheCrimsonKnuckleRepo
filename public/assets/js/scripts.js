@@ -39,7 +39,7 @@ $("a").on('click', function (event) {
 let getAllIdeasForTheGroup = (groupId) => {
 
   $.ajax({
-      url: "/api/ideas/groups/" + groupId, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+      url: "/api/ideas/groups/" + 1, //groupId, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
       method: "GET"
   })
   .then(function (data) {
@@ -70,6 +70,7 @@ let getCurrentVoteVal = (ideaId) => {
   
  let currentVoteVal = data.vote_val;
  console.log("Current Vote_val " + currentVoteVal);
+
  let newVoteVal = currentVoteVal + 1;  
 console.log("New Vote_val " + newVoteVal);
 
@@ -102,7 +103,7 @@ let updateVoteValInDB = (ideaId, newVoteVal) => {
 let findIdeaWithMostVotes = (groupId) => {
   let voteValArr = [];
   $.ajax({
-    url: "/api/ideas/groups/" + groupId, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" + 1, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -121,7 +122,7 @@ let findIdeaWithMostVotes = (groupId) => {
 // function findIdeaWithMostVotes function above so that handlebars can be used in this function to display that idea on the page.
 let displayIdeasWithMostVotes = (groupId, maxVoteVal) => {
   $.ajax({
-    url: "/api/ideas/groups/" + groupId + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" + 1 + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -137,7 +138,38 @@ findIdeaWithMostVotes();
 $("body").on("click", ".add-vote", function(event){
   let ideaId = $(this).attr("data-idea-id");
   getCurrentVoteVal(ideaId);
-});
+  
+  $(this).addClass("orange");
+  
+  $(this).find(".multi-vote").css("display", "block");
+  
+  $(this).find(".act-q").css("border-left", "5px solid #2c2f4d");
+
+}); // end click func
+
+
+// displayGroupInfo
+  $.ajax({
+    url: "/api/groups/",
+    method: "GET"
+  })
+  .then(function(response){
+    renderHandlebarsTemplate(".gn", "#group-ideas-display-template", { group: response[0].group_name });
+
+    
+  })// displayGroupInfo
+
+  // display decideOnInfo
+  $.ajax({
+    url: "/api/groups/",
+    method: "GET"
+  })
+    .then(function (response) {
+    
+      renderHandlebarsTemplate(".gi", "#group-ideas-display-template", { groupIdea: response[0].decide_on });
+
+    })// display decideOnInfo
+
 
 //This function receives the group object and then posts it to the /api/groups route.
 let postGroupInformation = (group) => {
@@ -185,5 +217,5 @@ $("body").on("click", ".joinGroup", function(event){
   getGroupByPassword(password);
 });
 
-
+// multiple votes on one idea
 

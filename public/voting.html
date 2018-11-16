@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="/assets/css/social-share.css" rel="stylesheet" type="text/css" />
   <!-- custom -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    crossorigin="anonymous">
   <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
@@ -21,21 +23,28 @@
 <script id="group-ideas-display-template" type="text/x-handlebars-template">
   <!-- card section-->
   <div id="num1" class="section">
-  <h2 class="header center orange-text">Group Votes</h2>
-  <br>
+  <h2 class="header center orange-text gn">{{group}}</h2>
+  <h2 class="header center orange-text gi">{{groupIdea}}</h2>
   <div class="row">
   {{#each idea}}
-  <div class="col s6 m3 l2">
-      <div class="card">
+  <div class="col s12 m6 l4">
+      <div class="card add-vote" data-idea-id="{{id}}" >
       <div class="card-content">
-          <span class="card-title">{{idea}}</span>
-          <span class="card-title">{{id}}</span>
-          <p>Details about your iDea here.</p>
+        <div class="user-counter">0</div>
+          <blockquote class="curly-quotes act-q">{{idea}}</blockquote>
+          <a class="btn-floating halfway-fab waves-effect waves-light multi-vote"><i class="material-icons">add</i></a>
+          <a class="btn-floating halfway-fab waves-effect waves-light multi-vote remove"><i class="material-icons">remove</i></a>
+          <!-- <span class="card-title">{{id}}</span> -->
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in erat quis elit ornare blandit a vel quam. Etiam fringilla facilisis urna id sagittis. Pellentesque gravida pulvinar iaculis. Vivamus quis lacus ac purus tempor cursus. Suspendisse potenti. In quis mattis lectus. Pellentesque ut posuere dolor. Cras elementum sagittis ipsum, non mattis turpis accumsan in. Phasellus quis aliquam nulla, eu suscipit enim. Ut ultricies libero at lacus dignissim faucibus.
+          Quisque consectetur nullam.</p>
+          <hr>
+          <h3>Vote</h3>
+          <span class="vote-count">{{vote_val}}</span>
       </div>
-      <div class="card-action">
+      <!-- <div class="card-action">
           <a href="#" data-idea-id="{{id}}" class="fas fa-thumbs-up add-vote"> Vote</a>
-      </div>
-      </div>
+      </div> -->
+      </div><!-- //card -->
   </div>
   {{/each}}
   </div>
@@ -57,7 +66,7 @@
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
       <a href="#" data-target="slide-out" class="sidenav-trigger st-main"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#"><span class="name" style="color:#ee6e73">{{Group Name}}</span></a></li>
+        <li><a href="#"><span class="name" style="color:#ee6e73"><{{Group Name}}></span></a></li>
           <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="/assets/images/torre.png"></a></li>
         <li><a href="#"><i class="material-icons nav-search">search</i></a></li>
       </ul>
@@ -65,7 +74,7 @@
       <ul id="nav-mobile" class="sidenav">
         <li><a href="#">Navbar Link</a></li>
       </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger mob-nav"><i class="material-icons">menu</i></a>
     </div>
   </nav>
   <ul id="slide-out" class="sidenav">
@@ -95,15 +104,55 @@
       </ul>
     </li>
   </ul>
-    <div class="row">
-      <div class="display-ideas"></div>  
-    </div>
 
-    <div class="row">
-      <div class="display-winner"></div>  
-    </div>
-    
+
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="display-ideas"></div>  
+      </div>
+      <div class="row">
+        <div class="display-winner"></div>  
+      </div>
+    </div><!-- // container -->
+  </main><!-- // main -->
   
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5>Crimson Knuckles Bio</h5>
+          <p>We are a team of college students working on this project like it's our
+            full time job. Any amount would help support and continue development on this project and is greatly
+            appreciated.</p>
+  
+  
+        </div>
+        <div class="col l6 s12">
+          <h5>Social Share</h5>
+          <div class="tc-social-share tc-social-small text-center">
+            <a href=""><i class="social-icon fab fa-facebook-f"></i></a>
+            <a href=""><i class="social-icon fab fa-twitter"></i></a>
+            <a href=""><i class="social-icon fab fa-google-plus"></i></a>
+            <a href=""><i class="social-icon fab fa-dribbble"></i></a>
+            <a href=""><i class="social-icon fab fa-linkedin"></i></a>
+            <a href=""><i class="social-icon fab fa-instagram"></i></a>
+            <a href=""><i class="social-icon fab fa-pinterest"></i></a>
+            <a href=""><i class="social-icon fab fa-github"></i></a>
+            <a href=""><i class="social-icon fab fa-flickr"></i></a>
+            <a href=""><i class="social-icon fab fa-vk"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Made by <a class="orange-text text-lighten-3" href="https://github.com/torre-matthew/TheCrimsonKnuckleRepo">The
+          Crimson Knuckles</a>
+      </div>
+    </div>
+  </footer>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -116,6 +165,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
 
     <!-- custom -->
+    <script src="/assets/js/voting.js"></script>
     <script src="/assets/js/scripts.js"></script>
 </body>
 
