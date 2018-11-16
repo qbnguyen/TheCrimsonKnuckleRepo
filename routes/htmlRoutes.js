@@ -15,7 +15,7 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/ideas.html"));
   });
 
-  app.get("/ideas/group/:id", function (req, res) {
+  app.get("/ideas/group/*", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/ideas.html"));
   });
 

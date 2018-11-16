@@ -154,11 +154,20 @@ let getGroupByPassword = (groupPassword) => {
     console.log("Data: " + data.id + "\nStatus: " + status);
     //HERE IS OUR ONE LINE OF CODE THAT REDIRECTS US TO A NEW LOCATION.
     //THE VALUE OF location.href CAN ALSO BE A URL.
-    location.href = "/ideas/group/" + data.id;
+    location.href = "/ideas/group/#" + data.id;
     //THIS could be a potential solution to render ideas
     // $(window).on("load", getAllIdeasForTheGroup(data.id));
     //Simpler solution if it works.
     // getAllIdeasForTheGroup(data.id)
+  });
+}
+
+//This function GETs group information based on the ID, and then RENDERS HANDLEBARS for ideas page.
+let getGroupAndRenderHandlebars = (idOfGroup) => {
+  $.get("/api/groups/" + idOfGroup, function(data, status){
+    console.log("group name: " + data.group_name + "\nPrompt: " + data.decide_on + "\nStatus: " + status);
+    renderHandlebarsTemplate(".display-group-name", "#group-name-display-template", {group_name: data.group_name});
+    renderHandlebarsTemplate(".display-group-body", "#group-body-display-template", {group_name: data.group_name, decide_on:data.decide_on});
   });
 }
 
@@ -185,5 +194,8 @@ $("body").on("click", ".joinGroup", function(event){
   getGroupByPassword(password);
 });
 
-
-
+$(document).ready(function() {
+  let groupID = location.hash.substr(1);
+  console.log(groupID);
+  getGroupAndRenderHandlebars(groupID);
+});
