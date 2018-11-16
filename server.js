@@ -49,10 +49,11 @@ app.use(express.static("public"));
 require("./routes/apiRoutes.js")(app);
 require("./routes/htmlRoutes.js")(app);
 
+app.set('view engine', 'ejs');
 
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
-app.set('view engine', 'ejs');
+
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({}).then(function() {
