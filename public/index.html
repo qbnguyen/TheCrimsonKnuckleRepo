@@ -51,17 +51,14 @@
         <div class="auth-col-form mar-auto">
           <div class="tab-content" id="animate-tab-content">
             <!-- Begin Sign In -->
+            <div class="sign-btn text-center">
+              <a class="google-btn" href="/auth/google">Please Sign In with Google+</a>
+          </div>
             <div role="tabpanel" class="ch-h tab-pane show active" id="singin" aria-labelledby="singin-tab">
               <h3>Join a Group</h3>
               <form>
                 <div class="group material-input">
-                  <input type="text" required="">
-                  <span class="highlight"></span>
-                  <span class="bar"></span>
-                  <label>Email</label>
-                </div>
-                <div class="group material-input">
-                  <input type="password" required="">
+                  <input type="password" id="passSearch" required="">
                   <span class="highlight"></span>
                   <span class="bar"></span>
                   <label>Password</label>
@@ -81,14 +78,12 @@
                   <a href="">Forgot Password ?</a>
                 </div>
               </div>
-              <div class="sign-btn text-center">
-                <a href="index.html" class="btn btn-color">
+              <div class="sign-btn text-center joinGroup">
+                <a href="#" class="btn btn-color">
                   Join Group
                 </a>
               </div>
-              <div class="sign-btn text-center">
-                <a class="google-btn" href="/auth/google">Google+</a>
-            </div>
+              
 
             </div>
             <!-- End Sign In -->
@@ -143,8 +138,8 @@
                   </div>
                 </div>
               </div>
-              <div class="sign-btn text-center">
-                <a href="" class="btn btn-color cg-btn">
+              <div class="sign-btn text-center createGroup">
+                <a href="#" class="btn btn-color cg-btn">
                   Create Group
                 </a>
               </div>
@@ -168,8 +163,11 @@
   <script src="assets/js/components/core.min.js"></script>
   <script src="assets/js/components/nicescroll.min.js"></script>
   <script src="assets/js/components/animated-tabs.min.js"></script>
+
+  <!-- handlebars-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+  
   <!-- custom -->
-  <script src="assets/js/create.js"></script>
   <script src="assets/js/scripts.js"></script>
 </body>
 
