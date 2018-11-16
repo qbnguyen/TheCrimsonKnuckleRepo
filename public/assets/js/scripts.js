@@ -258,4 +258,6 @@ $("body").on("click", ".enter-voting-page", function(event){
 });
 
 
-
+function createHTML(){
+  console.log(req.user)
+}
