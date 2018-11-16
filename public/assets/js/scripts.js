@@ -54,6 +54,17 @@ let buttontoEnterVoting = () => {
     $(".voting-page-button-location").append(button);
 }
 
+//This functions only job is to build a button that can dynamically put on the page
+//to take the user to the winning idea page.
+let buttontoSeeWinner = () => {
+  let button = $("<a>")
+                .addClass("waves-effect waves-light btn enter-winning-idea-page")
+                .append("See See Winning Idea!!!");
+    
+    $(".winning-idea-page-button-location").empty("");
+    $(".winning-idea-page-button-location").append(button);
+}
+
 
 
 //This function GETs all ideas for a group so that the data can be passed to handlebars to render them on the page.
