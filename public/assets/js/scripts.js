@@ -446,7 +446,7 @@ $("submit-all").on("click", ".checkbox", function() {
 //renders the group name and prompt using handlebars on our ideas.html page.
 //This function only renders handlebars if there is a hash in the URL, and also if there are the corresponding
 //Classes and IDs that are ready to be used for handlebars.
-$( document ).ready(function() {
+$(document).ready(function() {
   let groupID = location.hash.substr(1);
   getGroupAndRenderHandlebars(groupID);
 
