@@ -229,12 +229,33 @@ let getCurrentVoteVal = (ideaId) => {
   
  let currentVoteVal = data.vote_val;
  console.log("Current Vote_val " + currentVoteVal);
+
  let newVoteVal = currentVoteVal + 1;  
 console.log("New Vote_val " + newVoteVal);
 
 updateVoteValInDB(ideaId, newVoteVal);
 
 });
+
+}
+
+let outCurrentVoteVal = (ideaId) => {
+
+  $.ajax({
+    url: "/api/ideas/" + ideaId,
+    method: "GET"
+  })
+    .then(function (data) {
+      console.log("voting data: " + data);
+      let currentVoteVal = data.vote_val;
+      console.log("Current Vote_val " + currentVoteVal);
+
+      let newVoteVal = currentVoteVal - 1;
+      console.log("New Vote_val " + newVoteVal);
+
+      updateVoteValInDB(ideaId, newVoteVal);
+
+    });
 
 }
 
@@ -258,7 +279,7 @@ let findIdeaWithMostVotes = () => {
   let groupID = location.hash.substr(1);
   let voteValArr = [];
   $.ajax({
-    url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" +  groupID, //  groupID, CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -279,7 +300,7 @@ let displayIdeasWithMostVotes = (maxVoteVal) => {
   let groupID = location.hash.substr(1);
 
   $.ajax({
-    url: "/api/ideas/groups/" + groupID + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" + 1 + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -321,7 +342,47 @@ $("body").on("click", ".add-vote", function(event){
   getCurrentVoteVal(ideaId);
   maxNumberOfVotesForGroup();
   displayButtonToWinningIdeaPage();
+  
+
+  $(this).addClass("orange");
+
+  $(this).find(".multi-vote").css("display", "block");
+
+  $(this).find(".act-q").css("border-left", "5px solid #2c2f4d");
 });
+
+// displayGroupInfo
+$.ajax({
+  url: "/api/groups/",
+  method: "GET"
+})
+  .then(function (response) {
+    renderHandlebarsTemplate(".gn", "#group-ideas-display-template", { group : response[0].group_name });
+
+
+  })// displayGroupInfo
+
+// display decideOnInfo
+$.ajax({
+  url: "/api/groups/",
+  method: "GET"
+})
+  .then(function (response) {
+
+    renderHandlebarsTemplate(".gi", "#group-ideas-display-template", { groupIdea : response[0].decide_on });
+
+  })// display decideOnInfo
+
+// display userCounter
+$.ajax({
+  url: "/api/groups/",
+  method: "GET"
+})
+  .then(function (response) {
+
+    renderHandlebarsTemplate(".user-counter", "#group-ideas-display-template", { userCounter : response[0].votes });
+
+  })// display userCounter
 
 // Toggle the little dropdown arrows in the sidenav
 $(".tog-button").on("click", function () {
