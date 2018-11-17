@@ -191,13 +191,6 @@ $("#input_text").val("");
 }
 
 
-
-
-
-
-
-
-
 //This function GETs all ideas for a group so that the data can be passed to handlebars to render them on the page.
 let getAllIdeasForTheGroup = () => {
   

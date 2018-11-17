@@ -24,6 +24,18 @@
        <h2 class="header center orange-text">{{group_name}}</h2>
        <h5 class="header center orange-text">Cast your iDeas on: {{decide_on}}</h5>
      </script>
+
+     <script id="idea-display-template" type="text/x-handlebars-template">
+        {{each}}
+        <div class="card col s6 m3 l2">
+          <div class="card-content">
+          <p class="user-ideas"></p>
+        </div>
+        <div class="card-action">
+        </div>
+      </div>
+      {{/each}}
+    </script>
  
    </head>
    <body>
@@ -106,14 +118,6 @@
          <div class="row">
            <div class="display-ideas"></div>   
          </div>
- <!-- Hidden Card Template -->
-       <div class="card col s6 m3 l2" id="template">
-         <div class="card-content">
-          <p class="user-ideas"></p>
-        </div>
-        <div class="card-action">
-        </div>
-      </div>
       </div>
    <br>
        <div class="row">
