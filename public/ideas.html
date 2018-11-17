@@ -66,9 +66,7 @@
             <div class="collapsible-body">
               <ul>
                 <li><a href="#!">{{Prompt}}</a></li>
-                <li><a href="#!">{Group Ideas}</a></li>
-                <li><a href="#!">{{Your ideas & Votes}}</a></li>
-                <li><a href="#!">{{Decisons Made}}</a></li>
+                <li><a href="#!">My Account Info</a></li>
               </ul>
             </div>
           </li>
@@ -86,20 +84,20 @@
           <br><br>
               <!-- form section-->
           <div class="section topic">
-            <form class="col s12 m12 l6">
+            <form class="col s12 m12 l12">
               <div class="row">
-                  <div class="input-field col s12 m12 l6">
+                  <div class="input-field col s12 m12 l12">
                     <input id="input_text" type="text" data-length="10">
-                    <label for="input_text">Input text</label>
+                    <label for="idea" name="input_text">Input text</label>
                   </div>
                 </div>
-                  <div class="row">
-                    <div class="input-field col col s12 m12 l6">
+                  <!-- <div class="row">
+                    <div class="input-field col col s12 m12 l12">
                       <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
                       <label for="textarea2">Textarea</label>
                     </div>
-                  </div>
-              <button href="#num1" class="btn-small waves-effect waves-light orange submit-idea" type="submit" name="action">Submit</button>
+                  </div> -->
+              <button href="#num1" id="add-idea" class="btn-small waves-effect waves-light orange submit-idea" type="submit" name="action">Submit</button>
             </form>
           </div>
         </div>
@@ -107,85 +105,32 @@
       <br><br>
     </div>
     <main>
-        <!-- card section-->
-        <div id="num1" class="section">
-          <h2 class="header center orange-text">{{Your iDeas}}</h2>
-          <br>
-          <div class="row">
-            <div class="col s6 m3 l2"> 
-              <div class="card">
-                <div class="card-content">
-                  <span class="card-title">Your iDea</span>
-                  <p>Details about your iDea here.</p>
-                </div>
-                <div class="card-action">
-                  <a href="#"><i class="small material-icons">close</i> Delete</a>
-                </div>
-              </div>
-            </div>
+
+<!-- Idea Cards Section -->
+      <div id="num1" class="section">
+        <h2 class="header center orange-text">Your iDeas</h2>
+        <br>
+        <div class="row">
             <div class="col s6 m3 l2">
-              <div class="card">
-                <div class="card-content">
-                  <span class="card-title">Your iDea</span>
-                  <p>Details about your iDea here.</p>
-                </div>
-                <div class="card-action">
-                    <a href="#"><i class="small material-icons">close</i> Delete</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s6 m3 l2">
-              <div class="card">
-                <div class="card-content">
-                  <span class="card-title">Your iDea</span>
-                  <p>Details about your iDea here.</p>
-                </div>
-                <div class="card-action">
-                    <a href="#"><i class="small material-icons">close</i> Delete</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s6 m3 l2">
-              <div class="card">
-                <div class="card-content">
-                  <span class="card-title">Your iDea</span>
-                  <p>Details about your iDea here.</p>
-                </div>
-                <div class="card-action">
-                    <a href="#"><i class="small material-icons">close</i> Delete</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s6 m3 l2">
-                <div class="card">
-                  <div class="card-content">
-                    <span class="card-title">Your iDea</span>
-                    <p>Details about your iDea here.</p>
-                  </div>
-                  <div class="card-action">
-                      <a href="#"><i class="small material-icons">close</i> Delete</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col s6 m3 l2">
-                  <div class="card">
-                    <div class="card-content">
-                      <span class="card-title">Your iDea</span>
-                      <p>Details about your iDea here.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#"><i class="small material-icons">close</i> Delete</a>
-                    </div>
-                  </div>
-                </div>
-          </div>
+          <div class="display-ideas"></div>   
         </div>
-
-<div class="row">
-    <div class="display-ideas"></div>  
-    
-</div>
-
+<!-- Hidden Card Template -->
+      <div class="card col s6 m3 l2" id="template">
+        <div class="card-content">
+          <span class="card-title">Your iDea</span>
+          <p></p>
+        </div>
+        <div class="card-action">
+          <a href="#"><i class="small material-icons">close</i> Delete</a>
+        </div>
+      </div>
+      </div>
+  <br>
+      <div class="row">
+        <div class="col s6 m3 l2">
+          <button href="#voting.html" id="add-idea" class="btn-small waves-effect waves-light orange submit-all" type="button">Submit All Ideas</button>
+        </div>
+      </div>
 <!-- // main -->
 </main>
 
@@ -235,4 +180,85 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
       <!-- custom -->
       <script src="/assets/js/scripts.js"></script>  
+      
+      
+      
+      <script type="text/javascript">
+
+        function renderIdeas(list) {
+          $("#user-ideas").empty(); // empties out the html
+    
+          // render our ideas to the page
+          for (var i = 0; i < list.length; i++) {
+    
+            var newIdeaCard = $("#template").clone();
+    
+            newIdeaCard.attr("data-ideas", i);
+            newIdeaCard.find('p').text(
+                list[i]
+            )
+    
+            $("#display-ideas").append(newIdeaCard);
+          }
+        }
+    
+        $("#add-idea").on("click", function(event) {
+          event.preventDefault();
+    
+          // Get the idea "value" from the textbox and store it as a variable
+          var newIdea = $("#input_text").val().trim();
+    
+          // Adding our new ideas to our local list variable and adding it to local storage
+          list.push(newIdea);
+    
+          // Update the ideas on the page
+          renderIdeas(list);
+    
+          // Save the ideas into localstorage.
+          // JSON.stringify turns the list from an array into a string
+          localStorage.setItem("ideaslist", JSON.stringify(list));
+    
+          // Clear the textbox when done
+          $("#textarea2").val("");
+        });
+    
+        // When a user clicks a check box then delete the specific content
+        $(document).on("click", "#delete-idea", function() {
+          // Get the number of the button from its data attribute and hold in a variable called  ideaNumber.
+          var ideaNumber = $(this).attr("data-ideas");
+    
+          // Deletes the item marked for deletion
+          list.splice(ideaNumber, 1);
+    
+          // Update the todos on the page
+          renderIdeas(list);
+    
+          // Save the todos into localstorage.
+          // We need to use JSON.stringify to turn the list from an array into a string
+          localStorage.setItem("ideaslist", JSON.stringify(list));
+        });
+    
+        // Load the todos from localstorage.
+        // We need to use JSON.parse to turn the string retrieved  from an array into a string
+        var list = JSON.parse(localStorage.getItem("ideaslist"));
+    
+        // Checks to see if the ideaslist exists in localStorage and is an array currently
+        // If not, set a local list variable to an empty array
+        // Otherwise list is our current list of todos
+        if (!Array.isArray(list)) {
+          list = [];
+        }
+    
+        // render our todos on page load
+        renderIdeas(list);
+    
+        
+        $("submit-all").on("click", ".checkbox", function() {
+            function clearAll() {
+            window.localStorage.clear();
+        }
+    
+        });
+    
+        </script>
   </html>
