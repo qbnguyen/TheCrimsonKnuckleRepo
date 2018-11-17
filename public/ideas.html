@@ -16,13 +16,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <script src="/assets/js/utils.js"></script>
 
+    <script id="group-name-display-template" type="text/x-handlebars-template">
+      <span class="name" style="color:#ee6e73">{{group_name}}</span>
+    </script>
+
+    <script id="group-body-display-template" type="text/x-handlebars-template">
+      <h2 class="header center orange-text">{{group_name}}</h2>
+      <h5 class="header center orange-text">Cast your iDeas about: {{decide_on}}.</h5>
+    </script>
+
   </head>
   <body>
     <nav class="navbar" role="navigation">
       <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
         <a href="#" data-target="slide-out" class="sidenav-trigger st-main"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="#"><span class="name" style="color:#ee6e73">{{Group Name}}</span></a></li>
+          <!-- ADDED HANDLEBARS HERE FOR GROUP NAME IN NAVBAR -->
+          <li><a href="#" class="display-group-name"></a></li>
             <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="/assets/images/torre.png"></a></li>
           <li><a href="#"><i class="material-icons nav-search">search</i></a></li>
         </ul>
@@ -67,8 +77,8 @@
     <!-- hero -->
     <div class="section no-pad-bot hero" id="index-banner">
       <div class="container">
-        <h2 class="header center orange-text">{{Group Name}}</h2>
-        <h5 class="header center orange-text">Cast your iDeas about {{Prompt}}.</h5>
+        <!-- ADDED HANDLEBARS HERE FOR GROUP NAME AND PROMPT -->
+        <div class="display-group-body"></div>  
         <div class="voting-page-button-location"></div>
         <div class="row center">
           <br><br>

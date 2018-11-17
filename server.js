@@ -13,7 +13,6 @@ const keys = require("./config/keys");
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 
-
 // Sets up the Express App
 // =============================================================
 var app = express();
