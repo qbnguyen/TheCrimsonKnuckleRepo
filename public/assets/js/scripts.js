@@ -93,7 +93,7 @@ let totalNumberofVotesInGroup = (max) => {
 let buttontoEnterVoting = () => {
   let button = $("<a>")
                 .addClass("waves-effect waves-light btn enter-voting-page")
-                .append("Enter Voting Page");
+                .append("Voting Now Open");
     
     $(".voting-page-button-location").empty("");
     $(".voting-page-button-location").append(button);
@@ -104,7 +104,7 @@ let buttontoEnterVoting = () => {
 let buttontoSeeWinner = () => {
   let button = $("<a>")
                 .addClass("waves-effect waves-light btn enter-winning-idea-page")
-                .append("See Winning Idea!!!");
+                .append("See Your Group's Decision!!");
     
     $(".winning-idea-page-button-location").empty("");
     $(".winning-idea-page-button-location").append(button);
@@ -126,24 +126,6 @@ var list = JSON.parse(localStorage.getItem("ideaslist"));
 if (!Array.isArray(list)) {
   list = [];
 }
-
-// THis function displays submitted ideas on the page as user creates them
-function renderIdeas(list) {
-  $(".display-ideas").empty(); // empties out the html
-
-  // render our ideas to the page
-  for (var i = 0; i < list.length; i++) {
-
-    var newIdeaCard = $("#template").clone();
-
-    newIdeaCard.attr("data-ideas", i);
-    newIdeaCard.find('p').text(list[i]);
-
-    $(".display-ideas").append(newIdeaCard);
-  }
-}
-
-
 
 let postIdeaToDatabase = (idea) => {
   $.post("/api/ideas", idea)
@@ -182,14 +164,14 @@ createIdeaObject(newIdea, postIdeaToDatabase);
 list.push(newIdeaObj);
 
 // Update the ideas on the page
-renderIdeas(list);
-let data = JSON.parse(localStorage.getItem("ideaslist")); 
-renderHandlebarsTemplate(".idea-page-display-ideas", "#idea-display-template", {idea: data});
+
 
 // Save the ideas into localstorage.
 // JSON.stringify turns the list from an array into a string
 localStorage.setItem("ideaslist", JSON.stringify(list));
-console.log(JSON.parse(localStorage.getItem("ideaslist")));
+
+let data = JSON.parse(localStorage.getItem("ideaslist")); 
+renderHandlebarsTemplate(".idea-page-display-ideas", "#idea-display-template", {idea: data});
 
 // Clear the textbox when done
 $("#input_text").val("");
@@ -424,7 +406,7 @@ $("a").on('click', function (event) {
 //to post in our groups table.
 $("body").on("click", ".createGroup", function(event){
   event.preventDefault();
-  
+
   var groupToPost = {
     admin_name:$("#admin_name").val().trim(),
     admin_email:$("#admin_email").val().trim(),
@@ -454,8 +436,8 @@ $("body").on("click", ".joinGroup", function(event){
 $("body").on("click", ".submit-idea", function(event){
   event.preventDefault();
   addIdeaToLocalStorage();
-  maxNumberOfVotesForGroup();
   countNumberOfIdeasInGroup();
+  maxNumberOfVotesForGroup();
 });
 
 //This click handler is for the button that appears on the page to take the user to the voting page.
@@ -492,6 +474,7 @@ $("submit-all").on("click", ".checkbox", function() {
 //Classes and IDs that are ready to be used for handlebars.
 $(document).ready(function() {
   let groupID = location.hash.substr(1);
+
   getGroupAndRenderHandlebars(groupID);
 
 //This functions renders all the ideas from a particular group on the voting page.
@@ -502,7 +485,6 @@ findIdeaWithMostVotes();
 
 // render our ideas on the idea submission page from localstorage
 renderIdeas(list);
-
 });
 
 
