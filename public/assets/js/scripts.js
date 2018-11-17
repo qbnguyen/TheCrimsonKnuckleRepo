@@ -23,7 +23,7 @@ let getGroupByPassword = (groupPassword) => {
 //This function should just return true or false based on the number of ideas in that group
 //We want to make sure that there is a certain number of ideas in the idea table assigned to 
 //this group before we allow users to enter the voting section. 
-let countNumberOfIdeasInGroup = () => {
+let countNumberOfIdeasInGroup = (participants) => {
 
   let groupID = location.hash.substr(1);
 
@@ -33,7 +33,7 @@ let countNumberOfIdeasInGroup = () => {
 })
 .then(function (data) {
 
-  if (data.length > 10) {
+  if (data.length >= participants * 5) { // Make sure there is a 5:1 ration of ideas to participants before starting voting
     buttontoEnterVoting();
   } else {
     console.log("sorry! not enough ideas in group to enter voting");
@@ -42,6 +42,51 @@ let countNumberOfIdeasInGroup = () => {
 });
   
 }
+
+//This function is going to GET the total number of votes each group participant gets and to determine what
+//will be the number of votes present when all group members have voted. This will be used in the showButtonToWinningIdeaPage
+//function to display that button only after all team members have used all their votes.
+let maxNumberOfVotesForGroup = () => {
+  let groupID = location.hash.substr(1);
+
+  $.ajax({
+    url: "/api/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    method: "GET"
+})
+.then(function (data) {
+  let maxVotes = data.number_of_participants * data.votes;
+  console.log(maxVotes);
+  totalNumberofVotesInGroup(maxVotes); // passing maxVotes into this function so that it can be used in the promise of this function to render button on page
+  countNumberOfIdeasInGroup(data.number_of_participants); // passing number of people in group into this function so that logic can be build to render the button to move to voting from the idea page
+});
+
+}
+
+//This function find how many votes have been cast in the group. This value is important for the logic being used to 
+//render the button that takes the user to the winnig idea page via the displayButtonToWinningPage function.
+//the param here (max) is just being passed in from the maxNuberOfVotesForGroup function so that it can be used in the 
+//displayButtonToWinningPage function
+let totalNumberofVotesInGroup = (max) => {
+
+  let groupID = location.hash.substr(1);
+  let numberOfVotes = 0;
+
+  $.ajax({
+    url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    method: "GET"
+})
+.then(function (data) {
+  
+  for (let i = 0; i < data.length; i++) {
+    numberOfVotes += data[i].vote_val;
+  }
+  console.log(numberOfVotes);
+  displayButtonToWinningIdeaPage(max, numberOfVotes);
+});
+
+}
+
+
 
 //This functions only job is to build a button that can dynamically put on the page
 //to take the user to the voting page.
@@ -53,6 +98,103 @@ let buttontoEnterVoting = () => {
     $(".voting-page-button-location").empty("");
     $(".voting-page-button-location").append(button);
 }
+
+//This functions only job is to build a button that can dynamically put on the page
+//to take the user to the winning idea page.
+let buttontoSeeWinner = () => {
+  let button = $("<a>")
+                .addClass("waves-effect waves-light btn enter-winning-idea-page")
+                .append("See Winning Idea!!!");
+    
+    $(".winning-idea-page-button-location").empty("");
+    $(".winning-idea-page-button-location").append(button);
+}
+
+
+//This function makes sure that, based on the number of users in the group, everyone has casted a vote on an idea 
+//before someone can go see the winning votes.
+let displayButtonToWinningIdeaPage = (max, total) => {
+  if (total >= max) {
+      buttontoSeeWinner();
+  }
+}
+
+// Load the ideas from localstorage.
+// We need to use JSON.parse to turn the string retrieved  from an array into a string
+var list = JSON.parse(localStorage.getItem("ideaslist"));
+
+if (!Array.isArray(list)) {
+  list = [];
+}
+
+// THis function displays submitted ideas on the page as user creates them
+function renderIdeas(list) {
+  $(".display-ideas").empty(); // empties out the html
+
+  // render our ideas to the page
+  for (var i = 0; i < list.length; i++) {
+
+    var newIdeaCard = $("#template").clone();
+
+    newIdeaCard.attr("data-ideas", i);
+    newIdeaCard.find('p').text(list[i]);
+
+    $(".display-ideas").append(newIdeaCard);
+  }
+}
+
+
+
+let postIdeaToDatabase = (idea) => {
+  $.post("/api/ideas", idea)
+    .then(function(data) {
+      console.log("Idea successfully Posted to DB");
+    });
+}
+
+let createIdeaObject = (ideaFromForm, postIdeaToDatabase) => {
+  let groupID = location.hash.substr(1);
+  
+  idea = {
+    idea: ideaFromForm,
+    vote_val: 0,
+    GroupId: groupID
+  };
+
+  postIdeaToDatabase(idea);
+}
+
+
+let addIdeaToLocalStorage = () => {
+
+// Get the idea "value" from the textbox and store it as a variable
+var newIdea = $("#input_text").val().trim();
+
+//Create Idea Object for Posting to Database
+createIdeaObject(newIdea, postIdeaToDatabase);     
+
+// Adding our new ideas to our local list variable and adding it to local storage
+list.push(newIdea);
+
+// Update the ideas on the page
+renderIdeas(list);
+
+// Save the ideas into localstorage.
+// JSON.stringify turns the list from an array into a string
+localStorage.setItem("ideaslist", JSON.stringify(list));
+
+// Clear the textbox when done
+$("#input_text").val("");
+
+
+
+}
+
+
+
+
+
+
 
 
 
@@ -114,11 +256,7 @@ let updateVoteValInDB = (ideaId, newVoteVal) => {
       vote_val: newVoteVal
     }
 })
-.then(function (data) {
-  // console.log(data);
-
-});
-
+.then(function (data) {});
 }
 
 //This function is Getting all the ideas from a group and pushing their vote_vals into an array.
@@ -156,10 +294,7 @@ let displayIdeasWithMostVotes = (maxVoteVal) => {
 });
 }
 
-//This functions renders all the ideas from a particular group on the voting page.
-getAllIdeasForTheGroup();
-//This is the function that displays the winning idea on the page
-findIdeaWithMostVotes();
+
 
 
 
@@ -188,8 +323,11 @@ let getGroupAndRenderHandlebars = (idOfGroup) => {
 // This click handler is GETing the vote_val from the db of the idea that's being clicked on.
 // It is also updating (+1) that vote val of that idea and updating the value in the db.
 $("body").on("click", ".add-vote", function(event){
+  event.preventDefault();
   let ideaId = $(this).attr("data-idea-id");
   getCurrentVoteVal(ideaId);
+  maxNumberOfVotesForGroup();
+  displayButtonToWinningIdeaPage();
 });
 
 // Toggle the little dropdown arrows in the sidenav
@@ -232,6 +370,7 @@ $("body").on("click", ".createGroup", function(event){
     admin_email:$("#admin_email").val().trim(),
     decide_on:$("#decide_on").val().trim(),
     group_name:$("#group_name").val().trim(),
+    number_of_participants: $("#participants").val().trim(),
     password:$("#password_create").val().trim(),
   };
   postGroupInformation(groupToPost);
@@ -252,6 +391,9 @@ $("body").on("click", ".joinGroup", function(event){
 //2. Displaying ideas on the page as the user adds their ideas
 //3. counting the number of ideas in the db and displaying a button on the page to move the user to the voting page
 $("body").on("click", ".submit-idea", function(event){
+  event.preventDefault();
+  addIdeaToLocalStorage();
+  maxNumberOfVotesForGroup();
   countNumberOfIdeasInGroup();
 });
 
@@ -264,6 +406,41 @@ $("body").on("click", ".enter-voting-page", function(event){
 
 });
 
+
+//Once the button to go to the winning idea page is available, once clicked, this takes them to the seee the 
+//idea with the most votes for the group
+$("body").on("click", ".enter-winning-idea-page", function(event){
+    let groupID = location.hash.substr(1);
+    location.href = "/winning/group/#" + groupID;
+});
+
+
+// When a user clicks a check box then delete the specific content
+$("body").on("click", "#delete-idea", function() {
+  // Get the number of the button from its data attribute and hold in a variable called  ideaNumber.
+  var ideaNumber = $(this).attr("data-ideas");
+
+  // Deletes the item marked for deletion
+  list.splice(ideaNumber, 1);
+
+  // Update the ideas on the page
+  renderIdeas(list);
+
+  // Save the ideas into localstorage.
+  // We need to use JSON.stringify to turn the list from an array into a string
+  localStorage.setItem("ideaslist", JSON.stringify(list));
+});
+
+
+//Not sure what to do with this right now
+$("submit-all").on("click", ".checkbox", function() {
+  function clearAll() {
+  window.localStorage.clear();
+}
+
+});
+
+
 //This function waits for every page to be loaded, and if there is a hash, it grabs the groupID from it
 //and passes it into the getGroupAndRenderHandlebars, which GETS the group information by ID and then 
 //renders the group name and prompt using handlebars on our ideas.html page.
@@ -272,6 +449,16 @@ $("body").on("click", ".enter-voting-page", function(event){
 $( document ).ready(function() {
   let groupID = location.hash.substr(1);
   getGroupAndRenderHandlebars(groupID);
+
+//This functions renders all the ideas from a particular group on the voting page.
+getAllIdeasForTheGroup();
+
+//This is the function that displays the winning idea on the page
+findIdeaWithMostVotes();
+
+// render our ideas on the idea submission page from localstorage
+renderIdeas(list);
+
 });
 
 
