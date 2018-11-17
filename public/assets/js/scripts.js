@@ -43,7 +43,10 @@ let countNumberOfIdeasInGroup = () => {
   
 }
 
-let totalNumberOfVotesPerGroup = () => {
+//This function is going to GET the total number of votes each group participant gets and to determine what
+//will be the number of votes present when all group members have voted. This will be used in the showButtonToWinningIdeaPage
+//function to display that button only after all team members have used all their votes.
+let maxNumberOfVotesForGroup = () => {
   let groupID = location.hash.substr(1);
 
   $.ajax({
@@ -51,14 +54,13 @@ let totalNumberOfVotesPerGroup = () => {
     method: "GET"
 })
 .then(function (data) {
-  let totalVotes = data.number_of_participants * data.votes;
-  console.log(totalVotes);
-
+  let maxVotes = data.number_of_participants * data.votes;
+  displayButtonToWinningIdeaPage(maxVotes, total);  
 });
 
 }
 
-let showButtonToWinnigIdeaPage = () => {
+let totalNumberofVotesInGroup = () => {
 
   let groupID = location.hash.substr(1);
 
@@ -68,11 +70,11 @@ let showButtonToWinnigIdeaPage = () => {
 })
 .then(function (data) {
   let numberOfVotes = 0;
-
+  
   for (let i = 0; i < data.length; i++) {
     numberOfVotes += data[i].vote_val;
   }
-  console.log(numberOfVotes);
+  displayButtonToWinningIdeaPage(max, numberOfVotes);
 });
 
 }
@@ -95,10 +97,21 @@ let buttontoEnterVoting = () => {
 let buttontoSeeWinner = () => {
   let button = $("<a>")
                 .addClass("waves-effect waves-light btn enter-winning-idea-page")
-                .append("See See Winning Idea!!!");
+                .append("See Winning Idea!!!");
     
     $(".winning-idea-page-button-location").empty("");
     $(".winning-idea-page-button-location").append(button);
+}
+
+
+
+let displayButtonToWinningIdeaPage = (maxInGroup, totalInGroup) => {
+  console.log(maxInGroup);
+  console.log(totalInGroup);
+  
+  if (totalInGroup >= maxInGroup) {
+      buttontoSeeWinner();
+  }
 }
 
 
@@ -208,8 +221,6 @@ getAllIdeasForTheGroup();
 //This is the function that displays the winning idea on the page
 findIdeaWithMostVotes();
 
-buttontoSeeWinner();
-
 
 
 //This function receives the group object and then posts it to the /api/groups route.
@@ -229,8 +240,12 @@ let postGroupInformation = (group) => {
 // This click handler is GETing the vote_val from the db of the idea that's being clicked on.
 // It is also updating (+1) that vote val of that idea and updating the value in the db.
 $("body").on("click", ".add-vote", function(event){
+  event.preventDefault();
   let ideaId = $(this).attr("data-idea-id");
   getCurrentVoteVal(ideaId);
+  maxNumberOfVotesForGroup();
+  totalNumberofVotesInGroup();
+  displayButtonToWinningIdeaPage();
 });
 
 // Toggle the little dropdown arrows in the sidenav
@@ -309,8 +324,7 @@ $("body").on("click", ".enter-voting-page", function(event){
 
 $("body").on("click", ".enter-winning-idea-page", function(event){
   let groupID = location.hash.substr(1);
-    totalNumberOfVotesPerGroup();
-    showButtonToWinnigIdeaPage();
+    
   // location.href = "/winning/group/#" + groupID;
 
 });
