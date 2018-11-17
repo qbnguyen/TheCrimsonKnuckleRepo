@@ -119,6 +119,83 @@ let displayButtonToWinningIdeaPage = (max, total) => {
   }
 }
 
+// Load the ideas from localstorage.
+// We need to use JSON.parse to turn the string retrieved  from an array into a string
+var list = JSON.parse(localStorage.getItem("ideaslist"));
+
+if (!Array.isArray(list)) {
+  list = [];
+}
+
+// THis function displays submitted ideas on the page as user creates them
+function renderIdeas(list) {
+  $(".display-ideas").empty(); // empties out the html
+
+  // render our ideas to the page
+  for (var i = 0; i < list.length; i++) {
+
+    var newIdeaCard = $("#template").clone();
+
+    newIdeaCard.attr("data-ideas", i);
+    newIdeaCard.find('p').text(list[i]);
+
+    $(".display-ideas").append(newIdeaCard);
+  }
+}
+
+
+
+let postIdeaToDatabase = (idea) => {
+  $.post("/api/ideas", idea)
+    .then(function(data) {
+      console.log("Idea successfully Posted to DB");
+    });
+}
+
+let createIdeaObject = (ideaFromForm, postIdeaToDatabase) => {
+  let groupID = location.hash.substr(1);
+  
+  idea = {
+    idea: ideaFromForm,
+    vote_val: 0,
+    GroupId: groupID
+  };
+
+  postIdeaToDatabase(idea);
+}
+
+
+let addIdeaToLocalStorage = () => {
+
+// Get the idea "value" from the textbox and store it as a variable
+var newIdea = $("#input_text").val().trim();
+
+//Create Idea Object for Posting to Database
+createIdeaObject(newIdea, postIdeaToDatabase);     
+
+// Adding our new ideas to our local list variable and adding it to local storage
+list.push(newIdea);
+
+// Update the ideas on the page
+renderIdeas(list);
+
+// Save the ideas into localstorage.
+// JSON.stringify turns the list from an array into a string
+localStorage.setItem("ideaslist", JSON.stringify(list));
+
+// Clear the textbox when done
+$("#input_text").val("");
+
+
+
+}
+
+
+
+
+
+
+
 
 
 //This function GETs all ideas for a group so that the data can be passed to handlebars to render them on the page.
@@ -315,6 +392,7 @@ $("body").on("click", ".joinGroup", function(event){
 //3. counting the number of ideas in the db and displaying a button on the page to move the user to the voting page
 $("body").on("click", ".submit-idea", function(event){
   event.preventDefault();
+  addIdeaToLocalStorage();
   maxNumberOfVotesForGroup();
   countNumberOfIdeasInGroup();
 });
@@ -337,6 +415,32 @@ $("body").on("click", ".enter-winning-idea-page", function(event){
 });
 
 
+// When a user clicks a check box then delete the specific content
+$("body").on("click", "#delete-idea", function() {
+  // Get the number of the button from its data attribute and hold in a variable called  ideaNumber.
+  var ideaNumber = $(this).attr("data-ideas");
+
+  // Deletes the item marked for deletion
+  list.splice(ideaNumber, 1);
+
+  // Update the ideas on the page
+  renderIdeas(list);
+
+  // Save the ideas into localstorage.
+  // We need to use JSON.stringify to turn the list from an array into a string
+  localStorage.setItem("ideaslist", JSON.stringify(list));
+});
+
+
+//Not sure what to do with this right now
+$("submit-all").on("click", ".checkbox", function() {
+  function clearAll() {
+  window.localStorage.clear();
+}
+
+});
+
+
 //This function waits for every page to be loaded, and if there is a hash, it grabs the groupID from it
 //and passes it into the getGroupAndRenderHandlebars, which GETS the group information by ID and then 
 //renders the group name and prompt using handlebars on our ideas.html page.
@@ -346,10 +450,14 @@ $( document ).ready(function() {
   let groupID = location.hash.substr(1);
   getGroupAndRenderHandlebars(groupID);
 
-  //This functions renders all the ideas from a particular group on the voting page.
+//This functions renders all the ideas from a particular group on the voting page.
 getAllIdeasForTheGroup();
+
 //This is the function that displays the winning idea on the page
 findIdeaWithMostVotes();
+
+// render our ideas on the idea submission page from localstorage
+renderIdeas(list);
 
 });
 
