@@ -23,7 +23,7 @@ let getGroupByPassword = (groupPassword) => {
 //This function should just return true or false based on the number of ideas in that group
 //We want to make sure that there is a certain number of ideas in the idea table assigned to 
 //this group before we allow users to enter the voting section. 
-let countNumberOfIdeasInGroup = () => {
+let countNumberOfIdeasInGroup = (participants) => {
 
   let groupID = location.hash.substr(1);
 
@@ -33,7 +33,7 @@ let countNumberOfIdeasInGroup = () => {
 })
 .then(function (data) {
 
-  if (data.length > 10) {
+  if (data.length >= participants * 5) { // Make sure there is a 5:1 ration of ideas to participants before starting voting
     buttontoEnterVoting();
   } else {
     console.log("sorry! not enough ideas in group to enter voting");
@@ -55,25 +55,32 @@ let maxNumberOfVotesForGroup = () => {
 })
 .then(function (data) {
   let maxVotes = data.number_of_participants * data.votes;
-  displayButtonToWinningIdeaPage(maxVotes, total);  
+  console.log(maxVotes);
+  totalNumberofVotesInGroup(maxVotes); // passing maxVotes into this function so that it can be used in the promise of this function to render button on page
+  countNumberOfIdeasInGroup(data.number_of_participants); // passing number of people in group into this function so that logic can be build to render the button to move to voting from the idea page
 });
 
 }
 
-let totalNumberofVotesInGroup = () => {
+//This function find how many votes have been cast in the group. This value is important for the logic being used to 
+//render the button that takes the user to the winnig idea page via the displayButtonToWinningPage function.
+//the param here (max) is just being passed in from the maxNuberOfVotesForGroup function so that it can be used in the 
+//displayButtonToWinningPage function
+let totalNumberofVotesInGroup = (max) => {
 
   let groupID = location.hash.substr(1);
+  let numberOfVotes = 0;
 
   $.ajax({
     url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
-  let numberOfVotes = 0;
   
   for (let i = 0; i < data.length; i++) {
     numberOfVotes += data[i].vote_val;
   }
+  console.log(numberOfVotes);
   displayButtonToWinningIdeaPage(max, numberOfVotes);
 });
 
@@ -104,12 +111,10 @@ let buttontoSeeWinner = () => {
 }
 
 
-
-let displayButtonToWinningIdeaPage = (maxInGroup, totalInGroup) => {
-  console.log(maxInGroup);
-  console.log(totalInGroup);
-  
-  if (totalInGroup >= maxInGroup) {
+//This function makes sure that, based on the number of users in the group, everyone has casted a vote on an idea 
+//before someone can go see the winning votes.
+let displayButtonToWinningIdeaPage = (max, total) => {
+  if (total >= max) {
       buttontoSeeWinner();
   }
 }
@@ -174,11 +179,7 @@ let updateVoteValInDB = (ideaId, newVoteVal) => {
       vote_val: newVoteVal
     }
 })
-.then(function (data) {
-  // console.log(data);
-
-});
-
+.then(function (data) {});
 }
 
 //This function is Getting all the ideas from a group and pushing their vote_vals into an array.
@@ -216,10 +217,7 @@ let displayIdeasWithMostVotes = (maxVoteVal) => {
 });
 }
 
-//This functions renders all the ideas from a particular group on the voting page.
-getAllIdeasForTheGroup();
-//This is the function that displays the winning idea on the page
-findIdeaWithMostVotes();
+
 
 
 
@@ -252,7 +250,6 @@ $("body").on("click", ".add-vote", function(event){
   let ideaId = $(this).attr("data-idea-id");
   getCurrentVoteVal(ideaId);
   maxNumberOfVotesForGroup();
-  totalNumberofVotesInGroup();
   displayButtonToWinningIdeaPage();
 });
 
@@ -317,6 +314,8 @@ $("body").on("click", ".joinGroup", function(event){
 //2. Displaying ideas on the page as the user adds their ideas
 //3. counting the number of ideas in the db and displaying a button on the page to move the user to the voting page
 $("body").on("click", ".submit-idea", function(event){
+  event.preventDefault();
+  maxNumberOfVotesForGroup();
   countNumberOfIdeasInGroup();
 });
 
@@ -329,12 +328,15 @@ $("body").on("click", ".enter-voting-page", function(event){
 
 });
 
-$("body").on("click", ".enter-winning-idea-page", function(event){
-  let groupID = location.hash.substr(1);
-    
-  // location.href = "/winning/group/#" + groupID;
 
+//Once the button to go to the winning idea page is available, once clicked, this takes them to the seee the 
+//idea with the most votes for the group
+$("body").on("click", ".enter-winning-idea-page", function(event){
+    let groupID = location.hash.substr(1);
+    location.href = "/winning/group/#" + groupID;
 });
+
+
 //This function waits for every page to be loaded, and if there is a hash, it grabs the groupID from it
 //and passes it into the getGroupAndRenderHandlebars, which GETS the group information by ID and then 
 //renders the group name and prompt using handlebars on our ideas.html page.
@@ -343,6 +345,12 @@ $("body").on("click", ".enter-winning-idea-page", function(event){
 $( document ).ready(function() {
   let groupID = location.hash.substr(1);
   getGroupAndRenderHandlebars(groupID);
+
+  //This functions renders all the ideas from a particular group on the voting page.
+getAllIdeasForTheGroup();
+//This is the function that displays the winning idea on the page
+findIdeaWithMostVotes();
+
 });
 
 
