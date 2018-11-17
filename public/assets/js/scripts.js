@@ -86,14 +86,12 @@ let totalNumberofVotesInGroup = (max) => {
 
 }
 
-
-
 //This functions only job is to build a button that can dynamically put on the page
 //to take the user to the voting page.
 let buttontoEnterVoting = () => {
   let button = $("<a>")
                 .addClass("waves-effect waves-light btn enter-voting-page")
-                .append("Enter Voting Page");
+                .append("Voting Now Open");
     
     $(".voting-page-button-location").empty("");
     $(".voting-page-button-location").append(button);
@@ -104,7 +102,7 @@ let buttontoEnterVoting = () => {
 let buttontoSeeWinner = () => {
   let button = $("<a>")
                 .addClass("waves-effect waves-light btn enter-winning-idea-page")
-                .append("See Winning Idea!!!");
+                .append("See Your Group's Decision!!");
     
     $(".winning-idea-page-button-location").empty("");
     $(".winning-idea-page-button-location").append(button);
@@ -127,24 +125,7 @@ if (!Array.isArray(list)) {
   list = [];
 }
 
-// THis function displays submitted ideas on the page as user creates them
-function renderIdeas(list) {
-  $(".display-ideas").empty(); // empties out the html
-
-  // render our ideas to the page
-  for (var i = 0; i < list.length; i++) {
-
-    var newIdeaCard = $("#template").clone();
-
-    newIdeaCard.attr("data-ideas", i);
-    newIdeaCard.find('p').text(list[i]);
-
-    $(".display-ideas").append(newIdeaCard);
-  }
-}
-
-
-
+// THis function is only responsibility is POSTing an IDea to the db.
 let postIdeaToDatabase = (idea) => {
   $.post("/api/ideas", idea)
     .then(function(data) {
@@ -152,6 +133,7 @@ let postIdeaToDatabase = (idea) => {
     });
 }
 
+// This function is only responsible for creating an object with the data needed to POST and idea to the db.
 let createIdeaObject = (ideaFromForm, postIdeaToDatabase) => {
   let groupID = location.hash.substr(1);
   
@@ -168,20 +150,28 @@ let createIdeaObject = (ideaFromForm, postIdeaToDatabase) => {
 let addIdeaToLocalStorage = () => {
 
 // Get the idea "value" from the textbox and store it as a variable
-var newIdea = $("#input_text").val().trim();
+let newIdea = $("#input_text").val().trim(); //Use this when posting to DB. Only laziness is keeping me from redoing this.
+
+let newIdeaObj = {
+  idea: $("#input_text").val().trim(), //User this one for local storage and handlebars rendering on the client side.
+}
+
 
 //Create Idea Object for Posting to Database
-createIdeaObject(newIdea, postIdeaToDatabase);     
+createIdeaObject(newIdea, postIdeaToDatabase);   
 
 // Adding our new ideas to our local list variable and adding it to local storage
-list.push(newIdea);
+list.push(newIdeaObj);
 
 // Update the ideas on the page
-renderIdeas(list);
+
 
 // Save the ideas into localstorage.
 // JSON.stringify turns the list from an array into a string
 localStorage.setItem("ideaslist", JSON.stringify(list));
+
+let data = JSON.parse(localStorage.getItem("ideaslist")); 
+renderHandlebarsTemplate(".idea-page-display-ideas", "#idea-display-template", {idea: data});
 
 // Clear the textbox when done
 $("#input_text").val("");
@@ -189,7 +179,6 @@ $("#input_text").val("");
 
 
 }
-
 
 
 //This function GETs all ideas for a group so that the data can be passed to handlebars to render them on the page.
@@ -309,10 +298,6 @@ let displayIdeasWithMostVotes = (maxVoteVal) => {
 });
 }
 
-
-
-
-
 //This function receives the group object and then posts it to the /api/groups route.
 let postGroupInformation = (group) => {
   $.post("/api/groups", group)
@@ -423,6 +408,8 @@ $("a").on('click', function (event) {
 //This function handles taking information from input fields and creating an object
 //to post in our groups table.
 $("body").on("click", ".createGroup", function(event){
+  event.preventDefault();
+
   var groupToPost = {
     admin_name:$("#admin_name").val().trim(),
     admin_email:$("#admin_email").val().trim(),
@@ -440,6 +427,7 @@ $("body").on("click", ".createGroup", function(event){
 //This function handles clicking the joingroup button, which uses the password from the input to
 //GET the group ID by password.
 $("body").on("click", ".joinGroup", function(event){
+  event.preventDefault();
   var password = $("#passSearch").val().trim()
   getGroupByPassword(password);
 });
@@ -451,14 +439,15 @@ $("body").on("click", ".joinGroup", function(event){
 $("body").on("click", ".submit-idea", function(event){
   event.preventDefault();
   addIdeaToLocalStorage();
-  maxNumberOfVotesForGroup();
   countNumberOfIdeasInGroup();
+  maxNumberOfVotesForGroup();
 });
 
 //This click handler is for the button that appears on the page to take the user to the voting page.
 //it uses location.href to take them to the correct group voting page.
 $("body").on("click", ".enter-voting-page", function(event){
   let groupID = location.hash.substr(1);
+  localStorage.clear();
 
   location.href = "/voting/group/#" + groupID;
 
@@ -472,28 +461,10 @@ $("body").on("click", ".enter-winning-idea-page", function(event){
     location.href = "/winning/group/#" + groupID;
 });
 
-
-// When a user clicks a check box then delete the specific content
-// $("body").on("click", "#delete-idea", function() {
-  // Get the number of the button from its data attribute and hold in a variable called  ideaNumber.
-  // var ideaNumber = $(this).attr("data-ideas");
-
-  // Deletes the item marked for deletion
-  // list.splice(ideaNumber, 1);
-
-  // Update the ideas on the page
-  // renderIdeas(list);
-
-  // Save the ideas into localstorage.
-  // We need to use JSON.stringify to turn the list from an array into a string
-//   localStorage.setItem("ideaslist", JSON.stringify(list));
-// });
-
-
 //Not sure what to do with this right now
 $("submit-all").on("click", ".checkbox", function() {
   function clearAll() {
-  localStorage.clear();
+  localStorage.clear(); //clear local storage when user enters the voting page. if they come back, local storage just get's filled again.
 }
 
 });
@@ -506,6 +477,7 @@ $("submit-all").on("click", ".checkbox", function() {
 //Classes and IDs that are ready to be used for handlebars.
 $(document).ready(function() {
   let groupID = location.hash.substr(1);
+
   getGroupAndRenderHandlebars(groupID);
 
 //This functions renders all the ideas from a particular group on the voting page.
@@ -516,20 +488,8 @@ findIdeaWithMostVotes();
 
 // render our ideas on the idea submission page from localstorage
 renderIdeas(list);
-
 });
 
 
-function createHTML(){
-  console.log(req.user)
-}
 
-// function showHideIdeas() {
-//  var j = document.getElementById("template");
-//    if (j.style.display === "none") {
-//        j.style.display = "block";
-//    } else {
-//        j.style.display = "none";
-//    }
-//  }
-//  showHideIdeas();
+
