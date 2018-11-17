@@ -86,8 +86,6 @@ let totalNumberofVotesInGroup = (max) => {
 
 }
 
-
-
 //This functions only job is to build a button that can dynamically put on the page
 //to take the user to the voting page.
 let buttontoEnterVoting = () => {
@@ -127,6 +125,7 @@ if (!Array.isArray(list)) {
   list = [];
 }
 
+// THis function is only responsibility is POSTing an IDea to the db.
 let postIdeaToDatabase = (idea) => {
   $.post("/api/ideas", idea)
     .then(function(data) {
@@ -134,6 +133,7 @@ let postIdeaToDatabase = (idea) => {
     });
 }
 
+// This function is only responsible for creating an object with the data needed to POST and idea to the db.
 let createIdeaObject = (ideaFromForm, postIdeaToDatabase) => {
   let groupID = location.hash.substr(1);
   
@@ -461,7 +461,7 @@ $("body").on("click", ".enter-winning-idea-page", function(event){
 //Not sure what to do with this right now
 $("submit-all").on("click", ".checkbox", function() {
   function clearAll() {
-  localStorage.clear();
+  localStorage.clear(); //clear local storage when user enters the voting page. if they come back, local storage just get's filled again.
 }
 
 });
