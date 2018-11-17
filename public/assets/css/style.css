@@ -226,6 +226,7 @@ body main .section .card {
   color: #aea9c3;
   background-color: #2C2F4D;
   transition: 300ms ease all;
+  z-index: 10;
 }
 body main .section .card.card.orange {
   color: #252846;
@@ -240,7 +241,7 @@ body main .section .card:hover {
   cursor: pointer;
 }
 body main .section .card .card-content .user-counter {
-  font-size: 1.7rem;
+  font-size: 2.7rem;
   position: absolute;
   width: 70px;
   height: 70px;
@@ -250,7 +251,7 @@ body main .section .card .card-content .user-counter {
   border-radius: 0 0 0 100%;
   line-height: 57px;
   padding-left: 35px;
-  color: #aea9c3;
+  color: #d0cbe7;
 }
 body main .section .card .card-content .card-title {
   font-weight: 400;
@@ -291,14 +292,29 @@ body main .section .card .card-content .vote-count {
 }
 body main .section .card .card-content .multi-vote {
   display: none;
-  border-radius: 0 50% 0 0;
+  border-radius: 100% 0 0 0;
   bottom: 12px;
   right: 12px;
   background-color: #2C2F4D;
+  z-index: 70;
 }
 body main .section .card .card-content .multi-vote.remove {
   left: 12px;
-  border-radius: 50% 0 0 0;
+  border-radius: 0 100% 0 0;
+}
+body main .section .card .card-content .multi-vote.remove i {
+  padding-right: 15px;
+  padding-left: 0;
+}
+body main .section .card .card-content .multi-vote.btn-floating {
+  width: 80px;
+  height: 80px;
+}
+body main .section .card .card-content .multi-vote i {
+  padding-top: 25px;
+  padding-left: 15px;
+  font-size: 2.7rem;
+  color: #aea9c3;
 }
 body footer {
   padding: 15px 0;

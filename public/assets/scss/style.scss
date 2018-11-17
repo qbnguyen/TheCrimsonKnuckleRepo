@@ -8,6 +8,7 @@ $font-color: #aea9c3;
 $font-white: #ffffff;
 $font-black: #000000;
 $font-active: $font-highlight;
+$font-vote: #d0cbe7;
 
 $xdark-body: #121423;
 $dark-body: #252846;
@@ -321,6 +322,7 @@ body {
         color: $font-color;
         background-color: $light-body;
         transition: 300ms ease all;
+        z-index: 10;
 
         &.card.orange {
           color: $dark-body;
@@ -339,7 +341,7 @@ body {
         .card-content {
 
           .user-counter {
-            font-size: 1.7rem;
+            font-size: 2.7rem;
             position: absolute;
             width: 70px;
             height: 70px;
@@ -349,7 +351,7 @@ body {
             border-radius: 0 0 0 100%;
             line-height: 57px;
             padding-left: 35px;
-            color: $font-color;
+            color: $font-vote;
           }
 
           .card-title {
@@ -399,14 +401,32 @@ body {
 
           .multi-vote {
             display: none;
-            border-radius:  0 50% 0 0;
+            border-radius:  100% 0 0 0;
             bottom: 12px;
             right: 12px;
             background-color: $light-body;
+            z-index: 70;
 
             &.remove {
               left: 12px;
-              border-radius:  50% 0 0 0;
+              border-radius: 0 100% 0 0;
+
+              i {
+                padding-right: 15px;
+                padding-left: 0;
+              }
+            }
+
+            &.btn-floating {
+              width: 80px;
+              height: 80px;
+            }
+
+            i {
+              padding-top: 25px;
+              padding-left: 15px;
+              font-size: 2.7rem;
+              color: $font-color;
             }
           }
         } // card-content

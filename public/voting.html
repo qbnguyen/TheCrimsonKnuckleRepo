@@ -28,18 +28,20 @@
   <div class="row">
   {{#each idea}}
   <div class="col s12 m6 l4">
-      <div class="card add-vote" data-idea-id="{{id}}" >
+      <div class="card add-vote" data-idea-id="{{id}}">
       <div class="card-content">
-        <div class="user-counter">0</div>
+        <!-- <div class="user-counter">{{userCounter}}</div> -->
+        <div class="user-counter"></div>
           <blockquote class="curly-quotes act-q">{{idea}}</blockquote>
-          <a class="btn-floating halfway-fab waves-effect waves-light multi-vote"><i class="material-icons">add</i></a>
+          <a class="btn-floating halfway-fab waves-effect waves-light multi-vote add"><i class="material-icons">add</i></a>
           <a class="btn-floating halfway-fab waves-effect waves-light multi-vote remove"><i class="material-icons">remove</i></a>
           <!-- <span class="card-title">{{id}}</span> -->
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in erat quis elit ornare blandit a vel quam. Etiam fringilla facilisis urna id sagittis. Pellentesque gravida pulvinar iaculis. Vivamus quis lacus ac purus tempor cursus. Suspendisse potenti. In quis mattis lectus. Pellentesque ut posuere dolor. Cras elementum sagittis ipsum, non mattis turpis accumsan in. Phasellus quis aliquam nulla, eu suscipit enim. Ut ultricies libero at lacus dignissim faucibus.
           Quisque consectetur nullam.</p>
           <hr>
           <h3>Vote</h3>
-          <span class="vote-count">{{vote_val}}</span>
+          <!-- <span class="vote-count">{{vote_val}}</span> -->
+          
       </div>
       <!-- <div class="card-action">
           <a href="#" data-idea-id="{{id}}" class="fas fa-thumbs-up add-vote"> Vote</a>
@@ -97,7 +99,6 @@
     </li>
   </ul>
 
-<<<<<<< HEAD
 
   <main>
     <div class="container">
@@ -119,10 +120,6 @@
           <p>We are a team of college students working on this project like it's our
             full time job. Any amount would help support and continue development on this project and is greatly
             appreciated.</p>
-=======
-    
-    
->>>>>>> 9901e631c0cdf93ca96a2302dba00a002608430d
   
   
         </div>
