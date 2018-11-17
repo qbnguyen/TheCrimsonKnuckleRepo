@@ -416,26 +416,26 @@ $("body").on("click", ".enter-winning-idea-page", function(event){
 
 
 // When a user clicks a check box then delete the specific content
-$("body").on("click", "#delete-idea", function() {
+// $("body").on("click", "#delete-idea", function() {
   // Get the number of the button from its data attribute and hold in a variable called  ideaNumber.
-  var ideaNumber = $(this).attr("data-ideas");
+  // var ideaNumber = $(this).attr("data-ideas");
 
   // Deletes the item marked for deletion
-  list.splice(ideaNumber, 1);
+  // list.splice(ideaNumber, 1);
 
   // Update the ideas on the page
-  renderIdeas(list);
+  // renderIdeas(list);
 
   // Save the ideas into localstorage.
   // We need to use JSON.stringify to turn the list from an array into a string
-  localStorage.setItem("ideaslist", JSON.stringify(list));
-});
+//   localStorage.setItem("ideaslist", JSON.stringify(list));
+// });
 
 
 //Not sure what to do with this right now
 $("submit-all").on("click", ".checkbox", function() {
   function clearAll() {
-  window.localStorage.clear();
+  localStorage.clear();
 }
 
 });
@@ -465,3 +465,13 @@ renderIdeas(list);
 function createHTML(){
   console.log(req.user)
 }
+
+// function showHideIdeas() {
+//  var j = document.getElementById("template");
+//    if (j.style.display === "none") {
+//        j.style.display = "block";
+//    } else {
+//        j.style.display = "none";
+//    }
+//  }
+//  showHideIdeas();
