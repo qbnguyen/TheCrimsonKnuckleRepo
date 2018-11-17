@@ -29,6 +29,7 @@ body nav.navbar {
 }
 body nav.navbar .brand-logo {
   background: url(../images/logo_header.svg) no-repeat;
+  background-size: 25%;
   width: 100%;
   margin-top: 5px;
   height: inherit;
@@ -228,17 +229,23 @@ body main .section .card {
   transition: 300ms ease all;
   z-index: 10;
 }
-body main .section .card.card.orange {
-  color: #252846;
-  background-color: #ff9700;
-  transition: 300ms ease all;
-  cursor: pointer;
-}
 body main .section .card:hover {
   color: #252846;
   background-color: #ff9700;
   transition: 300ms ease all;
   cursor: pointer;
+}
+body main .section .card .card-content.card-content.orange {
+  color: #252846;
+  background-color: #ff9700;
+  transition: 300ms ease all;
+  cursor: pointer;
+}
+body main .section .card .card-content.card-content.orange .multi-vote {
+  background-color: #2C2F4D;
+}
+body main .section .card .card-content .vote-status {
+  transition: 300ms ease all;
 }
 body main .section .card .card-content .user-counter {
   font-size: 2.7rem;
@@ -291,11 +298,11 @@ body main .section .card .card-content .vote-count {
   font-size: 1.7rem;
 }
 body main .section .card .card-content .multi-vote {
-  display: none;
+  display: block;
   border-radius: 100% 0 0 0;
   bottom: 12px;
   right: 12px;
-  background-color: #2C2F4D;
+  background-color: #252846;
   z-index: 70;
 }
 body main .section .card .card-content .multi-vote.remove {

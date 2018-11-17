@@ -337,20 +337,22 @@ let getGroupAndRenderHandlebars = (idOfGroup) => {
 
 // This click handler is GETing the vote_val from the db of the idea that's being clicked on.
 // It is also updating (+1) that vote val of that idea and updating the value in the db.
-$("body").on("click", ".add-vote", function(event){
-  event.preventDefault();
-  let ideaId = $(this).attr("data-idea-id");
-  getCurrentVoteVal(ideaId);
-  maxNumberOfVotesForGroup();
-  displayButtonToWinningIdeaPage();
-  
 
-  $(this).addClass("orange");
 
-  $(this).find(".multi-vote").css("display", "block");
+// $("body").on("click", ".add-vote", function(event){
+//   event.preventDefault();
+//   let ideaId = $(this).attr("data-idea-id");
+//   getCurrentVoteVal(ideaId);
+//   maxNumberOfVotesForGroup();
+//   displayButtonToWinningIdeaPage();
+// });
+
+$(document).on("click", ".add-vote", function(){
+  //$(this).addClass("orange");
 
   $(this).find(".act-q").css("border-left", "5px solid #2c2f4d");
-});
+})
+
 
 // displayGroupInfo
 $.ajax({
@@ -358,6 +360,7 @@ $.ajax({
   method: "GET"
 })
   .then(function (response) {
+    console.log(response);
     renderHandlebarsTemplate(".gn", "#group-ideas-display-template", { group : response[0].group_name });
 
 
