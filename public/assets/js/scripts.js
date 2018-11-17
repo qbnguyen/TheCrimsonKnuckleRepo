@@ -172,6 +172,14 @@ let postGroupInformation = (group) => {
     });
 }
 
+//This function GETs group information based on the ID, and then RENDERS HANDLEBARS for our ideas page.
+let getGroupAndRenderHandlebars = (idOfGroup) => {
+  $.get("/api/groups/" + idOfGroup, function(data, status){
+    console.log("group name: " + data.group_name + "\nPrompt: " + data.decide_on + "\nStatus: " + status);
+    renderHandlebarsTemplate(".display-group-name", "#group-name-display-template", {group_name: data.group_name});
+    renderHandlebarsTemplate(".display-group-body", "#group-body-display-template", {group_name: data.group_name, decide_on:data.decide_on});
+  });
+}
 
 
 //////////////////////////////////////////////////////Click Handlers/////////////////////////////////////////////////////////////////////////
@@ -216,7 +224,6 @@ $("a").on('click', function (event) {
   } // End if
 });
 
-
 //This function handles taking information from input fields and creating an object
 //to post in our groups table.
 $("body").on("click", ".createGroup", function(event){
@@ -255,6 +262,16 @@ $("body").on("click", ".enter-voting-page", function(event){
 
   location.href = "/voting/group/#" + groupID;
 
+});
+
+//This function waits for every page to be loaded, and if there is a hash, it grabs the groupID from it
+//and passes it into the getGroupAndRenderHandlebars, which GETS the group information by ID and then 
+//renders the group name and prompt using handlebars on our ideas.html page.
+//This function only renders handlebars if there is a hash in the URL, and also if there are the corresponding
+//Classes and IDs that are ready to be used for handlebars.
+$( document ).ready(function() {
+  let groupID = location.hash.substr(1);
+  getGroupAndRenderHandlebars(groupID);
 });
 
 
