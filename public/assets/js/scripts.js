@@ -28,7 +28,7 @@ let countNumberOfIdeasInGroup = (participants) => {
   let groupID = location.hash.substr(1);
 
   $.ajax({
-    url: "/api/ideas/groups/" + 1, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -198,7 +198,7 @@ let getAllIdeasForTheGroup = () => {
   let groupID = location.hash.substr(1);
 
   $.ajax({
-      url: "/api/ideas/groups/" + 1, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+      url: "/api/ideas/groups/" + groupID, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
       method: "GET"
   })
   .then(function (data) {
@@ -280,7 +280,7 @@ let findIdeaWithMostVotes = () => {
   let groupID = location.hash.substr(1);
   let voteValArr = [];
   $.ajax({
-    url: "/api/ideas/groups/" +  1, //  groupID, CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" +  groupID, //  groupID, CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {

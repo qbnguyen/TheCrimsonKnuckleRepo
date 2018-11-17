@@ -9,7 +9,7 @@ window.onload = function () {
   $(document).on("click", ".add", function () {
     let ideaId = $(this).attr("data-idea-id");
 
-    if($(this).ideaId == $(this).attr("data-idea-id")) {
+  
     count += 1;
     $(".user-counter").text(count);
     console.log("Click me: " + count);
@@ -19,7 +19,7 @@ window.onload = function () {
       count = 5;
       alert("No more votes left - this ain't Florida!");
     }
-    }
+    
   });
 
   $(document).on("click", ".remove", function () {
