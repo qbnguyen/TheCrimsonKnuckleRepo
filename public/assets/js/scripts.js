@@ -168,20 +168,28 @@ let createIdeaObject = (ideaFromForm, postIdeaToDatabase) => {
 let addIdeaToLocalStorage = () => {
 
 // Get the idea "value" from the textbox and store it as a variable
-var newIdea = $("#input_text").val().trim();
+let newIdea = $("#input_text").val().trim(); //Use this when posting to DB. Only laziness is keeping me from redoing this.
+
+let newIdeaObj = {
+  idea: $("#input_text").val().trim(), //User this one for local storage and handlebars rendering on the client side.
+}
+
 
 //Create Idea Object for Posting to Database
-createIdeaObject(newIdea, postIdeaToDatabase);     
+createIdeaObject(newIdea, postIdeaToDatabase);   
 
 // Adding our new ideas to our local list variable and adding it to local storage
-list.push(newIdea);
+list.push(newIdeaObj);
 
 // Update the ideas on the page
 renderIdeas(list);
+let data = JSON.parse(localStorage.getItem("ideaslist")); 
+renderHandlebarsTemplate(".idea-page-display-ideas", "#idea-display-template", {idea: data});
 
 // Save the ideas into localstorage.
 // JSON.stringify turns the list from an array into a string
 localStorage.setItem("ideaslist", JSON.stringify(list));
+console.log(JSON.parse(localStorage.getItem("ideaslist")));
 
 // Clear the textbox when done
 $("#input_text").val("");
@@ -307,10 +315,6 @@ let displayIdeasWithMostVotes = (maxVoteVal) => {
   renderHandlebarsTemplate(".display-winner", "#group-winner-display-template", {idea: data});
 });
 }
-
-
-
-
 
 //This function receives the group object and then posts it to the /api/groups route.
 let postGroupInformation = (group) => {
@@ -455,6 +459,7 @@ $("body").on("click", ".submit-idea", function(event){
 //it uses location.href to take them to the correct group voting page.
 $("body").on("click", ".enter-voting-page", function(event){
   let groupID = location.hash.substr(1);
+  localStorage.clear();
 
   location.href = "/voting/group/#" + groupID;
 
@@ -467,24 +472,6 @@ $("body").on("click", ".enter-winning-idea-page", function(event){
     let groupID = location.hash.substr(1);
     location.href = "/winning/group/#" + groupID;
 });
-
-
-// When a user clicks a check box then delete the specific content
-// $("body").on("click", "#delete-idea", function() {
-  // Get the number of the button from its data attribute and hold in a variable called  ideaNumber.
-  // var ideaNumber = $(this).attr("data-ideas");
-
-  // Deletes the item marked for deletion
-  // list.splice(ideaNumber, 1);
-
-  // Update the ideas on the page
-  // renderIdeas(list);
-
-  // Save the ideas into localstorage.
-  // We need to use JSON.stringify to turn the list from an array into a string
-//   localStorage.setItem("ideaslist", JSON.stringify(list));
-// });
-
 
 //Not sure what to do with this right now
 $("submit-all").on("click", ".checkbox", function() {
@@ -516,16 +503,5 @@ renderIdeas(list);
 });
 
 
-function createHTML(){
-  console.log(req.user)
-}
 
-// function showHideIdeas() {
-//  var j = document.getElementById("template");
-//    if (j.style.display === "none") {
-//        j.style.display = "block";
-//    } else {
-//        j.style.display = "none";
-//    }
-//  }
-//  showHideIdeas();
+

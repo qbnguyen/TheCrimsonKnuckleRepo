@@ -21,15 +21,15 @@
      </script>
  
      <script id="group-body-display-template" type="text/x-handlebars-template">
-       <h2 class="header center orange-text">{{group_name}}</h2>
-       <h5 class="header center orange-text">Cast your iDeas on: {{decide_on}}</h5>
+       <h5 class="header center orange-text">Welcome to {{group_name}}</h5>
+       <h2 class="header center orange-text">{{decide_on}}</h2>
      </script>
 
      <script id="idea-display-template" type="text/x-handlebars-template">
-        {{each}}
+        {{#each idea}}
         <div class="card col s6 m3 l2">
           <div class="card-content">
-          <p class="user-ideas"></p>
+          <p class="user-ideas">{{idea}}</p>
         </div>
         <div class="card-action">
         </div>
@@ -116,15 +116,15 @@
          <h2 class="header center orange-text">Your iDeas</h2>
          <br>
          <div class="row">
-           <div class="display-ideas"></div>   
+           <div class="idea-page-display-ideas"></div>   
          </div>
       </div>
    <br>
-       <div class="row">
+       <!-- <div class="row">
          <div class="col s6 m3 l2">
            <button href="#voting.html" id="add-idea" class="btn-small waves-effect waves-light orange submit-all" type="button">Submit All Ideas</button>
          </div>
-       </div>
+       </div> -->
  <!-- // main -->
  </main>
  
