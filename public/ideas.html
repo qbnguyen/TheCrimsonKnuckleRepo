@@ -183,7 +183,6 @@
       
       
       <script type="text/javascript">
-
         function renderIdeas(list) {
           $(".display-ideas").empty(); // empties out the html
     
@@ -240,7 +239,6 @@
         // Load the ideas from localstorage.
         // We need to use JSON.parse to turn the string retrieved  from an array into a string
         var list = JSON.parse(localStorage.getItem("ideaslist"));
-
         if (!Array.isArray(list)) {
           list = [];
         }
