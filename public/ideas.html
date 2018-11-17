@@ -118,7 +118,7 @@
       <div class="card col s6 m3 l2" id="template">
         <div class="card-content">
           <span class="card-title">Your iDea</span>
-          <p></p>
+          <p class="user-ideas"></p>
         </div>
         <div class="card-action">
           <a href="#"><i class="small material-icons">close</i> Delete</a>
@@ -230,26 +230,23 @@
           // Deletes the item marked for deletion
           list.splice(ideaNumber, 1);
     
-          // Update the todos on the page
+          // Update the ideas on the page
           renderIdeas(list);
     
-          // Save the todos into localstorage.
+          // Save the ideas into localstorage.
           // We need to use JSON.stringify to turn the list from an array into a string
           localStorage.setItem("ideaslist", JSON.stringify(list));
         });
     
-        // Load the todos from localstorage.
+        // Load the ideas from localstorage.
         // We need to use JSON.parse to turn the string retrieved  from an array into a string
         var list = JSON.parse(localStorage.getItem("ideaslist"));
-    
-        // Checks to see if the ideaslist exists in localStorage and is an array currently
-        // If not, set a local list variable to an empty array
-        // Otherwise list is our current list of todos
+
         if (!Array.isArray(list)) {
           list = [];
         }
     
-        // render our todos on page load
+        // render our ideas on page load
         renderIdeas(list);
     
         
