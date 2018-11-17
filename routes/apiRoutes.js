@@ -12,8 +12,8 @@ let iDecideDBRoutes = (app) => {
             admin_email: req.body.admin_email,
             group_name: req.body.group_name,
             decide_on: req.body.decide_on,
-            time: req.body.time,
             votes: req.body.votes,
+            number_of_participants: req.body.number_of_participants,
             password:req.body.password
         }).then(function(dbGroups) {
             res.json(dbGroups);
