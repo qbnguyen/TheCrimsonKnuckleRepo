@@ -9,28 +9,37 @@ window.onload = function () {
   $(document).on("click", ".add", function () {
     let ideaId = $(this).attr("data-idea-id");
 
-  
+    $(this).parent().addClass("orange");
+    
     count += 1;
-    $(".user-counter").text(count);
+    $(this).parent().find(".user-counter").text(count);
     console.log("Click me: " + count);
     console.log(ideaId);
+
     getCurrentVoteVal(ideaId);
+    maxNumberOfVotesForGroup();
+    displayButtonToWinningIdeaPage();
+
     if (count > 5) {
       count = 5;
-      alert("No more votes left - this ain't Florida!");
-    }
+      $(this).parent().find(".vote-status").text("Exceded Alotted Votes");
     
+    } else {
+      $(this).parent().find(".vote-status").text("");
+    }
   });
 
   $(document).on("click", ".remove", function () {
     let ideaId = $(this).attr("data-idea-id");
     count -= 1;
-    $(".user-counter").text(count);
+    $(this).parent().find(".user-counter").text(count);
     console.log("Click me: " + count);
     outCurrentVoteVal(ideaId);
     if (count < 0) {
       count = 0;
-      alert("You can't vote this way - no matter what...");
+      $(this).parent().find(".vote-status").text("No Votes for this Idea");
+    } else {
+      $(this).parent().find(".vote-status").text("");
     }
   });
 

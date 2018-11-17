@@ -53,6 +53,7 @@ body {
 
       .brand-logo {
         background: url(../images/logo_header.svg) no-repeat;
+        background-size: 25%;
         width: 100%;
         margin-top: 5px;
         height: inherit;
@@ -324,12 +325,16 @@ body {
         transition: 300ms ease all;
         z-index: 10;
 
-        &.card.orange {
-          color: $dark-body;
-          background-color: $color-orange;
-          transition: 300ms ease all;
-          cursor: pointer;
-        }
+        // &.card.orange {
+        //   color: $dark-body;
+        //   background-color: $color-orange;
+        //   transition: 300ms ease all;
+        //   cursor: pointer;
+
+        //   .multi-vote {
+        //     background-color: $light-body;
+        //   }
+        // }
 
         &:hover {
           color: $dark-body;
@@ -339,6 +344,21 @@ body {
         }
 
         .card-content {
+
+          &.card-content.orange {
+          color: $dark-body;
+          background-color: $color-orange;
+          transition: 300ms ease all;
+          cursor: pointer;
+
+            .multi-vote {
+              background-color: $light-body;
+            }
+          }
+
+          .vote-status {
+            transition: 300ms ease all;
+          }
 
           .user-counter {
             font-size: 2.7rem;
@@ -400,11 +420,11 @@ body {
           }
 
           .multi-vote {
-            display: none;
+            display: block;
             border-radius:  100% 0 0 0;
             bottom: 12px;
             right: 12px;
-            background-color: $light-body;
+            background-color: $dark-body;
             z-index: 70;
 
             &.remove {
