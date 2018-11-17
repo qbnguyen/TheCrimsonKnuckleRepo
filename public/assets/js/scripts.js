@@ -423,6 +423,8 @@ $("a").on('click', function (event) {
 //This function handles taking information from input fields and creating an object
 //to post in our groups table.
 $("body").on("click", ".createGroup", function(event){
+  event.preventDefault();
+  
   var groupToPost = {
     admin_name:$("#admin_name").val().trim(),
     admin_email:$("#admin_email").val().trim(),
@@ -440,6 +442,7 @@ $("body").on("click", ".createGroup", function(event){
 //This function handles clicking the joingroup button, which uses the password from the input to
 //GET the group ID by password.
 $("body").on("click", ".joinGroup", function(event){
+  event.preventDefault();
   var password = $("#passSearch").val().trim()
   getGroupByPassword(password);
 });
