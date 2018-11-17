@@ -51,15 +51,12 @@
         <div class="auth-col-form mar-auto">
           <div class="tab-content" id="animate-tab-content">
             <!-- Begin Sign In -->
+            <div class="sign-btn text-center">
+              <a class="google-btn" href="/auth/google">Please Sign In with Google+</a>
+          </div>
             <div role="tabpanel" class="ch-h tab-pane show active" id="singin" aria-labelledby="singin-tab">
               <h3>Join a Group</h3>
               <form>
-                <div class="group material-input">
-                  <input type="text" required="">
-                  <span class="highlight"></span>
-                  <span class="bar"></span>
-                  <label>Email</label>
-                </div>
                 <div class="group material-input">
                   <input type="password" id="passSearch" required="">
                   <span class="highlight"></span>
@@ -86,9 +83,7 @@
                   Join Group
                 </a>
               </div>
-              <div class="sign-btn text-center">
-                <a class="google-btn" href="/auth/google">Google+</a>
-            </div>
+              
 
             </div>
             <!-- End Sign In -->
@@ -112,13 +107,19 @@
                   <input type="text" id="decide_on" required="">
                   <span class="highlight"></span>
                   <span class="bar"></span>
-                  <label>Prompt</label>
+                  <label>What will you be deciding on?</label>
                 </div>
                 <div class="group material-input">
                   <input type="text" id="group_name" required="">
                   <span class="highlight"></span>
                   <span class="bar"></span>
                   <label>Group Name</label>
+                </div>
+                <div class="group material-input">
+                  <input type="text" id="participants" required="">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>How many people in your group</label>
                 </div>
                 <div class="group material-input">
                   <input type="password" id="password_create" required="">
@@ -173,7 +174,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
   
   <!-- custom -->
-  <script src="/assets/js/scripts.js"></script>
+  <script src="assets/js/scripts.js"></script>
 </body>
 
 </html>

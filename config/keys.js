@@ -8,5 +8,8 @@ module.exports = {
     },
     mongodb:{
         dbURI:"mongodb://idecide:nguyen95@ds159563.mlab.com:59563/idecide-test"
+    },
+    session:{
+        cookieKey: "testinggoogleoauth"
     }
 };
