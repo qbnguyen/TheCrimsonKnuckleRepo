@@ -53,9 +53,9 @@ body {
 
       .brand-logo {
         background: url(../images/logo_header.svg) no-repeat;
-        background-size: 25%;
+        background-size: 170px;
         width: 100%;
-        margin-top: 5px;
+        margin-top: 15px;
         height: inherit;
       }
 
@@ -136,6 +136,18 @@ body {
   .hero {
     background-color: $xdark-body;
     margin-top: 2px;
+
+    .topic {
+
+      input {
+        font-family: $font-stack;
+        color: $font-color;
+      }
+
+      .submit-idea {
+        border-radius: 0;
+      }
+    } // topic
   }
 
   main {
