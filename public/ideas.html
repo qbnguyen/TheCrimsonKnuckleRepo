@@ -39,76 +39,52 @@
  
    </head>
    <body>
-     <nav class="navbar" role="navigation">
-       <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
-         <a href="#" data-target="slide-out" class="sidenav-trigger st-main"><i class="material-icons">menu</i></a>
-         <ul class="right hide-on-med-and-down">
-           <!-- ADDED HANDLEBARS HERE FOR GROUP NAME IN NAVBAR -->
-           <li><a href="#" class="display-group-name"></a></li>
-             <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="/assets/images/torre.png"></a></li>
-         </ul>
-     
-         <ul id="nav-mobile" class="sidenav">
-           <li><a href="#">Navbar Link</a></li>
-         </ul>
-         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-       </div>
-     </nav>
-     <ul id="slide-out" class="sidenav">
-       <li>
-         <div class="user-view">
-           <div class="background">
-             <img src="/assets/images/office.jpg">
-           </div>
-           <a href="#user"><img class="circle" src="/assets/images/torre.png"></a>
-           <a href="#name"><span class="white-text name">Torre Matthews</span></a>
-           <a href="#email"><span class="white-text email">torre.matthew@gmail.com</span></a>
-         </div>
-       </li>
-       <div class="sign-btn">
-         <a href="/auth/logout" class="btn btn-color">
-           Log out
-         </a>
-       
-       <li class="no-padding">
-         <ul class="collapsible collapsible-accordion">
-           <li>
-             <a class="collapsible-header"><i class="material-icons highlight">dashboard</i>{{Group Name}} Dashboard<i class="material-icons float-r white-text">arrow_drop_down</i></a>
-             <div class="collapsible-body">
-               <ul>
-                 <li><a href="#!">{{Prompt}}</a></li>
-                 <li><a href="#!">My Account Info</a></li>
-               </ul>
-             </div>
-           </li>
-         </ul>
-       </li>
-     </ul>
-   
-     <!-- hero -->
-     <div class="section no-pad-bot hero" id="index-banner">
-       <div class="container">
-         <!-- ADDED HANDLEBARS HERE FOR GROUP NAME AND PROMPT -->
-         <div class="display-group-body"></div>  
-         <div class="row center">
-           <br><br>
-               <!-- form section-->
-           <div class="section topic">
-             <form class="col s12 m12 l12">
-               <div class="row">
-                   <div class="input-field col s12 m12 l12">
-                     <input id="input_text" type="text" data-length="10">
-                     <label for="idea" name="input_text">What's your idea?</label>
-                   </div>
-                 </div>
-               <button id="add-idea" class="btn-small waves-effect waves-light orange submit-idea" type="submit" name="action">Submit</button>
-               <span class="voting-page-button-location"></span>
-             </form>
-           </div>
-         </div>
-       </div>
-       <br><br>
-     </div>
+      <nav class="navbar" role="navigation">
+          <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+            <a href="#" data-target="slide-out" class="sidenav-trigger st-main"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="#"><span class="name" style="color:#ee6e73">{{Group Name}}</span></a></li>
+                <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="/assets/images/torre.png"></a></li>
+              <li><a href="#"><i class="material-icons nav-search">search</i></a></li>
+            </ul>
+        
+            <!-- <ul id="nav-mobile" class="sidenav">
+              <li><a href="#">Navbar Link</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger mob-nav"><i class="material-icons">menu</i></a> -->
+          </div>
+        </nav>
+        <ul id="slide-out" class="sidenav">
+          <li>
+            <div class="user-view">
+              <div class="background">
+                <img src="/assets/images/office.jpg">
+              </div>
+              <a href="#user"><img class="circle" src="/assets/images/torre.png"></a>
+              <a href="#name"><span class="white-text name">Torre Matthews</span></a>
+              <a href="#email"><span class="white-text email">torre.matthew@gmail.com</span></a>
+            </div>
+            <div class="sign-btn">
+                <a href="/auth/logout" class="btn btn-color">
+                  Log out
+                </a>
+          </li>
+          <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+              <li>
+                <a class="collapsible-header"><i class="material-icons highlight">dashboard</i>{{Group Name}} Dashboard<i class="material-icons float-r white-text">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                  <ul>
+                    <li><a href="#!">{{Prompt}}</a></li>
+                    <li><a href="#!">{Group Ideas}</a></li>
+                    <li><a href="#!">{{Your ideas & Votes}}</a></li>
+                    <li><a href="#!">{{Decisons Made}}</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
      <main>
  
  <!-- Idea Cards Section -->
@@ -132,25 +108,23 @@
        <div class="container">
          <div class="row">
            <div class="col l6 s12">
-             <h5>Crimson Knuckles Bio</h5>
-             <p>We are a team of college students working on this project like it's our
-               full time job. Any amount would help support and continue development on this project and is greatly
-               appreciated.</p>
+             <h5>About The Crimson Knuckles:</h5>
+             <p>We were given the task of building something cool that people would find value in. iDecide is what we came up with. We hope you find it helpful.</p>
            </div>
            <div class="col l6 s12">
-             <h5>Social Share</h5>
-             <div class="tc-social-share tc-social-small text-center">
-               <a href=""><i class="social-icon fa fa-facebook"></i></a>
-               <a href=""><i class="social-icon fa fa-twitter"></i></a>
-               <a href=""><i class="social-icon fa fa-google-plus"></i></a>
-               <a href=""><i class="social-icon fa fa-dribbble"></i></a>
-               <a href=""><i class="social-icon fa fa-linkedin"></i></a>
-               <a href=""><i class="social-icon fa fa-instagram"></i></a>
-               <a href=""><i class="social-icon fa fa-pinterest"></i></a>
-               <a href=""><i class="social-icon fa fa-github"></i></a>
-               <a href=""><i class="social-icon fa fa-flickr"></i></a>
-               <a href=""><i class="social-icon fa fa-vk"></i></a>
-             </div>
+              <h5>Social Share</h5>
+              <div class="tc-social-share tc-social-small text-center">
+                <a href=""><i class="social-icon fab fa-facebook-f"></i></a>
+                <a href=""><i class="social-icon fab fa-twitter"></i></a>
+                <a href=""><i class="social-icon fab fa-google-plus"></i></a>
+                <a href=""><i class="social-icon fab fa-dribbble"></i></a>
+                <a href=""><i class="social-icon fab fa-linkedin"></i></a>
+                <a href=""><i class="social-icon fab fa-instagram"></i></a>
+                <a href=""><i class="social-icon fab fa-pinterest"></i></a>
+                <a href=""><i class="social-icon fab fa-github"></i></a>
+                <a href=""><i class="social-icon fab fa-flickr"></i></a>
+                <a href=""><i class="social-icon fab fa-vk"></i></a>
+              </div>
            </div>
          </div>
        </div>
