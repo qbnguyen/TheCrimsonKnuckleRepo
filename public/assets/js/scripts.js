@@ -332,8 +332,10 @@ let getGroupAndRenderHandlebars = (idOfGroup) => {
 //   displayButtonToWinningIdeaPage();
 // });
 
-$(document).on("click", ".add-vote", function(){
+$(document).on("click", ".add-vote", function(event){
   //$(this).addClass("orange");
+
+  event.preventDefault();
 
   $(this).find(".act-q").css("border-left", "5px solid #2c2f4d");
 })
@@ -481,13 +483,10 @@ $(document).ready(function() {
   getGroupAndRenderHandlebars(groupID);
 
 //This functions renders all the ideas from a particular group on the voting page.
-getAllIdeasForTheGroup();
+  getAllIdeasForTheGroup();
 
 //This is the function that displays the winning idea on the page
-findIdeaWithMostVotes();
-
-// render our ideas on the idea submission page from localstorage
-renderIdeas(list);
+  findIdeaWithMostVotes();
 });
 
 
