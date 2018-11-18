@@ -290,7 +290,7 @@ let displayIdeasWithMostVotes = (maxVoteVal) => {
   let groupID = location.hash.substr(1);
 
   $.ajax({
-    url: "/api/ideas/groups/" + 1 + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
+    url: "/api/ideas/groups/" + groupID + "/votes/" + maxVoteVal, //CHANGED TO TAKE IN PARAMETER INSTEAD OF HARD CODED.
     method: "GET"
 })
 .then(function (data) {
@@ -450,7 +450,6 @@ $("body").on("click", ".submit-idea", function(event){
 $("body").on("click", ".enter-voting-page", function(event){
   let groupID = location.hash.substr(1);
   localStorage.clear();
-
   location.href = "/voting/group/#" + groupID;
 
 });
@@ -462,15 +461,6 @@ $("body").on("click", ".enter-winning-idea-page", function(event){
     let groupID = location.hash.substr(1);
     location.href = "/winning/group/#" + groupID;
 });
-
-//Not sure what to do with this right now
-$("submit-all").on("click", ".checkbox", function() {
-  function clearAll() {
-  localStorage.clear(); //clear local storage when user enters the voting page. if they come back, local storage just get's filled again.
-}
-
-});
-
 
 //This function waits for every page to be loaded, and if there is a hash, it grabs the groupID from it
 //and passes it into the getGroupAndRenderHandlebars, which GETS the group information by ID and then 
