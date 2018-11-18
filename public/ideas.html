@@ -1,9 +1,8 @@
 <!doctype html>
  <html lang="en-us">
    <head>
-     <title></title>
+    <title>iDecide</title>
      <meta name="viewport" content="width=device-width, initial-scale=1">
- 
      <!-- materialize -->
      <!--Import Google Icon Font-->
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,19 +11,15 @@
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
      <!-- custom -->
      <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
- 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
      <script src="/assets/js/utils.js"></script>
- 
      <script id="group-name-display-template" type="text/x-handlebars-template">
        <span class="name" style="color:#ee6e73">{{group_name}}</span>
      </script>
- 
      <script id="group-body-display-template" type="text/x-handlebars-template">
        <h5 class="header center orange-text">Welcome to {{group_name}}</h5>
        <h2 class="header center orange-text">{{decide_on}}</h2>
      </script>
-
      <script id="idea-display-template" type="text/x-handlebars-template">
         {{#each idea}}
         <div class="col s12 m6 l2">
@@ -37,22 +32,16 @@
         </div>
       {{/each}}
     </script>
- 
    </head>
    <body>
       <nav class="navbar" role="navigation">
           <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
             <a href="#" data-target="slide-out" class="sidenav-trigger st-main"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#" class="display-group-name"></a></li>
-                <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="/assets/images/torre.png"></a></li>
+              <li><a href="#" class="display-group-name"></a></li>
+              <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="/assets/images/torre.png"></a></li>
               <li><a href="#"><i class="material-icons nav-search">search</i></a></li>
             </ul>
-        
-            <!-- <ul id="nav-mobile" class="sidenav">
-              <li><a href="#">Navbar Link</a></li>
-            </ul>
-            <a href="#" data-target="nav-mobile" class="sidenav-trigger mob-nav"><i class="material-icons">menu</i></a> -->
           </div>
         </nav>
         <ul id="slide-out" class="sidenav">
@@ -86,50 +75,41 @@
             </div>
           </li>
         </ul>
-<!-- hero -->
-<div class="section no-pad-bot hero" id="index-banner">
-    <div class="container">
-      <!-- ADDED HANDLEBARS HERE FOR GROUP NAME AND PROMPT -->
-      <div class="display-group-body"></div>  
-      <div class="row center">
-        <br><br>
-            <!-- form section-->
-        <div class="section topic">
-          <form class="col s12 m12 l12">
-            <div class="row">
-                <div class="input-field col s12 m12 l12">
-                  <input id="input_text" type="text" data-length="10">
-                  <label for="idea" name="input_text">What's your idea?</label>
+      <!-- hero -->
+      <div class="section no-pad-bot hero" id="index-banner">
+        <div class="container">
+          <!-- ADDED HANDLEBARS HERE FOR GROUP NAME AND PROMPT -->
+          <div class="display-group-body"></div>  
+          <div class="row center">
+            <br><br>
+                <!-- form section-->
+            <div class="section topic">
+              <form class="col s12 m12 l12">
+                <div class="row">
+                  <div class="input-field col s12 m12 l12">
+                    <input id="input_text" type="text" data-length="10">
+                    <label for="idea" name="input_text">What's your idea?</label>
+                  </div>
                 </div>
-              </div>
-            <button id="add-idea" class="btn-small waves-effect waves-light orange submit-idea" type="submit" name="action">Submit</button>
-            <span class="voting-page-button-location"></span>
-          </form>
+                <button id="add-idea" class="btn-small waves-effect waves-light orange submit-idea" type="submit" name="action">Submit</button>
+                <span class="voting-page-button-location"></span>
+              </form>
+            </div>
+          </div>
         </div>
+        <br><br>
+      </div>
+    <main>
+ <!-- Idea Cards Section -->
+    <div id="num1" class="section">
+      <h2 class="header center orange-text">Your iDeas</h2>
+      <br>
+      <div class="row">
+        <div class="idea-page-display-ideas"></div>   
       </div>
     </div>
-    <br><br>
-  </div>
-
-     <main>
- 
- <!-- Idea Cards Section -->
-       <div id="num1" class="section">
-         <h2 class="header center orange-text">Your iDeas</h2>
-         <br>
-         <div class="row">
-           <div class="idea-page-display-ideas"></div>   
-         </div>
-      </div>
-   <br>
-       <!-- <div class="row">
-         <div class="col s6 m3 l2">
-           <button href="#voting.html" id="add-idea" class="btn-small waves-effect waves-light orange submit-all" type="button">Submit All Ideas</button>
-         </div>
-       </div> -->
- <!-- // main -->
- </main>
- 
+    <br>
+    </main><!-- // main -->
      <footer>
        <div class="container">
          <div class="row">

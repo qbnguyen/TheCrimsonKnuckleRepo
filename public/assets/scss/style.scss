@@ -176,7 +176,7 @@ body {
           left: 0;
           right: 0;
           top: 50%;
-          padding: 0 50px;
+          padding: 0 40px;
           transform: translateY(-50%);
 
           .logo-centered {
@@ -200,7 +200,7 @@ body {
             margin-top: 30px;
             margin-bottom: 0;
             color: $font-white;
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             font-weight: 600;
           }
 
@@ -245,8 +245,8 @@ body {
         .auth-col-form {
           width: 50%;
           display: block;
-          margin-top: 10%;
-          transform: translateY(10%);
+          margin-top: 0;
+          transform: translateY(5%);
 
           .tab-content {
 
@@ -307,6 +307,13 @@ body {
               } // row
               .sign-btn {
                 margin: 25px 0 0 0;
+
+                a {
+                  
+                  h4 {
+                    color: $font-highlight;
+                  }
+                }
 
                 .btn-color {
                   background-color: $font-highlight;
