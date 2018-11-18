@@ -26,6 +26,7 @@ body hr {
 body nav.navbar {
   background-color: #2C2F4D;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  margin-bottom: 40px;
 }
 body nav.navbar .brand-logo {
   background: url(../images/logo_header.svg) no-repeat;

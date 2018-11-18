@@ -19,6 +19,10 @@
   <script src="/assets/js/utils.js"></script>
   
 
+  <script id="group-name-display-template" type="text/x-handlebars-template">
+    <span class="name" style="color:#ee6e73">{{group_name}}</span>
+  </script>
+
 <!-- card Script section-->
 <script id="group-ideas-display-template" type="text/x-handlebars-template">
   <!-- card section-->
@@ -61,9 +65,11 @@
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
       <a href="#" data-target="slide-out" class="sidenav-trigger st-main"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#"><span class="name" style="color:#ee6e73">{{Group Name}}</span></a></li>
+
+        <!-- ADDED HANDLEBARS HERE FOR GROUP NAME IN NAVBAR -->
+
+          <li><a href="#" class="display-group-name"></a></li>
           <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="/assets/images/torre.png"></a></li>
-        <li><a href="#"><i class="material-icons nav-search">search</i></a></li>
       </ul>
   
       <!-- <ul id="nav-mobile" class="sidenav">
@@ -73,36 +79,36 @@
     </div>
   </nav>
   <ul id="slide-out" class="sidenav">
-    <li>
-      <div class="user-view">
-        <div class="background">
-          <img src="/assets/images/office.jpg">
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <img src="/assets/images/office.jpg">
+          </div>
+          <a href="#user"><img class="circle" src="/assets/images/torre.png"></a>
+          <a href="#name"><span class="white-text name">Torre Matthew</span></a>
+          <a href="#email"><span class="white-text email">torre.matthew@gmail.com</span></a>
         </div>
-        <a href="#user"><img class="circle" src="/assets/images/torre.png"></a>
-        <a href="#name"><span class="white-text name">Torre Matthews</span></a>
-        <a href="#email"><span class="white-text email">torre.matthew@gmail.com</span></a>
-      </div>
-      <div class="sign-btn">
+      </li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header"><i class="material-icons highlight">dashboard</i><span class="display-group-name"></span><i class="material-icons float-r white-text">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="#!">Features Coming Soon!</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <div class="sign-btn">
           <a href="/auth/logout" class="btn btn-color">
             Log out
           </a>
-    </li>
-    <li class="no-padding">
-      <ul class="collapsible collapsible-accordion">
-        <li>
-          <a class="collapsible-header"><i class="material-icons highlight">dashboard</i>{{Group Name}} Dashboard<i class="material-icons float-r white-text">arrow_drop_down</i></a>
-          <div class="collapsible-body">
-            <ul>
-              <li><a href="#!">{{Prompt}}</a></li>
-              <li><a href="#!">{Group Ideas}</a></li>
-              <li><a href="#!">{{Your ideas & Votes}}</a></li>
-              <li><a href="#!">{{Decisons Made}}</a></li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-    </li>
-  </ul>
+        </div>
+      </li>
+    </ul>
     <!-- <div class="row">
       <div class="display-ideas"></div>  
       <div class="winning-idea-page-button-location"></div>
@@ -111,13 +117,20 @@
 
   <main>
     <div class="container">
-      <div class="row">
-        <div class="display-ideas"></div>  
-      </div>
-      <div class="row">
-        <div class="winning-idea-page-button-location"></div>  
-      </div>
-    </div><!-- // container -->
+        <div class="row">
+            <div class="col l6 s12">
+              <div class="winning-idea-page-button-location"></div>
+            </div>
+          </div>
+        <div class="row">
+          <div class="display-ideas"></div>
+        </div>
+          <div class="row">
+            <div class="col l6 s12">
+              <div class="winning-idea-page-button-location"></div>
+            </div>
+          </div>
+      </div><!-- // container -->
   </main><!-- // main -->
   
 
@@ -125,10 +138,8 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5>Crimson Knuckles Bio</h5>
-          <p>We are a team of college students working on this project like it's our
-            full time job. Any amount would help support and continue development on this project and is greatly
-            appreciated.</p>
+          <h5>About The Crimson Knuckles:</h5>
+          <p>We were given the task of building something cool that people would find value in. iDecide is what we came up with. We hope you find it helpful.</p>
   
   
         </div>

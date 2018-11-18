@@ -1,7 +1,11 @@
 {
     "development": {
       "username": "root",
+<<<<<<< HEAD
       "password": "nguyen95",
+=======
+      "password": "Loveless27**",
+>>>>>>> 1c1b1ee12ed1eba22d735950099b41c1984be65e
       "database": "idecide",
       "host": "127.0.0.1",
       "port": 3306,
