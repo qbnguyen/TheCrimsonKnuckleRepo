@@ -29,9 +29,9 @@ body nav.navbar {
 }
 body nav.navbar .brand-logo {
   background: url(../images/logo_header.svg) no-repeat;
-  background-size: 200px;
+  background-size: 170px;
   width: 100%;
-  margin-top: 8px;
+  margin-top: 15px;
   height: inherit;
 }
 body nav.navbar .st-main {
@@ -90,6 +90,13 @@ body .sidenav.sidenav-fixed {
 body .hero {
   background-color: #121423;
   margin-top: 2px;
+}
+body .hero .topic input {
+  font-family: "Montserrat", sans-serif;
+  color: #aea9c3;
+}
+body .hero .topic .submit-idea {
+  border-radius: 0;
 }
 body main.landing {
   background-color: #ffffff;
@@ -329,10 +336,6 @@ body footer {
   background-color: #2C2F4D;
   border-top: 0.07rem solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 1px 15px 1px rgba(0, 0, 0, 0.08);
-}
-
-#input_text {
-  color: #ee6e73; 
 }
 
 /*# sourceMappingURL=style.css.map */
