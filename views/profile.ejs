@@ -7,12 +7,12 @@
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="../assets/css/social-share.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/social-share.css" rel="stylesheet" type="text/css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet" type="text/css" />
   <!-- custom -->
-  <link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js" ></script>
-  <script src="../assets/js/utils.js"></script>
+  <script src="/assets/js/utils.js"></script>
 </head>
 <body>
   <!-- <ul id="slide-out" class="sidenav sidenav-fixed">
@@ -47,11 +47,13 @@
           <div class="tab-content" id="animate-tab-content">
             <!-- Begin Sign In -->
             
-            <h3>Welcome to iDecide</h3>
-              <h4><%= user.username %></h4> 
+            
         
             <div role="tabpanel" class="ch-h tab-pane show active" id="singin" aria-labelledby="singin-tab">
-              <h3>Enter A Password To Join A Group</h3>
+                <h4>Welcome to iDecide, <%= user.username %></h4>
+                <br />
+                <br /> 
+              <h6>Enter Your Group Password</h6>
               <form>
                 <div class="group material-input">
                   <input type="password" id="passSearch" required="">
@@ -60,27 +62,12 @@
                   <label>Password</label>
                 </div>
               </form>
-              <div class="row mt-30">
-                <div class="col text-left">
-                  <div class="styled-checkbox">
-                    <label for="remeber">
-                      <input class="highlight-check" type="checkbox" name="checkbox" id="remeber">
-                      <span>Remember me</span>
-                    </label>
-                  </div>
-                </div>
-                <div class="col float-right">
-                  <a href="">Forgot Password ?</a>
-                </div>
-              </div>
               <div class="sign-btn text-center joinGroup">
                 <a href="#" class="btn btn-color">
                   Join Group
                 </a>
-              </div>
-        </div>
-    </div>
-</div>
+            
+  </div>
 </div>
 <!-- End Sign In -->
 <!-- Begin Sign Up -->
@@ -153,12 +140,12 @@ crossorigin="anonymous"> </script>
 <!-- materialize -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"> </script>
 <!-- animations -->
-<script src="../assets/js/components/core.min.js"> </script>
-<script src="../assets/js/components/nicescroll.min.js"> </script>
-<script src="../assets/js/components/animated-tabs.min.js"> </script>
+<script src="/assets/js/components/core.min.js"> </script>
+<script src="/assets/js/components/nicescroll.min.js"> </script>
+<script src="/assets/js/components/animated-tabs.min.js"> </script>
 <!-- handlebars-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"> </script>
 <!-- custom -->
-<script src="../assets/js/scripts.js"></script>
+<script src="/assets/js/scripts.js"></script>
 </body>
 </html>
