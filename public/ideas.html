@@ -27,13 +27,14 @@
 
      <script id="idea-display-template" type="text/x-handlebars-template">
         {{#each idea}}
-        <div class="card col s6 m3 l2">
-          <div class="card-content">
-          <p class="user-ideas">{{idea}}</p>
+        <div class="col s12 m6 l2">
+            <div class="card add-vote" data-idea-id="{{id}}">
+              <div class="card-content">
+                <blockquote class="curly-quotes act-q">{{idea}}</blockquote>
+                <hr>
+              </div>
+            </div>
         </div>
-        <div class="card-action">
-        </div>
-      </div>
       {{/each}}
     </script>
  
@@ -43,7 +44,7 @@
           <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
             <a href="#" data-target="slide-out" class="sidenav-trigger st-main"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-              <li><a href="#"><span class="name" style="color:#ee6e73">{{Group Name}}</span></a></li>
+                <li><a href="#" class="display-group-name"></a></li>
                 <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="/assets/images/torre.png"></a></li>
               <li><a href="#"><i class="material-icons nav-search">search</i></a></li>
             </ul>
@@ -85,6 +86,31 @@
             </ul>
           </li>
         </ul>
+<!-- hero -->
+<div class="section no-pad-bot hero" id="index-banner">
+    <div class="container">
+      <!-- ADDED HANDLEBARS HERE FOR GROUP NAME AND PROMPT -->
+      <div class="display-group-body"></div>  
+      <div class="row center">
+        <br><br>
+            <!-- form section-->
+        <div class="section topic">
+          <form class="col s12 m12 l12">
+            <div class="row">
+                <div class="input-field col s12 m12 l12">
+                  <input id="input_text" type="text" data-length="10">
+                  <label for="idea" name="input_text">What's your idea?</label>
+                </div>
+              </div>
+            <button id="add-idea" class="btn-small waves-effect waves-light orange submit-idea" type="submit" name="action">Submit</button>
+            <span class="voting-page-button-location"></span>
+          </form>
+        </div>
+      </div>
+    </div>
+    <br><br>
+  </div>
+
      <main>
  
  <!-- Idea Cards Section -->
