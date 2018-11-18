@@ -29,9 +29,9 @@ body nav.navbar {
 }
 body nav.navbar .brand-logo {
   background: url(../images/logo_header.svg) no-repeat;
-  background-size: 25%;
+  background-size: 200px;
   width: 100%;
-  margin-top: 5px;
+  margin-top: 8px;
   height: inherit;
 }
 body nav.navbar .st-main {

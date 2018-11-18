@@ -347,8 +347,10 @@ let getGroupAndRenderHandlebars = (idOfGroup) => {
 //   displayButtonToWinningIdeaPage();
 // });
 
-$(document).on("click", ".add-vote", function(){
+$(document).on("click", ".add-vote", function(event){
   //$(this).addClass("orange");
+
+  event.preventDefault();
 
   $(this).find(".act-q").css("border-left", "5px solid #2c2f4d");
 })
