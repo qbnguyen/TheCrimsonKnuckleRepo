@@ -21,9 +21,21 @@
      </script>
  
      <script id="group-body-display-template" type="text/x-handlebars-template">
-       <h2 class="header center orange-text">{{group_name}}</h2>
-       <h5 class="header center orange-text">Cast your iDeas on: {{decide_on}}</h5>
+       <h5 class="header center orange-text">Welcome to {{group_name}}</h5>
+       <h2 class="header center orange-text">{{decide_on}}</h2>
      </script>
+
+     <script id="idea-display-template" type="text/x-handlebars-template">
+        {{#each idea}}
+        <div class="card col s6 m3 l2">
+          <div class="card-content">
+          <p class="user-ideas">{{idea}}</p>
+        </div>
+        <div class="card-action">
+        </div>
+      </div>
+      {{/each}}
+    </script>
  
    </head>
    <body>
@@ -78,7 +90,6 @@
        <div class="container">
          <!-- ADDED HANDLEBARS HERE FOR GROUP NAME AND PROMPT -->
          <div class="display-group-body"></div>  
-         <div class="voting-page-button-location"></div>
          <div class="row center">
            <br><br>
                <!-- form section-->
@@ -87,10 +98,11 @@
                <div class="row">
                    <div class="input-field col s12 m12 l12">
                      <input id="input_text" type="text" data-length="10">
-                     <label for="idea" name="input_text">Input text</label>
+                     <label for="idea" name="input_text">What's your idea?</label>
                    </div>
                  </div>
                <button id="add-idea" class="btn-small waves-effect waves-light orange submit-idea" type="submit" name="action">Submit</button>
+               <span class="voting-page-button-location"></span>
              </form>
            </div>
          </div>
@@ -104,24 +116,15 @@
          <h2 class="header center orange-text">Your iDeas</h2>
          <br>
          <div class="row">
-           <div class="display-ideas"></div>   
+           <div class="idea-page-display-ideas"></div>   
          </div>
- <!-- Hidden Card Template -->
-       <div class="card col s6 m3 l2" id="template">
-         <div class="card-content">
-          <p class="user-ideas"></p>
-        </div>
-        <div class="card-action">
-          <a id="delete-idea"><i class="small material-icons">close</i> Delete</a>
-        </div>
-      </div>
       </div>
    <br>
-       <div class="row">
+       <!-- <div class="row">
          <div class="col s6 m3 l2">
            <button href="#voting.html" id="add-idea" class="btn-small waves-effect waves-light orange submit-all" type="button">Submit All Ideas</button>
          </div>
-       </div>
+       </div> -->
  <!-- // main -->
  </main>
  
@@ -171,4 +174,5 @@
        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
        <!-- custom -->
        <script src="/assets/js/scripts.js"></script>  
+
    </html>
