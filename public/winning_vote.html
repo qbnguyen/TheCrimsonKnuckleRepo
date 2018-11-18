@@ -14,7 +14,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <script src="/assets/js/utils.js"></script>
-
+    
+    <script id="group-name-display-template" type="text/x-handlebars-template">
+      <span class="name" style="color:#ee6e73">{{group_name}}</span>
+    </script>
   
     <script id="group-name-display-template" type="text/x-handlebars-template">
       <span class="name" style="color:#ee6e73">{{group_name}}</span>
@@ -22,7 +25,8 @@
 
     <script id="group-winner-display-template" type="text/x-handlebars-template">
       {{#each idea}}
-        <div class="col s12">
+        <div class="col l12 s12">
+              <h3>It Has Been Decided...</h3>
               <h1 class="winner">{{idea}}</h1>
         </div>
       {{/each}}
@@ -35,6 +39,17 @@
           <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
             <a href="#" data-target="slide-out" class="sidenav-trigger st-main"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
+
+                <li><a href="#" class="display-group-name"></a></li>
+                <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="/assets/images/torre.png"></a></li>
+              <li><a href="#"><i class="material-icons nav-search">search</i></a></li>
+            </ul>
+        
+            <!-- <ul id="nav-mobile" class="sidenav">
+              <li><a href="#">Navbar Link</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger mob-nav"><i class="material-icons">menu</i></a> -->
+
               <!-- ADDED HANDLEBARS HERE FOR GROUP NAME IN NAVBAR -->
                 <li><a href="#" class="display-group-name"></a></li>
                 <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="/assets/images/torre.png"></a></li>
@@ -44,6 +59,7 @@
               <li><a href="#">Navbar Link</a></li>
             </ul>
             <a href="#" data-target="nav-mobile" class="sidenav-trigger mob-nav"><i class="material-icons">menu</i></a>
+
           </div>
         </nav>
         <ul id="slide-out" class="sidenav">
@@ -60,6 +76,9 @@
                 <a href="/auth/logout" class="btn btn-color">
                   Log out
                 </a>
+
+            </div>
+
           </li>
           <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
@@ -87,34 +106,28 @@
           </div>
         </section>
       </div>
-      <div class="sign-btn">
-          <a href="/auth/logout" class="btn btn-color">
-            Log out
-          </a>
     </main><!-- // main -->
     <footer>
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <h5>Crimson Knuckles Bio</h5>
-            <p>We are a team of college students working on this project like it's our
-              full time job. Any amount would help support and continue development on this project and is greatly
-              appreciated.</p>
+            <h5>About The Crimson Knuckles:</h5>
+            <p>We were given the task of building something cool that people would find value in. iDecide is what we came up with. We hope you find it helpful.</p>
           </div>
           <div class="col l6 s12">
-            <h5>Social Share</h5>
-            <div class="tc-social-share tc-social-small text-center">
-              <a href=""><i class="social-icon fab fa-facebook-f"></i></a>
-              <a href=""><i class="social-icon fab fa-twitter"></i></a>
-              <a href=""><i class="social-icon fab fa-google-plus"></i></a>
-              <a href=""><i class="social-icon fab fa-dribbble"></i></a>
-              <a href=""><i class="social-icon fab fa-linkedin"></i></a>
-              <a href=""><i class="social-icon fab fa-instagram"></i></a>
-              <a href=""><i class="social-icon fab fa-pinterest"></i></a>
-              <a href=""><i class="social-icon fab fa-github"></i></a>
-              <a href=""><i class="social-icon fab fa-flickr"></i></a>
-              <a href=""><i class="social-icon fab fa-vk"></i></a>
-            </div>
+              <h5>Social Share</h5>
+              <div class="tc-social-share tc-social-small text-center">
+                <a href=""><i class="social-icon fab fa-facebook-f"></i></a>
+                <a href=""><i class="social-icon fab fa-twitter"></i></a>
+                <a href=""><i class="social-icon fab fa-google-plus"></i></a>
+                <a href=""><i class="social-icon fab fa-dribbble"></i></a>
+                <a href=""><i class="social-icon fab fa-linkedin"></i></a>
+                <a href=""><i class="social-icon fab fa-instagram"></i></a>
+                <a href=""><i class="social-icon fab fa-pinterest"></i></a>
+                <a href=""><i class="social-icon fab fa-github"></i></a>
+                <a href=""><i class="social-icon fab fa-flickr"></i></a>
+                <a href=""><i class="social-icon fab fa-vk"></i></a>
+              </div>
           </div>
         </div>
       </div>
