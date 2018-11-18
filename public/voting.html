@@ -1,10 +1,8 @@
 <!doctype html>
 <html lang="en-us">
-
 <head>
-  <title></title>
+  <title>iDecide</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- materialize -->
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,134 +12,103 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
     crossorigin="anonymous">
   <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
   <script src="/assets/js/utils.js"></script>
-  
-
   <script id="group-name-display-template" type="text/x-handlebars-template">
     <span class="name" style="color:#ee6e73">{{group_name}}</span>
   </script>
-
 <!-- card Script section-->
 <script id="group-ideas-display-template" type="text/x-handlebars-template">
   <!-- card section-->
   <div id="num1" class="section">
-  <h2 class="header center orange-text gn">{{group}}</h2>
-  <h2 class="header center orange-text gi">{{groupIdea}}</h2>
-  <div class="row">
-  {{#each idea}}
-  <div class="col s12 m6 l4">
-      <div class="card add-vote" data-idea-id="{{id}}">
-      <div class="card-content">
-        <!-- <div class="user-counter">{{userCounter}}</div> -->
-        <div class="vote-status"></div>
-        <div class="user-counter"></div>
-        <blockquote class="curly-quotes act-q">{{idea}}</blockquote>
-        <a class="btn-floating halfway-fab waves-effect waves-light multi-vote add" data-idea-id="{{id}}"><i class="material-icons">add</i></a>
-        <a class="btn-floating halfway-fab waves-effect waves-light multi-vote remove" data-idea-id="{{id}}"><i class="material-icons">remove</i></a>
-          <!-- <span class="card-title">{{id}}</span> -->
-          <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in erat quis elit ornare blandit a vel quam. Etiam fringilla facilisis urna id sagittis. Pellentesque gravida pulvinar iaculis. Vivamus quis lacus ac purus tempor cursus. Suspendisse potenti. In quis mattis lectus. Pellentesque ut posuere dolor. Cras elementum sagittis ipsum, non mattis turpis accumsan in. Phasellus quis aliquam nulla, eu suscipit enim. Ut ultricies libero at lacus dignissim faucibus.
-          Quisque consectetur nullam.</p> -->
-        <hr>
-        <h3>Vote</h3>
-          <!-- <span class="vote-count">{{vote_val}}</span> -->
-          
-      </div>
-      <!-- <div class="card-action">
-          <a href="#" data-idea-id="{{id}}" class="fas fa-thumbs-up add-vote"> Vote</a>
-      </div> -->
-      </div><!-- //card -->
-  </div>
-  {{/each}}
-  </div>
+    <h2 class="header center orange-text gn">{{group}}</h2>
+    <h2 class="header center orange-text gi">{{groupIdea}}</h2>
+    <div class="row">
+      {{#each idea}}
+        <div class="col s12 m6 l4">
+            <div class="card add-vote" data-idea-id="{{id}}">
+              <div class="card-content">
+                <!-- <div class="user-counter">{{userCounter}}</div> -->
+                <div class="vote-status"></div>
+                <div class="user-counter"></div>
+                <blockquote class="curly-quotes act-q">{{idea}}</blockquote>
+                <a class="btn-floating halfway-fab waves-effect waves-light multi-vote add" data-idea-id="{{id}}"><i class="material-icons">add</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light multi-vote remove" data-idea-id="{{id}}"><i class="material-icons">remove</i></a>
+                <hr>
+                <h3>Vote</h3> 
+              </div>
+            </div><!-- //card -->
+        </div>
+      {{/each}}
+    </div>
   </div>
 </script>
-
 </head>
-
 <body>
   <nav class="navbar" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
       <a href="#" data-target="slide-out" class="sidenav-trigger st-main"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-
         <!-- ADDED HANDLEBARS HERE FOR GROUP NAME IN NAVBAR -->
-
           <li><a href="#" class="display-group-name"></a></li>
           <li><a href="#user"><img class="circle" height="40px" width="40px" style="margin:10px" src="/assets/images/torre.png"></a></li>
       </ul>
-  
-      <!-- <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger mob-nav"><i class="material-icons">menu</i></a> -->
     </div>
   </nav>
   <ul id="slide-out" class="sidenav">
-      <li>
-        <div class="user-view">
-          <div class="background">
-            <img src="/assets/images/office.jpg">
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img src="/assets/images/office.jpg">
+        </div>
+        <a href="#user"><img class="circle" src="/assets/images/torre.png"></a>
+        <a href="#name"><span class="white-text name">Torre Matthew</span></a>
+        <a href="#email"><span class="white-text email">torre.matthew@gmail.com</span></a>
+      </div>
+    </li>
+    <li class="no-padding">
+      <ul class="collapsible collapsible-accordion">
+        <li>
+          <a class="collapsible-header"><i class="material-icons highlight">dashboard</i><span class="display-group-name"></span><i class="material-icons float-r white-text">arrow_drop_down</i></a>
+          <div class="collapsible-body">
+            <ul>
+              <li><a href="#!">Features Coming Soon!</a></li>
+            </ul>
           </div>
-          <a href="#user"><img class="circle" src="/assets/images/torre.png"></a>
-          <a href="#name"><span class="white-text name">Torre Matthew</span></a>
-          <a href="#email"><span class="white-text email">torre.matthew@gmail.com</span></a>
-        </div>
-      </li>
-      <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-          <li>
-            <a class="collapsible-header"><i class="material-icons highlight">dashboard</i><span class="display-group-name"></span><i class="material-icons float-r white-text">arrow_drop_down</i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="#!">Features Coming Soon!</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <div class="sign-btn">
-          <a href="/auth/logout" class="btn btn-color">
-            Log out
-          </a>
-        </div>
-      </li>
-    </ul>
-    <!-- <div class="row">
-      <div class="display-ideas"></div>  
-      <div class="winning-idea-page-button-location"></div>
-    </div> -->
-
-
+        </li>
+      </ul>
+    </li>
+    <li>
+      <div class="sign-btn">
+        <a href="/auth/logout" class="btn btn-color">
+          Log out
+        </a>
+      </div>
+    </li>
+  </ul>
   <main>
     <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-              <div class="winning-idea-page-button-location"></div>
-            </div>
-          </div>
-        <div class="row">
-          <div class="display-ideas"></div>
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="winning-idea-page-button-location"></div>
         </div>
-          <div class="row">
-            <div class="col l6 s12">
-              <div class="winning-idea-page-button-location"></div>
-            </div>
+      </div>
+      <div class="row">
+        <div class="display-ideas"></div>
+      </div>
+        <div class="row">
+          <div class="col l6 s12">
+            <div class="winning-idea-page-button-location"></div>
           </div>
+        </div>
       </div><!-- // container -->
   </main><!-- // main -->
-  
-
   <footer>
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
           <h5>About The Crimson Knuckles:</h5>
           <p>We were given the task of building something cool that people would find value in. iDecide is what we came up with. We hope you find it helpful.</p>
-  
-  
         </div>
         <div class="col l6 s12">
           <h5>Social Share</h5>
