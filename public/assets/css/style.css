@@ -23,6 +23,9 @@ body hr {
   border: 2px solid #252846;
   border-top: 1px solid #2C2F4D;
 }
+body .vh70 {
+  height: 70vh;
+}
 body nav.navbar {
   background-color: #2C2F4D;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -44,6 +47,9 @@ body nav.navbar .st-main {
 }
 body nav.navbar .nav-search {
   color: #e76c90;
+}
+body nav.navbar .nav-wrapper .right .circle {
+  border: 2px solid #e76c90;
 }
 body nav.navbar .nav-wrapper .mob-nav {
   float: right;
@@ -69,6 +75,9 @@ body .sidenav li a .float-r {
 }
 body .sidenav li a .highlight {
   color: #e76c90;
+}
+body .sidenav li .user-view .circle {
+  border: 2px solid #e76c90;
 }
 body .sidenav .collapsible-body {
   background-color: #252846;
@@ -121,7 +130,7 @@ body main.landing .row:first-of-type .left-side .auth-col-content {
   left: 0;
   right: 0;
   top: 50%;
-  padding: 0 50px;
+  padding: 0 40px;
   transform: translateY(-50%);
 }
 body main.landing .row:first-of-type .left-side .auth-col-content .logo-centered {
@@ -142,7 +151,7 @@ body main.landing .row:first-of-type .left-side .auth-col-content h1 {
   margin-top: 30px;
   margin-bottom: 0;
   color: #ffffff;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 600;
 }
 body main.landing .row:first-of-type .left-side .auth-col-content span.description {
@@ -176,8 +185,8 @@ body main.landing .right-side {
 body main.landing .right-side .auth-col-form {
   width: 50%;
   display: block;
-  margin-top: 10%;
-  transform: translateY(10%);
+  margin-top: 0;
+  transform: translateY(5%);
 }
 body main.landing .right-side .auth-col-form .tab-content .tab-pane {
   display: none;
@@ -221,6 +230,9 @@ body main.landing .right-side .auth-col-form .tab-content .tab-pane .row .float-
 }
 body main.landing .right-side .auth-col-form .tab-content .tab-pane .sign-btn {
   margin: 25px 0 0 0;
+}
+body main.landing .right-side .auth-col-form .tab-content .tab-pane .sign-btn a h4 {
+  color: #e76c90;
 }
 body main.landing .right-side .auth-col-form .tab-content .tab-pane .sign-btn .btn-color {
   background-color: #e76c90;
