@@ -23,9 +23,13 @@ body hr {
   border: 2px solid #252846;
   border-top: 1px solid #2C2F4D;
 }
+body .vh70 {
+  height: 70vh;
+}
 body nav.navbar {
   background-color: #2C2F4D;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  margin-bottom: 40px;
 }
 body nav.navbar .brand-logo {
   background: url(../images/logo_header.svg) no-repeat;
@@ -43,6 +47,9 @@ body nav.navbar .st-main {
 }
 body nav.navbar .nav-search {
   color: #e76c90;
+}
+body nav.navbar .nav-wrapper .right .circle {
+  border: 2px solid #e76c90;
 }
 body nav.navbar .nav-wrapper .mob-nav {
   float: right;
@@ -68,6 +75,9 @@ body .sidenav li a .float-r {
 }
 body .sidenav li a .highlight {
   color: #e76c90;
+}
+body .sidenav li .user-view .circle {
+  border: 2px solid #e76c90;
 }
 body .sidenav .collapsible-body {
   background-color: #252846;
