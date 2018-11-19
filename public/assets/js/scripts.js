@@ -468,6 +468,7 @@ $("body").on("click", ".enter-winning-idea-page", function(event){
 //This function only renders handlebars if there is a hash in the URL, and also if there are the corresponding
 //Classes and IDs that are ready to be used for handlebars.
 $(document).ready(function() {
+  localStorage.clear();
   let groupID = location.hash.substr(1);
 
   getGroupAndRenderHandlebars(groupID);
