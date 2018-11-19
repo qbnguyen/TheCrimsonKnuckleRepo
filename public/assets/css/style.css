@@ -23,6 +23,34 @@ body hr {
   border: 2px solid #252846;
   border-top: 1px solid #2C2F4D;
 }
+body .modal {
+  background-color: #2C2F4D;
+  color: #aea9c3;
+  border-radius: 0;
+}
+body .modal h4 {
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
+body .modal a.btn {
+  background-color: #121423;
+  color: #e76c90;
+  border: 1px solid #e76c90;
+  font-size: 1.7rem;
+  font-weight: 500;
+  padding: 0 77px;
+}
+body .modal a.btn:hover {
+  background-color: #252846;
+  color: rgba(231, 108, 144, 0.8);
+}
+body .modal .modal-footer {
+  background-color: #2C2F4D;
+}
+body .modal .modal-footer a i {
+  color: #e76c90;
+  font-size: 1.7rem;
+}
 body .vh70 {
   height: 70vh;
 }
@@ -76,6 +104,9 @@ body .sidenav li a .float-r {
 body .sidenav li a .highlight {
   color: #e76c90;
 }
+body .sidenav li .user-view {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 body .sidenav li .user-view .circle {
   border: 2px solid #e76c90;
 }
@@ -96,6 +127,12 @@ body .sidenav .collapsible-body a:active {
 }
 body .sidenav.sidenav-fixed {
   background-color: #252846;
+}
+body .sidenav .sign-btn {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10%;
 }
 body .hero {
   background-color: #121423;
@@ -343,12 +380,33 @@ body main .section .card .card-content .multi-vote i {
   font-size: 2.7rem;
   color: #aea9c3;
 }
+body main .display-winner h3 {
+  text-align: center;
+}
+body main .display-winner h1 {
+  text-align: center;
+  border: 1px solid #e76c90;
+  background-color: #121423;
+  padding: 27px 0;
+}
 body footer {
   padding: 15px 0;
   color: #aea9c3;
   background-color: #2C2F4D;
   border-top: 0.07rem solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 1px 15px 1px rgba(0, 0, 0, 0.08);
+}
+
+@media only screen and (max-width: 992px) {
+  body nav.navbar .brand-logo {
+    margin-top: 10px;
+  }
+}
+@media only screen and (max-width: 340px) {
+  body main.landing .right-side {
+    background-color: #ffffff;
+    height: 135vh;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

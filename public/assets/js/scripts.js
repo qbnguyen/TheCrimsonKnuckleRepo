@@ -90,7 +90,7 @@ let totalNumberofVotesInGroup = (max) => {
 //to take the user to the voting page.
 let buttontoEnterVoting = () => {
   let button = $("<a>")
-                .addClass("waves-effect waves-light btn enter-voting-page")
+                .addClass("waves-effect waves-light btn btn-large enter-voting-page")
                 .append("Voting Now Open");
     
     $(".voting-page-button-location").empty("");
@@ -114,6 +114,8 @@ let buttontoSeeWinner = () => {
 let displayButtonToWinningIdeaPage = (max, total) => {
   if (total >= max) {
       buttontoSeeWinner();
+      
+      $(".modal").modal("open");
   }
 }
 

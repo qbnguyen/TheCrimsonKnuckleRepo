@@ -45,6 +45,46 @@ body {
     border-top: 1px solid $light-body;
   }
 
+  .modal {
+    background-color: $light-body;
+    color: $font-color;
+    border-radius: 0;
+
+    h4 {
+      text-align: center;
+      margin-bottom: 2.4rem;
+    }
+
+    a {
+
+      &.btn {
+        background-color: $xdark-body;
+        color: $font-highlight;
+        border: 1px solid $font-highlight;
+        font-size: 1.7rem;
+        font-weight: 500;
+        padding: 0 77px;
+
+        &:hover {
+          background-color: $dark-body;
+          color: rgba($font-highlight, .8);
+        }
+      }
+    }
+    .modal-footer {
+      background-color: $light-body;
+      
+      a {
+
+        i {
+          color: $font-highlight;
+          font-size: 1.7rem;
+
+        }
+      }
+    }
+  } // modal
+
   .vh70 {
     height: 70vh;
   }
@@ -120,6 +160,7 @@ body {
       }
 
       .user-view {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
         .circle {
           border: 2px solid $font-highlight;
@@ -149,7 +190,14 @@ body {
     &.sidenav-fixed {
       background-color: $dark-body;
     }
-  }
+
+    .sign-btn {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 10%;
+    }
+  } // sidenav
 
   .hero {
     background-color: $xdark-body;
@@ -489,6 +537,19 @@ body {
         } // card-content
       } // card
     }
+    .display-winner {
+      
+      h3 {
+        text-align: center;
+      }
+
+      h1 {
+        text-align: center;
+        border: 1px solid $font-highlight;
+        background-color: $xdark-body;
+        padding: 27px 0;
+      }
+    }
   } // main
 
   footer {
@@ -500,3 +561,15 @@ body {
   }
 }
 
+@media only screen and (max-width: 992px) {
+  body nav.navbar .brand-logo {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  body main.landing .right-side {
+    background-color: #ffffff;
+    height: 135vh;
+  }
+} 
