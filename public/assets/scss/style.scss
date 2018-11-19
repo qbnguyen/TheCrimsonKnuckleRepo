@@ -94,7 +94,6 @@ body {
     &.navbar {
       background-color: $light-body;
       box-shadow: 0 1px 0 rgba(255,255,255,.1);
-      margin-bottom: 40px;
 
       .brand-logo {
         background: url(../images/logo_header.svg) no-repeat;
@@ -562,14 +561,68 @@ body {
 }
 
 @media only screen and (max-width: 992px) {
-  body nav.navbar .brand-logo {
-    margin-top: 10px;
+
+  body {
+
+    nav {
+
+      &.navbar {
+
+        .brand-logo {
+           margin-top: 10px;
+        }
+      }
+    }
   }
+  
 }
 
 @media only screen and (max-width: 340px) {
-  body main.landing .right-side {
-    background-color: #ffffff;
-    height: 135vh;
+
+  body {
+
+    main {
+
+      &.landing {
+
+        .right-side {
+          background-color: #ffffff;
+          height: 135vh;
+        }
+      }
+    }
+  }
+} 
+
+@media only screen and (max-width: 320px) {
+  
+  body {
+
+    main {
+
+      &.landing {
+
+        .right-side {
+          background-color: #ffffff;
+          height: 150vh;
+
+          .auth-col-form {
+
+            .tab-content {
+
+              .tab-pane {
+
+                .sign-btn {
+                  
+                  a {
+                    font-size: 12px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 } 
